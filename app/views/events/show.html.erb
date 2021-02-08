@@ -1,0 +1,34 @@
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div style="background:#117099 !important" class="jumbotron show">
+  <div class="container">
+    <h1 class="event-title"><%= @event.title %></h1>
+    <h3 class="event-place"><%= @event.place %></h3>
+    <p><%= @event.description %></p>
+    <p>
+      <%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %>
+      <% if @event.endtime.nil? %>
+      <% else %>
+        - <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+
+
+
+  <ul class="list-group list-group-flush">
+  <h3>Attendees: </h3>
+  <% @count.each do |c| %>
+    <li class="list-group-item"><%= c.first_name %> <%= c.last_name %> <%= c.email %></li>
+    <% end %>
+  </ul>
+  <br>
+  <%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary") %>
+</div>

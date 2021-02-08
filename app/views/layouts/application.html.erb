@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BMES Participation Tracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="/">
+    <img src="https://bmes-tamu.org/images/BMESClearer.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    BMES Participation Tracker
+  </a>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+  <form class="form-inline admin-button">
+    <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary") %>
+  </form>
+</nav>
+  <div class='content'>
+    <%= yield %>
+  </div>
+  </body>
+</html>

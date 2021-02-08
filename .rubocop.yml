@@ -1,0 +1,20 @@
+AllCops:
+  Include:
+    - Gemfile
+    - app/**/*.rb
+    - db/seeds.rb
+    - spec/**/*.rb
+  Exclude:
+    - bin/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['define', 'describe', 'it']
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20

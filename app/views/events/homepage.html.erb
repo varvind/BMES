@@ -1,0 +1,34 @@
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+
+<div class="Events homepage">
+  <h2>Events</h2>
+
+  <table class="listing" summary="event list">
+    <tr class="header">
+      <th>ID</th>
+      <th>Title</th>
+      <th>Place</th>
+      <th>Description</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+    <% @events.each do |event| %>
+    <tr>
+      <td><%= event.id %></td>
+      <td><%= event.title %></td>
+      <td><%= event.place %></td> 
+      <td><%= event.description %></td>
+      <td><%= event.starttime.strftime("%h %M %p %m-%d-%Y") %></td>
+      <td><%= event.endtime.strftime("%h %M %p %m-%d-%Y") %></td>
+      <td class="actions">
+        <%= link_to("Show", event_path(event), :class => 'action show') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div> 

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  place: MyString
+  description: MyString
+  starttime: 2020-09-22 00:56:37
+  endtime: 2020-09-22 00:56:37
+  eventpass: MyString
+
+two:
+  title: MyString
+  place: MyString
+  description: MyString
+  starttime: 2020-09-22 00:56:37
+  endtime: 2020-09-22 00:56:37
+  eventpass: MyString
