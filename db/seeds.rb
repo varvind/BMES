@@ -24,7 +24,7 @@ if Rails.env.test?
                         email: 'happylittletrees@example.com', event_id: 1)
 end
 
-if Rails.env.development?
+if Rails.env.production?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
   Event.create!(title: 'Title', place: 'Zach 310', description: 'Description',
                 starttime: '2020-12-01 00:00:00', endtime: '2020-12-01 01:00:00', eventpass: '1')
