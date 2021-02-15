@@ -4,12 +4,17 @@ require 'csv'
 
 require 'creek'
 
+# Note: CSV is a built in ruby package, and creek is used to parse Excel files
+# This is the reason for two seperate functions for both CSV and XLSX parsing
+
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
   menu label: 'Create Users'
   batch_action :destroy, false
   permit_params :user_CSV_File, :password, :name, :email, :total_points, :general_meeting_points,
                 :social_points, :mentorship_meeting_points
+
+  # Initialize Column
   index do
     selectable_column
     column :name
@@ -27,6 +32,7 @@ ActiveAdmin.register User do
   filter :total_points
   filter :created_at
 
+  # initialize form
   form do |f|
     f.semantic_errors(*f.object.errors.keys)
     text_node javascript_include_tag('user_form.js')
@@ -37,7 +43,7 @@ ActiveAdmin.register User do
       f.li "<label class='label' id ='instructions'
               style = 'margin-left:1%;font-weight:bold; margin-top:10%; position:relative'>
               Use a Spreadsheet with User Information</label>".html_safe
-      f.input :user_CSV_File, as: :file, accept: :csv
+      f.input :user_CSV_File, as: :file, accept: :csv, required: true
       f.li "<label class='label hidden' style = 'margin-left:1%;font-weight:bold'>
               or Add Individual Member</label>".html_safe
       f.input :name, as: :hidden
@@ -53,6 +59,7 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  # form controller
   controller do
     def create
       attrs = permitted_params[:user]
@@ -62,6 +69,8 @@ ActiveAdmin.register User do
           create_user_with_csv(attrs)
         elsif filename.include? '.xlsx'
           create_user_with_xlsx(attrs)
+        else
+          redirect_to '/admin/users'
         end
       else
         User.create(password: attrs[:password], name: attrs[:name], email: attrs[:email],
