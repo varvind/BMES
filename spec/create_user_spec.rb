@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'selenium-webdriver'
 RSpec.describe 'Create Users Page', type: :system do
-  describe 'Create User wiht CSV' do
+  describe 'Create User' do
     before(:each) do
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
@@ -11,16 +11,51 @@ RSpec.describe 'Create Users Page', type: :system do
       click_button('Login')
     end
 
-    # TODO : 
-    # it 'Import CSV' do
-    #   visit '/admin/users'
-    #   click_link('Create one')
-    #   fileelem = page.find('#user_user_CSV_File')
-    #   file = File.join(Dir.pwd, 'test/MemberInformation.xlsx')
-    #   fileelem.send_keys file
-    #   # attach_file('user[user_CSV_File]', Rails.root.join('test','MemberInformation.xlsx'))
-    # end
-    
+    it 'With XLSX' do
+      visit '/admin/users'
+      click_link('Create one')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      expect(page).to have_content('Aaryan Sharma')
+    end
+
+    it 'With CSV' do
+      visit '/admin/users'
+      click_link('Create one')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.xlsx'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      expect(page).to have_content('Zachary Mendoza')
+    end
+
+    it 'With invalid file type' do
+      visit '/admin/users'
+      click_link('Create one')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.txt'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      expect(page).to have_content('Create one')
+    end
+
+    it 'With invalid columns (CSV)' do
+      visit '/admin/users'
+      click_link('Create one')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.csv'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      expect(page).to have_content('Create one')
+    end
+
+    it 'With invalid columns (XLSX)' do
+      visit '/admin/users'
+      click_link('Create one')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.xlsx'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      expect(page).to have_content('Create one')
+    end
+
     it 'Add single user' do
       visit '/admin/users'
       click_link('Create one')

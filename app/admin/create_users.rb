@@ -69,8 +69,6 @@ ActiveAdmin.register User do
           create_user_with_csv(attrs)
         elsif filename.include? '.xlsx'
           create_user_with_xlsx(attrs)
-        else
-          redirect_to '/admin/users'
         end
       else
         User.create(password: attrs[:password], name: attrs[:name], email: attrs[:email],
@@ -83,6 +81,8 @@ ActiveAdmin.register User do
   end
 end
 
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
 def find_table_index(header_name, table, filetype)
   if filetype == 'csv'
     (0..table[0].length - 1).each do |i|
@@ -92,14 +92,15 @@ def find_table_index(header_name, table, filetype)
     sheets = table.sheets
     worksheet = sheets[0]
     worksheet.rows.each do |row|
-      (0..row.length - 1).each do |j|
-        return j if header_name == row.values[j].downcase
+      (0..row.length).each do |j|
+        return j if !row.values[j].nil? && header_name == row.values[j].downcase
       end
     end
   end
   -1
 end
 
+# rubocop:disable Metrics/MethodLength
 def create_user_with_csv(attrs)
   table = CSV.parse(attrs[:user_CSV_File].read)
   name_index = find_table_index('name', table, 'csv')
@@ -108,6 +109,10 @@ def create_user_with_csv(attrs)
   gen_points_index = find_table_index('general meeting points', table, 'csv')
   men_points_index = find_table_index('mentorship meeting points', table, 'csv')
   soc_points_index = find_table_index('social points', table, 'csv')
+  if name_index == -1 || email_index == -1 || t_points_index == -1
+    gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+    return
+  end
   (0..table.length - 1).each do |i|
     name = table[i][name_index]
     next unless name != 'Name' && !name.nil?
@@ -117,13 +122,13 @@ def create_user_with_csv(attrs)
     gen_meet_points = table[i][gen_points_index]
     social_points = table[i][soc_points_index]
     mentor_points = table[i][men_points_index]
+    password = attrs[:password]
     User.create(name: name, email: email, password: password,
                 total_points: total_points, general_meeting_points: gen_meet_points,
                 mentorship_meeting_points: mentor_points, social_points: social_points)
   end
 end
 
-# rubocop:disable Metrics/MethodLength
 def create_user_with_xlsx(attrs)
   table = Creek::Book.new attrs[:user_CSV_File].path
   name_index = find_table_index('name', table, 'xlsx')
@@ -132,6 +137,10 @@ def create_user_with_xlsx(attrs)
   gen_points_index = find_table_index('general meeting points', table, 'xlsx')
   men_points_index = find_table_index('mentorship meeting points', table, 'xlsx')
   soc_points_index = find_table_index('social points', table, 'xlsx')
+  if name_index == -1 || email_index == -1 || t_points_index == -1
+    gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+    return
+  end
   sheets = table.sheets
   worksheet = sheets[0]
   worksheet.rows.each do |row|
@@ -152,3 +161,5 @@ def create_user_with_xlsx(attrs)
 end
 
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
