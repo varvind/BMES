@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  username: MyString
+  password: MyString
+  total_points: 1
+  gen_meet_points: 1
+  mentor_meet_points: 1
+  social_points: 1
+
+two:
+  name: MyString
+  username: MyString
+  password: MyString
+  total_points: 1
+  gen_meet_points: 1
+  mentor_meet_points: 1
+  social_points: 1

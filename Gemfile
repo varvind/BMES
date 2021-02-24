@@ -59,7 +59,7 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
-gem 'activeadmin'
+gem 'activeadmin', git: 'git://github.com/gregbell/active_admin.git'
 
 # Plus integrations with:
 gem 'cancancan'
@@ -70,3 +70,5 @@ gem 'pundit'
 gem 'active_material', github: 'vigetlabs/active_material'
 
 gem 'rubocop', '~> 0.93.0', require: false
+
+gem 'creek'
