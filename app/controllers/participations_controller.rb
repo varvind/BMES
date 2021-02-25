@@ -7,6 +7,7 @@ class ParticipationsController < ApplicationController
     @participation = Participation.new
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create
     @event_id = params['participation']['event_id']
     @event = begin
@@ -14,13 +15,13 @@ class ParticipationsController < ApplicationController
              rescue StandardError
                nil
              end
-
     if @event.nil?
       redirect_to new_participation_path(event_id: @event_id), flash: { danger: 'No matching event found, please try '\
         'again.' }
     elsif @event.eventpass == params[:event_pass]
-      @verification = Participation.find_by email: participation_params[:email], event_id: participation_params[:event_id]
-      if !@verification.nil?
+      @verification = Participation.find_by email: participation_params[:email],
+                                            event_id: participation_params[:event_id]
+      unless @verification.nil?
         redirect_to events_path, flash: { danger: 'You have already signed into the event' }
         return
       end
@@ -32,6 +33,7 @@ class ParticipationsController < ApplicationController
         'again.' }
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def participation_params
     params.require(:participation).permit(:uin, :first_name, :last_name, :email, :event_pass, :event_id)
