@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 require 'selenium-webdriver'
-require 'sidekiq/testing' 
+require 'sidekiq/testing'
 
 RSpec.describe 'Create Users Page', type: :system do
   describe 'Create User' do
