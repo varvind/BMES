@@ -71,7 +71,7 @@ ActiveAdmin.register User do
           create_user_with_xlsx(attrs)
         end
       else
-        User.create(password: attrs[:password], name: attrs[:name], email: attrs[:email],
+        User.create(password: attrs[:password], password_confirmation: attrs[:password], name: attrs[:name], email: attrs[:email],
                     total_points: attrs[:total_points], general_meeting_points: attrs[:general_meeting_points],
                     social_points: attrs[:social_points],
                     mentorship_meeting_points: attrs[:mentorship_meeting_points])
