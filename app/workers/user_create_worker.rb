@@ -1,6 +1,5 @@
 class UserCreateWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
   def perform(name, email, password,
     total_points, gen_meet_points,
     mentor_points, social_points)
