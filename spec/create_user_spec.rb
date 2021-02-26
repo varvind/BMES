@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 require 'selenium-webdriver'
+require 'sidekiq/testing'
+
 RSpec.describe 'Create Users Page', type: :system do
   describe 'Create User' do
     before(:each) do
@@ -12,20 +14,28 @@ RSpec.describe 'Create Users Page', type: :system do
     end
 
     it 'With XLSX' do
+      Sidekiq::Worker.clear_all
       visit '/admin/users'
       click_link('Create one')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
+      sleep(5)
+      Sidekiq::Worker.drain_all
+      visit '/admin/users'
       expect(page).to have_content('Aaryan Sharma')
     end
 
     it 'With CSV' do
+      Sidekiq::Worker.clear_all
       visit '/admin/users'
       click_link('Create one')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.xlsx'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
+      sleep(5)
+      Sidekiq::Worker.drain_all
+      visit '/admin/users'
       expect(page).to have_content('Zachary Mendoza')
     end
 

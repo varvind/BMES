@@ -27,6 +27,10 @@ Rails.application.routes.draw do
 
   # User routes
   get '/user/login' => 'user#login'
+  
+  require 'sidekiq/web'
+
+  mount Sidekiq::Web => '/sidekiq'
   # method 'participations/new/:id', to: 'participations#action'
   # get 'participations/new/:id'
   # get 'events/:id/submit', action: :submit, controller: 'participation'

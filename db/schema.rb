@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_164815) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.integer "total_points", default: 0
     t.integer "general_meeting_points", default: 0
     t.integer "mentorship_meeting_points", default: 0

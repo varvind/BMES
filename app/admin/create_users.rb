@@ -71,8 +71,9 @@ ActiveAdmin.register User do
           create_user_with_xlsx(attrs)
         end
       else
-        User.create(password: attrs[:password], name: attrs[:name], email: attrs[:email],
-                    total_points: attrs[:total_points], general_meeting_points: attrs[:general_meeting_points],
+        User.create(password: attrs[:password], password_confirmation: attrs[:password], name: attrs[:name],
+                    email: attrs[:email], total_points: attrs[:total_points],
+                    general_meeting_points: attrs[:general_meeting_points],
                     social_points: attrs[:social_points],
                     mentorship_meeting_points: attrs[:mentorship_meeting_points])
       end
@@ -123,9 +124,9 @@ def create_user_with_csv(attrs)
     social_points = table[i][soc_points_index]
     mentor_points = table[i][men_points_index]
     password = attrs[:password]
-    User.create(name: name, email: email, password: password,
-                total_points: total_points, general_meeting_points: gen_meet_points,
-                mentorship_meeting_points: mentor_points, social_points: social_points)
+    UserCreateWorker.perform_async(name, email, password,
+                                   total_points, gen_meet_points,
+                                   mentor_points, social_points)
   end
 end
 
@@ -153,9 +154,9 @@ def create_user_with_xlsx(attrs)
     social_points = row.values[soc_points_index]
     mentor_points = row.values[men_points_index]
     password = attrs[:password]
-    User.create(name: name, email: email, password: password,
-                total_points: total_points, general_meeting_points: gen_meet_points,
-                mentorship_meeting_points: mentor_points, social_points: social_points)
+    UserCreateWorker.perform_async(name, email, password,
+                                   total_points, gen_meet_points,
+                                   mentor_points, social_points)
   end
   # rubocop:enable Metrics/MethodLength
 end
