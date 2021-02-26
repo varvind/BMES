@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'user/login'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'events#index'
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
     get 'v1/event'
   end
 
+  # User routes
+  get '/user/login' => 'user#login'
   # method 'participations/new/:id', to: 'participations#action'
   # get 'participations/new/:id'
   # get 'events/:id/submit', action: :submit, controller: 'participation'
