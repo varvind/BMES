@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     get 'v1/event'
   end
 
+  require 'sidekiq/web'
+
+  mount Sidekiq::Web => '/sidekiq'
   # method 'participations/new/:id', to: 'participations#action'
   # get 'participations/new/:id'
   # get 'events/:id/submit', action: :submit, controller: 'participation'
