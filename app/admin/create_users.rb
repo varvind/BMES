@@ -123,7 +123,7 @@ def create_user_with_csv(attrs)
     social_points = table[i][soc_points_index]
     mentor_points = table[i][men_points_index]
     password = attrs[:password]
-    User.create(name: name, email: email, password: password,
+    User.create(name: name, email: email, password: password, password_confirmation: password,
                 total_points: total_points, general_meeting_points: gen_meet_points,
                 mentorship_meeting_points: mentor_points, social_points: social_points)
   end
@@ -153,7 +153,7 @@ def create_user_with_xlsx(attrs)
     social_points = row.values[soc_points_index]
     mentor_points = row.values[men_points_index]
     password = attrs[:password]
-    User.create(name: name, email: email, password: password,
+    User.create(name: name, email: email, password: password, password_confirmation: password,
                 total_points: total_points, general_meeting_points: gen_meet_points,
                 mentorship_meeting_points: mentor_points, social_points: social_points)
   end
