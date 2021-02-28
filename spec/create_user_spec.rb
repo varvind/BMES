@@ -7,6 +7,7 @@ require 'sidekiq/testing'
 RSpec.describe 'Create Users Page', type: :system do
   describe 'Create User' do
     before(:each) do
+      #User.destroy_all()
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
       fill_in('admin_user[password]', with: 'password')
@@ -82,6 +83,38 @@ RSpec.describe 'Create Users Page', type: :system do
       expect(page).to have_content('test@user.com')
       expect(page).to have_content('1')
     end
+  end
+
+  it 'Add single user twice with same email' do
+    visit '/admin/users'
+    click_link('Create one')
+    click_on('Add Individual User')
+    fill_in('user[name]', with: 'test user')
+    fill_in('user[email]', with: 'test@user.com')
+    fill_in('user[total_points]', with: 1)
+    fill_in('user[general_meeting_points]', with: 1)
+    fill_in('user[mentorship_meeting_points]', with: 1)
+    fill_in('user[social_points]', with: 1)
+    fill_in('user[password]', with: '1')
+    click_on('commit')
+    expect(page).to have_content('test user')
+    expect(page).to have_content('test@user.com')
+    expect(page).to have_content('1')
+
+    # visit '/admin/users'
+    # click_link('New User')
+    # click_on('Add Individual User')
+    # fill_in('user[name]', with: 'test user 2')
+    # fill_in('user[email]', with: 'test@user.com')
+    # fill_in('user[total_points]', with: 1)
+    # fill_in('user[general_meeting_points]', with: 1)
+    # fill_in('user[mentorship_meeting_points]', with: 1)
+    # fill_in('user[social_points]', with: 1)
+    # fill_in('user[password]', with: '1')
+    # click_on('commit')
+    # expect(page).to have_content('test user')
+    # expect(page).to have_content('test@user.com')
+    # expect(page).to have_content('1')
   end
   describe 'Test User Route' do
     it 'Check Successful' do
