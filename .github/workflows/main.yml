@@ -1,29 +1,23 @@
-# main.yml
+# .github/workflows/main.yaml
+name: RSpec Tests
 
-
-name: CI/CD
 on: [push, pull_request]
+
 jobs:
-  build:
+  run-tests:
     runs-on: ubuntu-latest
-    
+
     services:
-      db:
-        image: postgres:12
-        ports:
-        - [5432:5432]
+      postgres:
+        image: postgres:10.8
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      redis:
-        image: redis
-        ports: ["6379:6379"]
-        options: --entrypoint redis-server
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
+          CI_HOST: localhost
+        ports:
+        - 5432/tcp
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
       chrome:
         image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem
         env:
@@ -31,53 +25,65 @@ jobs:
         volumes:
           - /dev/shm:/dev/shm
 
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.x
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '10.23.1'
-          registry-url: 'https://registry.npmjs.org'
-      - uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+    - uses: actions/checkout@v1
+
+    - name: Set up Ruby 2.7.2
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.7.2
       
-      - name: Install yarn
-        run: npm install -g yarn
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.23.1'
+        registry-url: 'https://registry.npmjs.org'
+        
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    
+    - name: install PostgreSQL client
+      run: sudo apt-get install libpq-dev
+    
+    - name: Install yarn
+      run: npm install -g yarn
 
-      - name: Get yarn cache dir
-        id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: Get yarn cache dir
+      id: yarn-cache-dir
+      run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Yarn cache
-        id: cache-yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
+    - name: Yarn cache
+      id: cache-yarn
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache-dir.outputs.dir }}
+        key: yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Yarn install
-        run: yarn install
-      - name: Build and run test
-        env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
-          REDIS_URL: redis://localhost:6379/0
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake db:create
-          bundle exec rake db:migrate
-          bundle exec rake db:seed
-          bundle exec rspec .
+    - name: Yarn install
+      run: yarn install
 
+    - name: Build DB and Install Gems
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+        RAILS_ENV: test
+        CI_HOST: localhost
+      run: |
+        gem install bundler
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+        rails db:migrate:reset
+        rails db:seed
+    - name: Run tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+        RAILS_ENV: test
+      run: bundle exec rspec
