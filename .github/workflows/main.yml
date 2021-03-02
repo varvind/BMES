@@ -23,6 +23,12 @@ jobs:
         image: redis
         ports: ["6379:6379"]
         options: --entrypoint redis-server
+      chrome:
+        image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem
+        env:
+          HUB_URL: http://chrome:4444/wd/hub
+        volumes:
+          - /dev/shm:/dev/shm
 
     steps:
       - uses: actions/checkout@v1
@@ -30,20 +36,14 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.x
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.23.1'
+          registry-url: 'https://registry.npmjs.org'
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
-      - name: Install Chrome
-        run: |
-          CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
-            && CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) \
-            && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip" \
-            && cd /tmp \
-            && unzip chromedriver_linux64.zip \
-            && rm -rf chromedriver_linux64.zip \
-            && sudo mv chromedriver /usr/local/bin/chromedriver \
-            && sudo chmod +x /usr/local/bin/chromedriver \
-            && chromedriver --version
       - name: Build and run test
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
