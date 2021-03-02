@@ -14,21 +14,26 @@
 
     <meta name="robots" content="noindex, nofollow" />
 
-  <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="45X9BiNOemKDDMKkEDhSuVLk26lgE76raB8/km9HR4XOn2TueiQflp28M+m1xWwl8UWZIcBFqopiyAy0Ag+VzA==" />
 </head>
 <body class="active_admin logged_out new">
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <div class="flashes">
-        <div class="flash flash_alert">You need to sign in or sign up before continuing.</div>
-    </div>
+    
+    <% if (flash[:notice]) %>
+      <div class="flashes">
+          <div class="flash flash_alert">Invalid email or password</div>
+      </div>
+    <% else %>
+      <div class="flashes">
+          <div class="flash flash_alert">You need to sign in or sign up before continuing.</div>
+      </div>
+    <% end %>
     <div id="active_admin_content">
       <div id="login">
 
   <form class="formtastic admin_user" id="session_new" novalidate="novalidate" action="/user/login" accept-charset="UTF-8" method="post">
-    <input type="hidden" name="authenticity_token" value="tHvn5ke2vTrsJKITQVbCWezsQLUDRrVwlr+guIUdfFU1ug0ZNItK9oyxWGg3MFXiSz7FHb94EWJfdXq3QHpyRw==" />
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
     <fieldset class="inputs">
     <ol>
