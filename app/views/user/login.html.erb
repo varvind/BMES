@@ -1,2 +1,73 @@
-<h1>User#login</h1>
-<p>Find me in app/views/user/login.html.erb</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <title>Login | Bmes Participation Tracker</title>
+
+      <link rel="stylesheet" media="screen" href="/assets/active_admin.debug-004d4ef7ebb42b9d35414ce40576bd322916d3822653d232ae6f9527242a3f16.css" />
+      <link rel="stylesheet" media="print" href="/assets/active_admin/print.debug-7b997d8726050d67e1764d407ec6d2099045890c78e08c74e110b2ceafec44bd.css" />
+      <script src="/assets/active_admin.debug-71b4ae09d64150f7bc8898680ba8123eed8f02c6fb5414c7080b10fee2bad198.js"></script>
+
+  
+
+    <meta name="robots" content="noindex, nofollow" />
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="45X9BiNOemKDDMKkEDhSuVLk26lgE76raB8/km9HR4XOn2TueiQflp28M+m1xWwl8UWZIcBFqopiyAy0Ag+VzA==" />
+</head>
+<body class="active_admin logged_out new">
+<div id="wrapper">
+
+  <div id="content_wrapper">
+    <div class="flashes">
+        <div class="flash flash_alert">You need to sign in or sign up before continuing.</div>
+    </div>
+    <div id="active_admin_content">
+      <div id="login">
+
+  <form class="formtastic admin_user" id="session_new" novalidate="novalidate" action="/user/login" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="tHvn5ke2vTrsJKITQVbCWezsQLUDRrVwlr+guIUdfFU1ug0ZNItK9oyxWGg3MFXiSz7FHb94EWJfdXq3QHpyRw==" />
+
+    <fieldset class="inputs">
+    <ol>
+    <li class="email input required autofocus stringish" id="admin_user_email_input">
+      <label for="admin_user_email" class="label">Email<abbr title="required">*</abbr></label>
+      <input id="user_email" autofocus="autofocus" type="email" value="" name="user[email]" />
+    </li>
+
+    <li class="password input required stringish" id="admin_user_password_input">
+      <label for="admin_user_password" class="label">Password<abbr title="required">*</abbr></label>
+      <input maxlength="128" id="user_password" type="password" name="user[password]" />
+    </li>
+    </ol>
+    </fieldset>
+    
+    <fieldset class="actions">
+    <ol>
+    <li class="action input_action " id="admin_user_submit_action">
+      <input type="submit" name="commit" value="Login" data-disable-with="Login" />
+    </li>
+    </ol>
+    </fieldset>
+  </form>
+
+  
+
+  <!-- <a href="/admin/password/new">Forgot your password?</a> -->
+  <br>
+
+
+
+
+</div>
+
+    </div>
+  </div>
+  <div id="footer">
+    
+  </div>
+</div>
+</body>
+</html>
