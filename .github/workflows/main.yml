@@ -10,7 +10,8 @@ jobs:
     services:
       db:
         image: postgres:12
-        ports: ["5432:5432"]
+        ports:
+        - 5432/tcp
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -41,9 +42,29 @@ jobs:
         with:
           node-version: '10.23.1'
           registry-url: 'https://registry.npmjs.org'
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: actions/cache@v1
         with:
-          cmd: install
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Get yarn cache dir
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Yarn cache
+        id: cache-yarn
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Yarn install
+        run: yarn install
       - name: Build and run test
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
