@@ -71,6 +71,8 @@ jobs:
       env:
         PGHOST: localhost
         PGUSER: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
         PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
         RAILS_ENV: test
         CI_HOST: localhost
@@ -84,6 +86,8 @@ jobs:
       env:
         PGHOST: localhost
         PGUSER: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
         PGPORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
         RAILS_ENV: test
       run: bundle exec rspec
