@@ -9,7 +9,7 @@ jobs:
     
     services:
       db:
-        image: postgres:11
+        image: postgres:12
         ports: ["5432:5432"]
         env:
           POSTGRES_USER: postgres
@@ -42,6 +42,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         run: |
           sudo apt-get -yqq install libpq-dev
+          sudo service postgresql start
           sudo -u postgres createuser test --createdb
           gem install bundler
           bundle install --jobs 4 --retry 3
