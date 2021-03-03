@@ -29,17 +29,19 @@
   </div>
   <% if(!session[:user_id]) %>
     <form class="form-inline user-button">
-      <%= link_to("User Login", "#", :onclick => "window.location.href = '/user/login'", class: "btn btn-primary") %>
-      <form class="form-inline admin-button">
-      <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary") %>
+      <%= link_to("User Login", "#", :onclick => "window.location.href = '/user/login'", class: "btn btn-primary", style: "margin-right:10px") %>
+      <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary", style: "margin-right:10px") %>
     </form>
-    </form>
+    
   <% else %>
     <div class="dropdown">                 
     <img src = "https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" style = "width: 50px; height: 50px; float:right; margin-right:100px; border-radius: 10%;margin-top:10px;object-fit: cover;" class="dropdown-toggle link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                          
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/user_profile">View Profile</a>
-        <a class="dropdown-item" href="/user/logout">Logout</a>
+        <form class="form-inline user-button" action ='/user/logout' method = 'POST'>
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+          <%= link_to("Logout", "#", :onclick => "this.parentNode.submit()", class:"dropdown-item") %>
+        </form
       </div>
     </div>
   <% end %>

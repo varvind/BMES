@@ -16,6 +16,10 @@ class UserController < ApplicationController
 
   def profile
     @user = User.find_by(id: session[:user_id])
+  end
 
+  def logout
+    reset_session
+    redirect_to '/'
   end
 end

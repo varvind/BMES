@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/user/login' => 'user#login'
   post '/user/login' => 'user#login_action'
   get '/user_profile' => 'user#profile'
+  post '/user/logout' => 'user#logout'
+
   require 'sidekiq/web'
 
   mount Sidekiq::Web => '/sidekiq'
