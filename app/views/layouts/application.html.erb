@@ -7,6 +7,9 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
@@ -25,14 +28,20 @@
     </ul>
   </div>
   <% if(!session[:user_id]) %>
-  <form class="form-inline user-button">
-    <%= link_to("User Login", "#", :onclick => "window.location.href = '/user/login'", class: "btn btn-primary", style: "margin-left:-10%") %>
-    <form class="form-inline admin-button">
-    <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary") %>
-  </form>
-  </form>
+    <form class="form-inline user-button">
+      <%= link_to("User Login", "#", :onclick => "window.location.href = '/user/login'", class: "btn btn-primary") %>
+      <form class="form-inline admin-button">
+      <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary") %>
+    </form>
+    </form>
   <% else %>
-    <%= link_to("User Profile", "#", :onclick => "window.location.href = '/user_profile'", class: "btn btn-primary", style: "margin-left:-10%") %>
+    <div class="dropdown">                 
+    <img src = "https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" style = "width: 50px; height: 50px; float:right; margin-right:100px; border-radius: 10%;margin-top:10px;object-fit: cover;" class="dropdown-toggle link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                          
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/user_profile">View Profile</a>
+        <a class="dropdown-item" href="/user/logout">Logout</a>
+      </div>
+    </div>
   <% end %>
   
 </nav>

@@ -7,7 +7,6 @@ class UserController < ApplicationController
     user = User.find_by(email: params["user"]["email"]).try(:authenticate, params["user"]["password"])
     if user
       session[:user_id] = user.id
-      puts session[:user]
       redirect_to '/user_profile'
     else
       flash[:notice] = "Error"
