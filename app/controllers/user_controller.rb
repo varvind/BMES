@@ -13,6 +13,10 @@ class UserController < ApplicationController
       flash[:notice] = "Error"
       redirect_to '/user/login'
     end
-    
+  end
+
+  def profile
+    @user = User.find_by(id: session[:user_id])
+
   end
 end

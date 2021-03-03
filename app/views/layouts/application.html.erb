@@ -24,12 +24,17 @@
       </li>
     </ul>
   </div>
+  <% if(!session[:user_id]) %>
   <form class="form-inline user-button">
     <%= link_to("User Login", "#", :onclick => "window.location.href = '/user/login'", class: "btn btn-primary", style: "margin-left:-10%") %>
-  </form>
-  <form class="form-inline admin-button">
+    <form class="form-inline admin-button">
     <%= link_to("Admin Login", "#", :onclick => "window.location.href = '#{new_admin_user_session_path}'", class: "btn btn-primary") %>
   </form>
+  </form>
+  <% else %>
+    <%= link_to("User Profile", "#", :onclick => "window.location.href = '/user_profile'", class: "btn btn-primary", style: "margin-left:-10%") %>
+  <% end %>
+  
 </nav>
   <div class='content'>
     <%= yield %>
