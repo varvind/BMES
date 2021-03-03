@@ -26,11 +26,11 @@ ActiveAdmin.register_page 'Dashboard' do
 
       column do
         panel 'Welcome to the BMES Officer Area!' do
-        panel 'Our organization is committed to Advancing Human Health and Well Being' do
-	panel "To get started, select the 'Events' tab from the Navigation Bar to create a new event, or select 'Participations' to view member sign ins!"
-        li link_to('Click here to view the full instruction manual', '/help.html')
+          panel 'Our organization is committed to Advancing Human Health and Well Being' do
+	        panel "To get started, select the 'Events' tab from the Navigation Bar to create a new event, or select 'Participations' to view member sign ins!"
+            li link_to('Click here to view the full instruction manual', '/help.html')
 		    
-        end
+          end
         end
       end
     end
