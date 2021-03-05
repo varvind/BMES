@@ -1,7 +1,6 @@
-# main.yml
+# test.yml
 
-
-name: CI/CD
+name: Build/Test
 on: [push, pull_request]
 jobs:
   build:
