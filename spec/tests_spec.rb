@@ -11,7 +11,6 @@ RSpec.describe 'Login page', type: :system do
 
       click_button('Login')
       expect(page).to have_content('Signed in successfully.')
-
     end
     it 'Fail' do
       visit new_admin_user_session_path
@@ -20,7 +19,6 @@ RSpec.describe 'Login page', type: :system do
 
       click_button('Login')
       expect(page).to have_content('Invalid Email or password.')
-
     end
   end
 end
@@ -38,15 +36,12 @@ RSpec.describe 'Event page', type: :system do
       expect(page).to have_content('Event Description')
       expect(page).to have_content('Start Time:')
       expect(page).to have_content('End Time:')
-
-
     end
     it 'Specific event' do
       visit events_path
 
       click_link('Details')
       expect(page).to have_selector(:link_or_button, 'Back to List')
-
 
       expect(page).to have_content('Event Title')
       expect(page).to have_content('Event Place')
@@ -59,7 +54,6 @@ RSpec.describe 'Event page', type: :system do
       click_link('Details')
 
       click_link('Back to List')
-
     end
   end
   describe 'View attendances' do
@@ -73,7 +67,6 @@ RSpec.describe 'Event page', type: :system do
       fill_in('participation[last_name]', with: 'Doe')
       fill_in('participation[email]', with: 'jdoe@example.com')
 
-
       click_button('commit')
       visit events_path
       click_link('Details')
@@ -81,7 +74,6 @@ RSpec.describe 'Event page', type: :system do
       expect(page).to have_content('John')
       expect(page).to have_content('Doe')
       expect(page).to have_content('jdoe@example.com')
-
     end
   end
 end
@@ -109,11 +101,9 @@ RSpec.describe 'Participation Page', type: :system do
       fill_in('participation[last_name]', with: 'Doe')
       fill_in('participation[email]', with: 'jdoe@example.com')
 
-
       click_button('commit')
 
       expect(page).to have_content('You have successfully signed into the event.')
-
     end
     it 'Failed Submit via Password' do
       visit events_path
@@ -125,11 +115,9 @@ RSpec.describe 'Participation Page', type: :system do
       fill_in('participation[last_name]', with: 'Doe')
       fill_in('participation[email]', with: 'jdoe@example.com')
 
-
       click_button('commit')
 
       expect(page).to have_content('Incorrect password, please try again.')
-
     end
     it 'No such event error' do
       visit new_participation_path(event_id: '300')
@@ -143,7 +131,6 @@ RSpec.describe 'Participation Page', type: :system do
       click_button('commit')
 
       expect(page).to have_content('No matching event found, please try again.')
-
     end
   end
   describe 'Input Validation Fail' do
@@ -212,7 +199,6 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
 
-
       select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
       select '2', from: 'event[starttime(3i)]'
@@ -230,14 +216,12 @@ RSpec.describe 'Admin Create Event', type: :system do
       click_on 'Create Event'
 
       expect(page).to have_content('Event was successfully created.')
-
     end
 
     it 'Success Edit Event' do
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
-
 
       select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
@@ -253,12 +237,10 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Eventpass', with: '1128'
       click_on 'Create Event'
 
-
       click_on 'Edit Event'
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
-
 
       select '2020', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'
@@ -276,16 +258,13 @@ RSpec.describe 'Admin Create Event', type: :system do
 
       click_on 'Update Event'
 
-
       expect(page).to have_content('Event was successfully updated.')
-
     end
 
     it 'Success Delete Event' do
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
-
 
       select '2025', from: 'event[starttime(1i)]'
       select 'November', from: 'event[starttime(2i)]'

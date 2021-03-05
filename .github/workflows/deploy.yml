@@ -2,7 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - master 
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,6 +11,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.0.0
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bmes_member-tracker"
+          heroku_app_name: "bmes-member-tracker"
           heroku_email: "varvind@tamu.edu"
           usedocker: true

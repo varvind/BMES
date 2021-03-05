@@ -1,6 +1,6 @@
 # test.yml
 
-name: Build/Test
+name: Checkstyle
 on: [push, pull_request]
 jobs:
   build:
@@ -43,7 +43,7 @@ jobs:
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
-      - name: Build and run test
+      - name: Build and run rubocop
         env:
           DATABASE_URL: postgres://postgres:@localhost:5432/test
           REDIS_URL: redis://localhost:6379/0
@@ -60,9 +60,5 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:migrate
           bundle exec rake db:seed
-          bundle exec rspec .
-      - name: Simplecov Report
-        uses: aki77/simplecov-report-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          bundle exec rubocop
 
