@@ -8,8 +8,8 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
@@ -18,7 +18,7 @@
       }
       @media only screen and (max-width: 600px) {
         .dropdown-menu {
-          margin-left:-40px
+          margin-left:-100px
         }
       }   
     </style>
@@ -45,18 +45,20 @@
     </form>
     
   <% else %>
-    <div class="dropdown">                 
-    <img src = "https://lh3.googleusercontent.com/proxy/f7r4-F8BoQIPInCdiQD3Qz911VX3QURz0lic5VYInZIm5yToK6lJ-FVIqWoJjbN455_P35g1kLcGPWfwhyxSkk5ux692C1eNnX_QHCjSJ72B-XMpUYHVyAM" style = "width: 50px; height: 50px; float:right; margin-right:15%; border-radius: 10%;margin-top:10px;object-fit: cover; color:green" class="dropdown-toggle link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                          
+    <div class="dropdown" id = "dropdown">
+      <a href="#" id="imageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag("profile_icon.png", :alt => "profile_pic", style: "width: 50px; height: 50px; float:right; margin-right:15%; border-radius: 10%;margin-top:10px;object-fit: cover; color:green")%>
+      </a>
+   
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/user_profile">View Profile</a>
         <form class="form-inline user-button" action ='/user/logout' method = 'POST'>
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
           <%= link_to("Logout", "#", :onclick => "this.parentNode.submit()", class:"dropdown-item") %>
-        </form
+        </form>
       </div>
     </div>
   <% end %>
-  
 </nav>
   <div class='content'>
     <%= yield %>
