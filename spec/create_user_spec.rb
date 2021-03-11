@@ -15,7 +15,7 @@ RSpec.describe 'Create Users Page', type: :system do
     it 'With XLSX' do
       Sidekiq::Worker.clear_all
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
@@ -28,7 +28,7 @@ RSpec.describe 'Create Users Page', type: :system do
     it 'With CSV' do
       Sidekiq::Worker.clear_all
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.xlsx'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
@@ -40,36 +40,36 @@ RSpec.describe 'Create Users Page', type: :system do
 
     it 'With invalid file type' do
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.txt'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('Create one')
+      expect(page).to have_content('test user') # indicates no users added, only default exists
     end
 
     it 'With invalid columns (CSV)' do
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.csv'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('Create one')
+      expect(page).to have_content('test user') # indicates no users added, only default exists
     end
 
     it 'With invalid columns (XLSX)' do
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.xlsx'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('Create one')
+      expect(page).to have_content('test user')
     end
 
     it 'Add single user' do
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       click_on('Add Individual User')
-      fill_in('user[name]', with: 'test user')
+      fill_in('user[name]', with: 'test')
       fill_in('user[email]', with: 'test@user.com')
       fill_in('user[total_points]', with: 1)
       fill_in('user[general_meeting_points]', with: 1)
@@ -77,15 +77,15 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[social_points]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
-      expect(page).to have_content('test user')
+      expect(page).to have_content('test')
       expect(page).to have_content('test@user.com')
       expect(page).to have_content('1')
     end
     it 'Add single user twice with same email' do
       visit '/admin/users'
-      click_link('Create one')
+      click_link('New User')
       click_on('Add Individual User')
-      fill_in('user[name]', with: 'test user')
+      fill_in('user[name]', with: 'test')
       fill_in('user[email]', with: 'test@user.com')
       fill_in('user[total_points]', with: 1)
       fill_in('user[general_meeting_points]', with: 1)
@@ -93,14 +93,14 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[social_points]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
-      expect(page).to have_content('test user')
+      expect(page).to have_content('test')
       expect(page).to have_content('test@user.com')
       expect(page).to have_content('1')
 
       visit '/admin/users'
       click_link('New User')
       click_on('Add Individual User')
-      fill_in('user[name]', with: 'test user 2')
+      fill_in('user[name]', with: 'test 2')
       fill_in('user[email]', with: 'test@user.com')
       fill_in('user[total_points]', with: 1)
       fill_in('user[general_meeting_points]', with: 1)
@@ -108,7 +108,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[social_points]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
-      expect(page).to have_content('test user')
+      expect(page).to have_content('test')
       expect(page).to have_content('test@user.com')
       expect(page).to have_content('1')
     end

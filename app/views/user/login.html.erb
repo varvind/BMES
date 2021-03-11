@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <title>Login | Bmes Participation Tracker</title>
+  <%= stylesheet_link_tag "user", media: "all" %>
+  <script src="/assets/active_admin.debug-71b4ae09d64150f7bc8898680ba8123eed8f02c6fb5414c7080b10fee2bad198.js"></script>
+  <meta name="robots" content="noindex, nofollow" />
+
+</head>
+<body class="active_admin logged_out new">
+<div id="wrapper">
+
+  <div id="content_wrapper">
+    
+    <% if (flash[:notice]) %>
+      <div class="flashes">
+          <div class="flash flash_alert">Invalid email or password</div>
+      </div>
+    <% else %>
+      <div class="flashes">
+          <div class="flash flash_alert">You need to sign in or sign up before continuing.</div>
+      </div>
+    <% end %>
+    <div id="active_admin_content">
+      <div id="login">
+
+  <form class="formtastic admin_user" id="session_new" novalidate="novalidate" action="/user/login" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+    <fieldset class="inputs">
+    <ol>
+    <li class="email input required autofocus stringish" id="admin_user_email_input">
+      <label for="admin_user_email" class="label">Email<abbr title="required">*</abbr></label>
+      <input id="user_email" autofocus="autofocus" type="email" value="" name="user[email]" />
+    </li>
+
+    <li class="password input required stringish" id="admin_user_password_input">
+      <label for="admin_user_password" class="label">Password<abbr title="required">*</abbr></label>
+      <input maxlength="128" id="user_password" type="password" name="user[password]" />
+    </li>
+    </ol>
+    </fieldset>
+    
+    <fieldset class="actions">
+    <ol>
+    <li class="action input_action " id="admin_user_submit_action">
+      <input type="submit" name="commit" value="Login" data-disable-with="Login" />
+    </li>
+    </ol>
+    </fieldset>
+  </form>
+  <br>
+</div>
+
+    </div>
+  </div>
+  <div id="footer">
+    
+  </div>
+</div>
+</body>
+</html>
