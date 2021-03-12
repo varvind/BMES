@@ -30,4 +30,8 @@ class UserController < ApplicationController
     reset_session
     redirect_to '/'
   end
+
+  def change_password
+    
+  end
 end
