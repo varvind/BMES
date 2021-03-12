@@ -76,6 +76,11 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('confirmation_password[]', with: 'newPassword')
       click_button('Change Password')
       expect(page).to have_content('Wrong Password Entered, Try Again')
+      visit '/user/login'
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'newPassword')
+      click_button('Login')
+      expect(page).to have_content('Invalid email or password')
     end
 
     it 'Invalid Password Reset-Passwords Don\'t match' do
@@ -92,6 +97,11 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('confirmation_password[]', with: 'newPassword')
       click_button('Change Password')
       expect(page).to have_content('Passwords do not match!')
+      visit '/user/login'
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'newPassword')
+      click_button('Login')
+      expect(page).to have_content('Invalid email or password')
     end
   end
 
