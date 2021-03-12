@@ -1,0 +1,20 @@
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 style = "text-align:center; margin-top:3%; text-decoration: underline">Settings</h2>
+  <center>
+    <%= form_tag('/update_passwords') do %>
+      <%= text_field_tag(:current_password, nil, placeholder: 'Current Password', style: 'margin-bottom:2%; margin-top:2%; width:30%', required: 'true', class: 'form-control form-control-lg') %>
+      <br>
+      <%= text_field_tag(:confirmation_password, nil, placeholder: 'Password Confirmation' , style: 'margin-bottom:2% ; width:30%', required: 'true',  class: 'form-control form-control-lg') %>
+      <br>
+      <%= submit_tag("Change Password", class: 'btn btn-outline-secondary') %>
+    <% end %>
+  </center>
+</body>
