@@ -6,7 +6,8 @@ class UserController < ApplicationController
   end
 
   def login_action
-    user = User.find_by(email: params['user']['email']).try(:authenticate, params['user']['password'])
+    user = User.find_by(email: params['user']['email']).try(:authenticate, params['user']['password'].to_i)
+    puts user
     if user
       session[:user_id] = user.id
       redirect_to '/user_profile'
@@ -18,7 +19,7 @@ class UserController < ApplicationController
 
   def profile
     user = User.find_by(id: session[:user_id])
-
+    
     if user
       @user = user
     else
@@ -32,6 +33,20 @@ class UserController < ApplicationController
   end
 
   def change_password
-    
+    current_password = params["current_password"]
+    new_password = params["new_password"][0]
+    password_confirmation = params["confirmation_password"][0]
+    user = User.find_by(id: session[:user_id])
+    if user && user.authenticate(current_password[0].to_i)
+      if new_password == password_confirmation
+        newUser = user.update(:password => new_password, :password_confirmation => password_confirmation)
+        flash[:notice] = "Password reset successfully"
+      else
+        flash[:notice] = "Passwords do not match!"
+      end
+    else
+      flash[:notice] = "Wrong Password Entered, Try Again"
+    end
+    redirect_to '/user/settings'
   end
 end

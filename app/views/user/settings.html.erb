@@ -9,10 +9,19 @@
 <body>
   <h2 style = "text-align:center; margin-top:3%; text-decoration: underline">Settings</h2>
   <center>
-    <%= form_tag('/update_passwords') do %>
-      <%= text_field_tag(:current_password, nil, placeholder: 'Current Password', style: 'margin-bottom:2%; margin-top:2%; width:30%', required: 'true', class: 'form-control form-control-lg') %>
+    <% if flash[:notice] %>
+      <div class="alert alert-primary" role="alert" style = "width:30%">
+        
+          <%= flash[:notice]  %>
+        
+      </div>
+    <% end %>
+    <%= form_tag('/update_password') do %>
+      <%= password_field(:current_password, nil, placeholder: 'Current Password', style: 'margin-bottom:2%; margin-top:2%; width:30%', required: 'true', class: 'form-control form-control-lg') %>
       <br>
-      <%= text_field_tag(:confirmation_password, nil, placeholder: 'Password Confirmation' , style: 'margin-bottom:2% ; width:30%', required: 'true',  class: 'form-control form-control-lg') %>
+      <%= password_field(:new_password, nil, placeholder: 'New Password' , style: 'margin-bottom:2% ; width:30%', required: 'true',  class: 'form-control form-control-lg') %>
+      <br>
+      <%= password_field(:confirmation_password, nil, placeholder: 'Password Confirmation' , style: 'margin-bottom:2% ; width:30%', required: 'true',  class: 'form-control form-control-lg') %>
       <br>
       <%= submit_tag("Change Password", class: 'btn btn-outline-secondary') %>
     <% end %>
