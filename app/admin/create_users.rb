@@ -34,7 +34,7 @@ ActiveAdmin.register User do
 
   # initialize form
   form do |f|
-    f.semantic_errors(*f.object.errors.keys)
+    f.semantic_errors
     text_node javascript_include_tag('user_form.js')
     f.inputs do
       f.li "<button type = 'button' class='label' id = 'switchButton'
@@ -43,6 +43,10 @@ ActiveAdmin.register User do
       f.li "<label class='label' id ='instructions'
               style = 'margin-left:1%;font-weight:bold; margin-top:10%; position:relative'>
               Use a Spreadsheet with User Information</label>".html_safe
+      f.li "<label class='label' id ='instructions'
+              style = 'margin-left:1%; margin-top:10%; position:relative'>
+              Required Columns: Name, Email, Total Points, General Meeting Points,
+               Mentorship Meeting Points, and Social Points</label>".html_safe
       f.input :user_CSV_File, as: :file, accept: :csv, required: true
       f.li "<label class='label hidden' style = 'margin-left:1%;font-weight:bold'>
               or Add Individual Member</label>".html_safe
@@ -69,6 +73,8 @@ ActiveAdmin.register User do
           create_user_with_csv(attrs)
         elsif filename.include? '.xlsx'
           create_user_with_xlsx(attrs)
+        else
+          redirect_to '/admin/users/new', flash: {error: 'Error: Invalid File Type.'}
         end
       else
         User.create(password: attrs[:password], password_confirmation: attrs[:password], name: attrs[:name],
@@ -76,8 +82,8 @@ ActiveAdmin.register User do
                     general_meeting_points: attrs[:general_meeting_points],
                     social_points: attrs[:social_points],
                     mentorship_meeting_points: attrs[:mentorship_meeting_points])
+        redirect_to '/admin/users', flash: {error: 'Successfully Created User.'}
       end
-      redirect_to '/admin/users'
     end
   end
 end
@@ -112,6 +118,7 @@ def create_user_with_csv(attrs)
   soc_points_index = find_table_index('social points', table, 'csv')
   if name_index == -1 || email_index == -1 || t_points_index == -1
     gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+    redirect_to '/admin/users/new', flash: {error: 'Error, missing column(s). Please double check to ensure you have the correct columns.'}
     return
   end
   (0..table.length - 1).each do |i|
@@ -128,6 +135,7 @@ def create_user_with_csv(attrs)
                                    total_points, gen_meet_points,
                                    mentor_points, social_points)
   end
+  redirect_to '/admin/users', flash: {error: 'Successfully Created Users.'}
 end
 
 def create_user_with_xlsx(attrs)
@@ -140,6 +148,7 @@ def create_user_with_xlsx(attrs)
   soc_points_index = find_table_index('social points', table, 'xlsx')
   if name_index == -1 || email_index == -1 || t_points_index == -1
     gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+    redirect_to '/admin/users/new', flash: {error: 'Error, missing column(s). Please double check to ensure you have the correct columns.'}
     return
   end
   sheets = table.sheets
@@ -159,6 +168,7 @@ def create_user_with_xlsx(attrs)
                                    mentor_points, social_points)
   end
   # rubocop:enable Metrics/MethodLength
+  redirect_to '/admin/users', flash: {error: 'Successfully Created Users.'}
 end
 
 # rubocop:enable Metrics/BlockLength
