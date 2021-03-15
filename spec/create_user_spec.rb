@@ -44,7 +44,7 @@ RSpec.describe 'Create Users Page', type: :system do
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.txt'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('test user') # indicates no users added, only default exists
+      expect(page).to have_content('Error: Invalid File Type.')
     end
 
     it 'With invalid columns (CSV)' do
@@ -53,7 +53,7 @@ RSpec.describe 'Create Users Page', type: :system do
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.csv'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('test user') # indicates no users added, only default exists
+      expect(page).to have_content('Error Missing Columns: Name')
     end
 
     it 'With invalid columns (XLSX)' do
@@ -62,7 +62,7 @@ RSpec.describe 'Create Users Page', type: :system do
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'BadMemberInformation.xlsx'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
-      expect(page).to have_content('test user')
+      expect(page).to have_content('Error Missing Columns: Name')
     end
 
     it 'Add single user' do
@@ -108,9 +108,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[social_points]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
-      expect(page).to have_content('test')
-      expect(page).to have_content('test@user.com')
-      expect(page).to have_content('1')
+      expect(page).to have_content('Error: Duplicate Email.')
     end
   end
 
@@ -131,6 +129,7 @@ RSpec.describe 'Create Users Page', type: :system do
       expect(response).to have_http_status(:ok)
       user = instance_double('User', name: 'test', email: 'test@user.com', total_points: 1, password: 1)
       allow(User).to receive(:create).with(any_args).and_return(user)
+      allow(user).to receive(:valid?).with(any_args).and_return(true)
       post '/admin/users', params: { 'user' => { 'password' => '1', 'name' => 'test user', 'email' => 'test@user.com',
                                                  'total_points' => '1', 'general_meeting_points' => '1',
                                                  'social_points' => '1', 'mentorship_meeting_points' => '1' } }
