@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
@@ -34,6 +34,13 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :development do
@@ -45,21 +52,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'rspec-rails'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'simplecov', require: false
-  gem 'webdrivers'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
-gem 'activeadmin', git: 'git://github.com/gregbell/active_admin.git'
+gem 'activeadmin'
 
 # Plus integrations with:
 gem 'cancancan'
@@ -72,3 +69,6 @@ gem 'active_material', github: 'vigetlabs/active_material'
 gem 'rubocop', '~> 0.93.0', require: false
 
 gem 'creek'
+
+gem 'sidekiq'
+gem 'sinatra'

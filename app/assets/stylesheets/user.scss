@@ -1,0 +1,2830 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@charset "UTF-8";
+/**
+ * Unit
+ * http://www.google.com/design/spec/layout/metrics-and-keylines.html#metrics-and-keylines-baseline-units
+ */
+/**
+ * Unit
+ * http://www.google.com/design/spec/layout/metrics-and-keylines.html#metrics-and-keylines-baseline-units
+ */
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* line 11, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+::-moz-selection {
+  background-color: #cddc39;
+  color: white;
+}
+::selection {
+  background-color: #cddc39;
+  color: white;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+body {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: sans-serif;
+  margin: 0;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/generators/mixins.scss */
+.wf-active body {
+  font-family: "RobotoDraft", sans-serif;
+}
+
+/* line 28, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 32, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+b,
+strong {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+/* line 37, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+  margin: 0;
+}
+
+/* line 47, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+p {
+  margin: 12px 0;
+}
+
+/* line 51, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+button,
+input {
+  font-family: "RobotoDraft", sans-serif;
+}
+
+/* line 56, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* line 61, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s color;
+}
+
+/* line 66, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:link, a:visited {
+  color: #117099;
+}
+
+/* line 70, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:link:hover, a:visited:hover {
+  text-decoration: underline;
+}
+
+/* line 75, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:hover, a:focus {
+  color: #d2e04f;
+  transition: 0.1s color;
+}
+
+/* line 81, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:active {
+  color: #cfde42;
+  transition: 0.1s color;
+}
+
+/* line 87, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+blockquote {
+  border-left: 4px solid rgba(0, 0, 0, 0.26);
+  margin: 16px 0;
+  padding: 16px;
+}
+
+/* line 93, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+hr {
+  border: 0;
+  border-bottom: 1px solid #efefef;
+  margin: 32px 0;
+}
+
+/* line 99, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 105, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+hr {
+  margin: 0;
+}
+
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* line 11, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+::-moz-selection {
+  background-color: #cddc39;
+  color: white;
+}
+::selection {
+  background-color: #cddc39;
+  color: white;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+body {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: sans-serif;
+  margin: 0;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/generators/mixins.scss */
+.wf-active body {
+  font-family: "RobotoDraft", sans-serif;
+}
+
+/* line 28, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 32, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+b,
+strong {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+/* line 37, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+  margin: 0;
+}
+
+/* line 47, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+p {
+  margin: 12px 0;
+}
+
+/* line 51, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+button,
+input {
+  font-family: "RobotoDraft", sans-serif;
+}
+
+/* line 56, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* line 61, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s color;
+}
+
+/* line 66, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:link, a:visited {
+  color: #117099;
+}
+
+/* line 70, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:link:hover, a:visited:hover {
+  text-decoration: underline;
+}
+
+/* line 75, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:hover, a:focus {
+  color: #d2e04f;
+  transition: 0.1s color;
+}
+
+/* line 81, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+a:active {
+  color: #cfde42;
+  transition: 0.1s color;
+}
+
+/* line 87, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+blockquote {
+  border-left: 4px solid rgba(0, 0, 0, 0.26);
+  margin: 16px 0;
+  padding: 16px;
+}
+
+/* line 93, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+hr {
+  border: 0;
+  border-bottom: 1px solid #efefef;
+  margin: 32px 0;
+}
+
+/* line 99, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 105, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/global/foundation.scss */
+hr {
+  margin: 0;
+}
+
+/**
+ * Avatar
+ * A circular image
+ */
+/**
+ * Button Icon
+ * A simple, reusable icon button
+ */
+@-webkit-keyframes am-dialog-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes am-dialog-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/**
+ * Multiselects
+ */
+/**
+ * Select
+ * Custom select styles, taken from textfields in material design
+ */
+/**
+ * Snackbars
+ * Material design notifications
+ * http://www.google.com/design/spec/components/snackbars-toasts.html
+ */
+@-webkit-keyframes am-snackbar-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes am-snackbar-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/**
+ * Subheader
+ * Used for sidebar headings and other secondary content
+ * which require title text
+ */
+/**
+ * Tables
+ */
+/**
+ * Tabs
+ * http://www.google.com/design/spec/components/tabs.html
+ */
+@-webkit-keyframes am-tabs-error-throb {
+  from {
+    text-shadow: none;
+    transform: translateY(1px);
+  }
+  to {
+    text-shadow: 0 0 5px rgba(244, 67, 54, 0.8);
+    transform: translateY(-1px);
+  }
+}
+@keyframes am-tabs-error-throb {
+  from {
+    text-shadow: none;
+    transform: translateY(1px);
+  }
+  to {
+    text-shadow: 0 0 5px rgba(244, 67, 54, 0.8);
+    transform: translateY(-1px);
+  }
+}
+
+/**
+ * Toolbar
+ * A basic navigation element, primary used for top level navigation
+ */
+/**
+ * Underlay
+ * Underlays appear below modal content that takes up the entire screen.
+ */
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/avatar.scss */
+.avatar {
+  background: rgba(0, 0, 0, 0.54);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: transparent;
+  display: block;
+}
+
+/**
+ * Blank Slate
+ * This element appears whenever a resource can not display
+ * any information. For example, the default homescreen.
+ */
+/* line 7, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/blank_slate.scss */
+.blank_slate_container {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/blank_slate.scss */
+.blank_slate {
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  display: inline-block;
+  padding: 16px 24px;
+}
+
+/* line 22, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/blank_slate.scss */
+.blank_slate small {
+  display: block;
+  margin-top: 8px;
+}
+
+/**
+ * Breadcrumbs
+ * Appear above the title to help users return to previous
+ * steps in their flow.
+ */
+/* line 7, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/breadcrumbs.scss */
+.breadcrumb {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/**
+ * Buttons
+ * Various selectors for button like elements
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/buttons.scss */
+.clear_filters_btn {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.clear_filters_btn:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.clear_filters_btn:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/buttons.scss */
+.button,
+.cancel > a {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.button:focus,
+.cancel > a:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.button:hover,
+.cancel > a:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 15, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/buttons.scss */
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #117099;
+  color: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  min-width: 88px;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+input[type="submit"]:focus, input[type="submit"]:hover,
+input[type="reset"]:focus,
+input[type="reset"]:hover,
+input[type="button"]:focus,
+input[type="button"]:hover {
+  color: white;
+  background: #1692c7;
+  outline: none;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active {
+  background: #1481b0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Checkboxes
+ * Inputs given the "boolean" class. They have been seperated
+ * from general form styles because of some hairy nesting.
+ */
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/checkbox.scss */
+.input.boolean > label {
+  font-size: 14px;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/checkbox.scss */
+.input.boolean > label > input {
+  display: inline-block;
+  margin-right: 8px;
+  position: relative;
+  top: -1px;
+  width: auto;
+}
+
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/clearfix.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/clearfix.scss */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+/* line 11, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/clearfix.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/**
+ * Comments
+ * Active Admin comments
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/comments.scss */
+div.active_admin_comment {
+  margin: 0 16px;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/comments.scss */
+div.active_admin_comment + div.active_admin_comment {
+  border-top: 1px solid #efefef;
+  padding-top: 16px;
+}
+
+/* line 15, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/comments.scss */
+.active_admin_comment_meta {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/comments.scss */
+.comments .pagination_information {
+  margin: 16px;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/comments.scss */
+.comments .empty {
+  margin: 16px;
+}
+
+/**
+ * Date Selects
+ */
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/date-select.scss */
+.date_select .fragments-group,
+.datetime_select .fragments-group,
+.time_select .fragments-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #efefef;
+  border-radius: 2px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/lists.scss */
+.date_select .fragments-group li,
+.datetime_select .fragments-group li,
+.time_select .fragments-group li {
+  display: inline-block;
+}
+
+/* line 15, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/date-select.scss */
+.date_select .fragment,
+.datetime_select .fragment,
+.time_select .fragment {
+  border-left: 1px solid #efefef;
+  text-align: center;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/select.scss */
+.date_select .fragment:first-child,
+.datetime_select .fragment:first-child,
+.time_select .fragment:first-child {
+  border-left: none;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/date-select.scss */
+.date_select .fragment select,
+.datetime_select .fragment select,
+.time_select .fragment select {
+  border: 0;
+  border-radius: 0;
+}
+
+/* line 23, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/date-select.scss */
+.date_select .fragment label,
+.datetime_select .fragment label,
+.time_select .fragment label {
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
+}
+
+/* line 27, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/date-select.scss */
+.date_select .fragment select,
+.datetime_select .fragment select,
+.time_select .fragment select {
+  font-size: 14px;
+  font-size: 0.875rem;
+  background: #fafafa url(/assets/active_material/icons/arrow-dropdown-e196697ab80b67f2f37a158a5708ecc350f9b20cb28dc9b1e4e50c705d274c7f.svg) no-repeat calc(100% - 4px) 50%;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  height: 42px;
+  line-height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  letter-spacing: 0.01em;
+  padding: 0 24px 0 10px;
+}
+
+/**
+ * Datepicker
+ * An input with a dropdown calendar that appears on focus
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker {
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(0, 0, 0, 0.12);
+  display: none;
+  padding: 0 12px 8px;
+  width: 280px;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-header {
+  line-height: 32px;
+  padding: 8px 0 4px;
+  position: relative;
+  text-align: center;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-header .ui-icon {
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* line 22, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-prev {
+  cursor: pointer;
+  float: left;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/datepicker.scss */
+.ui-datepicker-prev:before {
+  content: "‹";
+}
+
+/* line 38, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/datepicker.scss */
+.ui-datepicker-prev:before:before {
+  font-size: 16px;
+  font-size: 1rem;
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+}
+
+/* line 26, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-next {
+  cursor: pointer;
+  float: right;
+}
+
+/* line 60, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/datepicker.scss */
+.ui-datepicker-next:before {
+  content: "›";
+}
+
+/* line 38, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/datepicker.scss */
+.ui-datepicker-next:before:before {
+  font-size: 16px;
+  font-size: 1rem;
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+}
+
+/* line 30, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar {
+  font-size: 12px;
+  font-size: 0.75rem;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+}
+
+/* line 33, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar th {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+  padding: 0 0 4px;
+}
+
+/* line 37, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar td {
+  height: 32px;
+  font-weight: 500;
+  line-height: 32px;
+  padding: 0;
+  width: 32px;
+}
+
+/* line 41, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar a {
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: block;
+  height: inherit;
+  margin: 0 auto;
+  width: inherit;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.ui-datepicker-calendar a:hover, .ui-datepicker-calendar a:focus {
+  color: #cddc39;
+}
+
+/* line 44, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar a.ui-state-active, .ui-datepicker-calendar a:hover, .ui-datepicker-calendar a:focus {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-calendar a.ui-state-highlight {
+  background-color: #117099;
+  color: white;
+}
+
+/* line 56, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/datepicker.scss */
+.ui-datepicker-unselectable {
+  opacity: 0;
+}
+
+/**
+ * Dialog
+ * A full page takeover action panel
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog {
+  -webkit-animation: 0.6s am-dialog-fade;
+          animation: 0.6s am-dialog-fade;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.23), 0 3px 3px rgba(0, 0, 0, 0.16);
+  outline: none;
+  z-index: 1000;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-toolbar {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  position: relative;
+}
+
+/* line 14, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-title {
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: 0.01em;
+  display: block;
+  padding: 32px 24px 8px;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-content {
+  display: inline;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-content ul {
+  margin: 0;
+}
+
+/* line 26, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-buttonset {
+  padding: 8px 8px 0;
+  text-align: right;
+}
+
+/* line 30, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-button {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+  color: #117099;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.ui-button:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.ui-button:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.ui-button:hover, .ui-button:focus {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* line 35, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dialog.scss */
+.ui-dialog-titlebar-close {
+  border-radius: 50%;
+  height: 40px;
+  overflow: hidden;
+  padding: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  width: 40px;
+  background: url(/assets/active_material/icons/clear-881e8b2246f6bccb97d8c9f5d757d6b52ddd3052dc9f6b771502573afc63a282.svg) 50% 50% no-repeat;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/**
+ * Dropdowns
+ */
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu {
+  display: inline-block;
+  outline: 0;
+  position: relative;
+  text-align: left;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_button {
+  position: relative;
+}
+
+/* line 12, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_button:after {
+  border: 5px solid transparent;
+  border-color: #117099 transparent transparent;
+  content: "";
+  height: 0;
+  margin-top: -2.5px;
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  width: 0;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_button.disabled {
+  opacity: 0.4;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_list {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 0 1.5px rgba(0, 0, 0, 0.12);
+  filter: blur(1px);
+  left: 0;
+  list-style: none;
+  margin: 0;
+  min-width: 112px;
+  padding: 8px 0;
+  position: absolute;
+  text-align: left;
+  top: 32px;
+  transform-origin: 0 0;
+  transform: translate3d(0, -4px, 0) scaleY(0);
+  transition: 0.2s all;
+  width: auto;
+  will-change: transform;
+  z-index: 1000;
+  filter: none;
+  transition: 0.2s all;
+  transform: translateZ(0) scale(1);
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_list li {
+  display: block;
+  margin: 0;
+  transition: 0.2s all;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+.dropdown_menu_list li a {
+  color: rgba(0, 0, 0, 0.54);
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  opacity: 0;
+  padding: 4px 16px;
+  transition: 0.28s opacity, 0.28s color;
+  white-space: nowrap;
+  opacity: 1;
+  transition: 0.2s opacity;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.dropdown_menu_list li a:hover, .dropdown_menu_list li a:focus {
+  color: #cddc39;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.dropdown_menu_list li a:hover, .dropdown_menu_list li a:focus {
+  text-decoration: none;
+}
+
+/* line 95, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/menu.scss */
+.dropdown_menu_list li a:hover, .dropdown_menu_list li a:focus {
+  color: #117099;
+}
+
+@media screen and (min-width: 1300px) {
+  /* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/dropdown.scss */
+  .dropdown_menu_list li a {
+    font-size: 13px;
+  }
+}
+
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/featured-blocks.scss */
+.featured-blocks-message {
+  display: block;
+  padding: 0 16px 16px;
+}
+
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/featured-blocks.scss */
+.new-featured-block {
+  background: #fefefe;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  display: block;
+  padding: 16px;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/featured-blocks.scss */
+.new-featured-block .button {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #117099;
+  color: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  min-width: 88px;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.new-featured-block .button:focus, .new-featured-block .button:hover {
+  color: white;
+  background: #1692c7;
+  outline: none;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.new-featured-block .button:active {
+  background: #1481b0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * Filters
+ * Filters show up as sidebars on most index pages
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field,
+.select_and_search,
+.filter_date_range {
+  color: rgba(0, 0, 0, 0.7);
+  margin: 8px 0;
+  padding: 8px 16px;
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* line 12, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field label,
+.select_and_search label,
+.filter_date_range label {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: rgba(0, 0, 0, 0.54);
+  display: block;
+  line-height: 16px;
+  font: 400 0.75rem/16px "RobotoDraft", sans-serif;
+  margin-bottom: 8px;
+  position: relative;
+  transition: 0.28s all;
+  width: 100%;
+  width: 100%;
+}
+
+/* line 92, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.has-focus .filter_form_field label, .has-focus .select_and_search label, .has-focus .filter_date_range label {
+  color: #117099;
+}
+
+/* line 17, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > select:not([multiple]),
+.select_and_search > select:not([multiple]),
+.filter_date_range > select:not([multiple]) {
+  font-size: 14px;
+  font-size: 0.875rem;
+  background: #fafafa url(/assets/active_material/icons/arrow-dropdown-e196697ab80b67f2f37a158a5708ecc350f9b20cb28dc9b1e4e50c705d274c7f.svg) no-repeat calc(100% - 4px) 50%;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  height: 42px;
+  line-height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  letter-spacing: 0.01em;
+  padding: 0 24px 0 10px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  flex-basis: 100px;
+}
+
+/* line 24, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > select[multiple],
+.select_and_search > select[multiple],
+.filter_date_range > select[multiple] {
+  flex-basis: 100%;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > select:last-child,
+.select_and_search > select:last-child,
+.filter_date_range > select:last-child {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+/* line 34, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > select + input[type="text"],
+.filter_form_field > select + input[type="number"],
+.select_and_search > select + input[type="text"],
+.select_and_search > select + input[type="number"],
+.filter_date_range > select + input[type="text"],
+.filter_date_range > select + input[type="number"] {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: 0;
+}
+
+/* line 42, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > input.datepicker,
+.select_and_search > input.datepicker,
+.filter_date_range > input.datepicker {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 1px 1px 1px rgba(34, 34, 34, 0.08);
+  display: block;
+  font: normal 0.875rem/24px "RobotoDraft", sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px;
+  transition: 0.35s border-color, 0.35s box-shadow;
+  width: 100%;
+  flex: 1;
+  width: auto;
+  background: #fff url(/assets/active_material/icons/event-bbdfcacdd428098e4133aab744a63ab11c5c37533b73d1d49ac4007d6408b1c2.svg) 8px 50% no-repeat;
+  padding-left: 40px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 48, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.filter_form_field > input.datepicker:focus,
+.select_and_search > input.datepicker:focus,
+.filter_date_range > input.datepicker:focus {
+  border-color: #117099;
+  outline: 0;
+  transition: 0.15s border-color, 0.15s box-shadow;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_form_field > input[type="submit"],
+.select_and_search > input[type="submit"],
+.filter_date_range > input[type="submit"] {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin: 0;
+}
+
+/* line 57, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/filter.scss */
+.filter_string input,
+.filter_numeric input {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 1px 1px 1px rgba(34, 34, 34, 0.08);
+  display: block;
+  font: normal 0.875rem/24px "RobotoDraft", sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px;
+  transition: 0.35s border-color, 0.35s box-shadow;
+  width: 100%;
+  flex: 1;
+  width: auto;
+}
+
+/* line 48, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.filter_string input:focus,
+.filter_numeric input:focus {
+  border-color: #117099;
+  outline: 0;
+  transition: 0.15s border-color, 0.15s box-shadow;
+}
+
+/**
+ * Flash
+ * Notifications that appear whenever a CRUD action or error
+ * has surfaced
+ */
+/* line 7, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/flash.scss */
+.flash {
+  animation: 0.6s am-snackbar-fade, 0.6s am-snackbar-fade reverse 9s forwards;
+  background: #323232;
+  border-radius: 2px;
+  bottom: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: white;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.25rem;
+  margin: 16px;
+  min-width: 288px;
+  max-width: 576px;
+  padding: 16px 24px 12px;
+  position: fixed;
+  text-shadow: 0 1px 1px #000;
+  z-index: 1000;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/flash.scss */
+.flash.flash_alert {
+  background-color: #a21309;
+  text-shadow: 0 1px 1px black;
+}
+
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/footer.scss */
+.footer {
+  padding: 16px;
+  text-align: center;
+}
+
+/**
+ * Forms
+ */
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.inputs {
+  margin-bottom: 16px;
+}
+
+/* line 8, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.inputs > ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 12, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.inputs > legend {
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+  padding: 16px;
+  line-height: 16px;
+  border: 0;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input {
+  color: rgba(0, 0, 0, 0.7);
+  margin: 8px 0;
+  padding: 8px 16px;
+  position: relative;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input > label,
+.input .label > label {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: rgba(0, 0, 0, 0.54);
+  display: block;
+  line-height: 16px;
+  font: 400 0.75rem/16px "RobotoDraft", sans-serif;
+  margin-bottom: 8px;
+  position: relative;
+  transition: 0.28s all;
+  width: 100%;
+}
+
+/* line 92, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.has-focus .input > label, .has-focus .input .label > label {
+  color: #117099;
+}
+
+/* line 26, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.string input, .input.stringish input, .input.numeric input {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 1px 1px 1px rgba(34, 34, 34, 0.08);
+  display: block;
+  font: normal 0.875rem/24px "RobotoDraft", sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px;
+  transition: 0.35s border-color, 0.35s box-shadow;
+  width: 100%;
+}
+
+/* line 48, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.input.string input:focus, .input.stringish input:focus, .input.numeric input:focus {
+  border-color: #117099;
+  outline: 0;
+  transition: 0.15s border-color, 0.15s box-shadow;
+}
+
+/* line 31, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.string input[disabled="disabled"], .input.stringish input[disabled="disabled"], .input.numeric input[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 36, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.email input {
+  background: #fff url(/assets/active_material/icons/email-82707aaf4e68453db0fbe3d1a4c2db42766ddef565ef22f02da70b62e8e92603.svg) 8px 50% no-repeat;
+  padding-left: 40px;
+}
+
+/* line 39, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.email input[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 44, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.password input {
+  background: #fff url(/assets/active_material/icons/secret-0ef7b531f7831175a4cb5010cd2118beb080726236179db98fc12386275dacb5.svg) 8px 50% no-repeat;
+  padding-left: 40px;
+}
+
+/* line 47, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.password input[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 52, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.datepicker input {
+  background: #fff url(/assets/active_material/icons/event-bbdfcacdd428098e4133aab744a63ab11c5c37533b73d1d49ac4007d6408b1c2.svg) 8px 50% no-repeat;
+  padding-left: 40px;
+}
+
+/* line 55, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.datepicker input[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 60, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.text textarea {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 1px 1px 1px rgba(34, 34, 34, 0.08);
+  display: block;
+  font: normal 0.875rem/24px "RobotoDraft", sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px;
+  transition: 0.35s border-color, 0.35s box-shadow;
+  width: 100%;
+  border-radius: 2px;
+  height: 3.5rem;
+  padding: 8px;
+}
+
+/* line 48, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.input.text textarea:focus {
+  border-color: #117099;
+  outline: 0;
+  transition: 0.15s border-color, 0.15s box-shadow;
+}
+
+/* line 64, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input.text textarea[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 69, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.input select + input {
+  margin-top: 16px;
+}
+
+/* line 74, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.field_with_errors input {
+  border-color: #f44336;
+  box-shadow: 0 1px 0 0 #f44336;
+}
+
+/* line 78, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.inline-hints {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  color: rgba(0, 0, 0, 0.54);
+  margin: 8px 0 0;
+}
+
+/* line 82, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.inline-errors {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  color: rgba(0, 0, 0, 0.54);
+  margin: 8px 0 0;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  color: #f44336;
+  display: inline-block;
+  margin: 4px 0 0;
+  vertical-align: middle;
+  transition: 0.3s all;
+}
+
+/* line 111, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/textfield.scss */
+.inline-errors:first-letter {
+  text-transform: uppercase;
+}
+
+/* line 86, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+.inline-errors + .inline-hints {
+  display: none;
+}
+
+/* line 91, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+abbr[title="required"] {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  border: 0;
+  color: #117099;
+  margin-left: 4px;
+}
+
+/* line 95, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.actions,
+.buttons {
+  background: #fefefe;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  display: block;
+  padding: 16px;
+}
+
+/* line 99, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.actions > ol,
+.buttons > ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/lists.scss */
+fieldset.actions > ol li,
+.buttons > ol li {
+  display: inline-block;
+}
+
+/* line 104, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.actions .cancel a,
+.buttons .cancel a {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #117099;
+  color: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  min-width: 88px;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+fieldset.actions .cancel a:focus, fieldset.actions .cancel a:hover,
+.buttons .cancel a:focus,
+.buttons .cancel a:hover {
+  color: white;
+  background: #1692c7;
+  outline: none;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+fieldset.actions .cancel a:active,
+.buttons .cancel a:active {
+  background: #1481b0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* line 108, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/forms.scss */
+fieldset.actions .cancel a,
+.buttons .cancel a {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+fieldset.actions .cancel a:focus,
+.buttons .cancel a:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+fieldset.actions .cancel a:hover,
+.buttons .cancel a:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/**
+ * Header
+ * Encapsulates several elements related to navigation at
+ * the top of the page.
+ */
+/* line 7, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+#header {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  position: relative;
+  background-color: #117099;
+  color: white;
+  padding-right: 64px;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.site_title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (min-width: 600px) {
+  /* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+  .site_title {
+    width: auto;
+  }
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+#tabs {
+  flex-grow: 1;
+}
+
+/* line 23, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.header-item {
+  margin: 0 0 0 16px;
+  padding: 0;
+  text-align: left;
+}
+
+/* line 27, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.header-item > li {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.header-item > li:hover, .header-item > li:focus {
+  text-decoration: none;
+}
+
+/* line 30, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.header-item > li > a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  line-height: 16px;
+  padding: 16px 8px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.header-item > li > a:hover, .header-item > li > a:focus {
+  text-decoration: none;
+}
+
+/* line 61, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/toolbar.scss */
+.header-item > li > a:hover, .header-item > li > a:focus {
+  color: #cddc39;
+}
+
+/* line 35, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.header-item > li.current > a {
+  color: #cddc39;
+  font-weight: 600;
+}
+
+/* line 40, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested {
+  display: inline-block;
+  outline: 0;
+  position: relative;
+  text-align: left;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested ul {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 0 1.5px rgba(0, 0, 0, 0.12);
+  filter: blur(1px);
+  left: 0;
+  list-style: none;
+  margin: 0;
+  min-width: 112px;
+  padding: 8px 0;
+  position: absolute;
+  text-align: left;
+  top: 32px;
+  transform-origin: 0 0;
+  transform: translate3d(0, -4px, 0) scaleY(0);
+  transition: 0.2s all;
+  width: auto;
+  will-change: transform;
+  z-index: 1000;
+}
+
+/* line 46, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested ul li {
+  display: block;
+  margin: 0;
+  transition: 0.2s all;
+}
+
+/* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested ul li a {
+  color: rgba(0, 0, 0, 0.54);
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  opacity: 0;
+  padding: 4px 16px;
+  transition: 0.28s opacity, 0.28s color;
+  white-space: nowrap;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.has_nested ul li a:hover, .has_nested ul li a:focus {
+  color: #cddc39;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.has_nested ul li a:hover, .has_nested ul li a:focus {
+  text-decoration: none;
+}
+
+/* line 95, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/menu.scss */
+.has_nested ul li a:hover, .has_nested ul li a:focus {
+  color: #117099;
+}
+
+@media screen and (min-width: 1300px) {
+  /* line 50, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+  .has_nested ul li a {
+    font-size: 13px;
+  }
+}
+
+/* line 55, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested:hover ul, .has_nested:focus ul {
+  filter: none;
+  transition: 0.2s all;
+  transform: translateZ(0) scale(1);
+}
+
+/* line 59, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/header.scss */
+.has_nested:hover ul li a, .has_nested:focus ul li a {
+  opacity: 1;
+  transition: 0.2s opacity;
+}
+
+/* line 1, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/hidden.scss */
+.hidden {
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
+}
+
+/**
+ * Login
+ * This screen appears if no session is active
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login {
+  -webkit-animation: 0.6s am-dialog-fade;
+          animation: 0.6s am-dialog-fade;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.23), 0 3px 3px rgba(0, 0, 0, 0.16);
+  outline: none;
+  z-index: 1000;
+  margin: -32px auto 0;
+  max-width: 400px;
+}
+
+/* line 11, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login h2 {
+  clip: rect(0, 0, 0, 0) !important;
+  position: absolute !important;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login > a {
+  background: #fefefe;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  display: block;
+  padding: 16px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/* line 23, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login > br {
+  display: none;
+}
+
+/* line 27, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login .inputs {
+  margin-bottom: 0;
+}
+
+/* line 33, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login .actions {
+  background: transparent;
+  box-shadow: none;
+  padding-top: 0;
+  box-shadow: none;
+}
+
+/* line 39, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+#login .actions .action,
+#login .actions input[type='submit'] {
+  margin: 0;
+  width: 100%;
+}
+
+/* line 47, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/login.scss */
+body.logged_out {
+  background-color: #0D3C55;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/**
+ * Overlay
+ * Overlays appear below modal content that takes up the entire screen.
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/overlay.scss */
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.54);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/**
+ * Pagination
+ * Typically appears on index pages, below tables
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.paginated_collection {
+  *zoom: 1;
+  clear: both;
+}
+
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/clearfix.scss */
+.paginated_collection:before, .paginated_collection:after {
+  content: " ";
+  display: table;
+}
+
+/* line 11, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/clearfix.scss */
+.paginated_collection:after {
+  clear: both;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.paginated_collection .pagination_information,
+.paginated_collection .download_links {
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  padding: 16px;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.paginated_collection .pagination_information {
+  float: left;
+}
+
+/* line 20, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.paginated_collection .download_links {
+  line-height: 24px;
+  float: right;
+  text-align: right;
+}
+
+/* line 28, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.pagination {
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px;
+}
+
+/* line 35, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/pagination.scss */
+.pagination .page,
+.pagination .first,
+.pagination .prev,
+.pagination .next,
+.pagination .last {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+  min-width: 24px;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.pagination .page:focus,
+.pagination .first:focus,
+.pagination .prev:focus,
+.pagination .next:focus,
+.pagination .last:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+.pagination .page:hover,
+.pagination .first:hover,
+.pagination .prev:hover,
+.pagination .next:hover,
+.pagination .last:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/**
+ * Panels
+ * Stand-alone segments of content, in Material Design
+ * these could be considered Cards or pieces of paper.
+ */
+/* line 7, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel,
+.has_many_container,
+body.index #main_content,
+body.edit #main_content > form,
+body.new #main_content > form,
+body.create #main_content > form,
+body.update #main_content > form {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel > h3,
+.has_many_container > h3,
+body.index #main_content > h3,
+body.edit #main_content > form > h3,
+body.new #main_content > form > h3,
+body.create #main_content > form > h3,
+body.update #main_content > form > h3 {
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+  padding: 16px;
+  line-height: 16px;
+}
+
+/* line 20, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel .header_action,
+.has_many_container .header_action,
+body.index #main_content .header_action,
+body.edit #main_content > form .header_action,
+body.new #main_content > form .header_action,
+body.create #main_content > form .header_action,
+body.update #main_content > form .header_action {
+  float: right;
+}
+
+/* line 24, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel .row th,
+.has_many_container .row th,
+body.index #main_content .row th,
+body.edit #main_content > form .row th,
+body.new #main_content > form .row th,
+body.create #main_content > form .row th,
+body.update #main_content > form .row th {
+  width: 20%;
+  padding-left: 16px;
+}
+
+/* line 31, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel + .panel {
+  margin-top: 16px;
+}
+
+/* line 36, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/panels.scss */
+.panel_well {
+  padding: 0 16px 16px;
+}
+
+/**
+ * PhotoSelects
+ */
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/photo_select.scss */
+.photo_select {
+  display: inline-block;
+}
+
+/**
+ * Scopes
+ * Theses appear above tables, providing the ability to filter rows
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/scopes.scss */
+.scopes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  text-align: right;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/lists.scss */
+.scopes li {
+  display: inline-block;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/scopes.scss */
+.scope {
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 16px;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/scopes.scss */
+.scope a {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.scope a:hover, .scope a:focus {
+  color: #cddc39;
+}
+
+/* line 22, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/scopes.scss */
+.scope.selected {
+  font-weight: bold;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/scopes.scss */
+.scope.selected a {
+  background-color: #117099;
+}
+
+/**
+ * Basic Selects
+ */
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/select.scss */
+.country select:not([multiple]),
+.select select:not([multiple]),
+.polymorphic_select select:not([multiple]) {
+  font-size: 14px;
+  font-size: 0.875rem;
+  background: #fafafa url(/assets/active_material/icons/arrow-dropdown-e196697ab80b67f2f37a158a5708ecc350f9b20cb28dc9b1e4e50c705d274c7f.svg) no-repeat calc(100% - 4px) 50%;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  height: 42px;
+  line-height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  letter-spacing: 0.01em;
+  padding: 0 24px 0 10px;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/select.scss */
+.country select[disabled="disabled"],
+.select select[disabled="disabled"],
+.polymorphic_select select[disabled="disabled"] {
+  background-color: #eeeeee;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/select.scss */
+select[multiple] {
+  border: 1px solid #d3d3d3;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  min-width: 250px;
+  max-width: 100%;
+}
+
+/* line 21, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/select.scss */
+select[multiple] option {
+  padding: 8px;
+  border-top: 1px solid #efefef;
+}
+
+/* line 17, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/multiselect.scss */
+select[multiple] option:first-child {
+  border-top: 0;
+}
+
+/* line 15, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/sortable.scss */
+.ui-sortable .reorder-handle-col {
+  padding: 0 0 0 8px;
+  width: 56px;
+}
+
+/* line 20, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/sortable.scss */
+.ui-sortable .reorder-handle {
+  background: transparent url(/assets/active_material/icons/reorder-0e7d0d49dd115ab4ef8558bfad4ea56a7180c85a4cbe7b91c3ef71a66777c858.svg) 50% 50% no-repeat;
+  color: transparent;
+  cursor: move;
+  display: block;
+  height: 56px;
+  margin: 0 auto;
+  opacity: 0.40;
+  transition: 0.2s all;
+  width: 56px;
+}
+
+/* line 31, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/sortable.scss */
+.ui-sortable .reorder-handle:hover {
+  opacity: 1;
+}
+
+/**
+ * Structure
+ * Global structural elements
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+body {
+  background-color: #eeeeee;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+#active_admin_content {
+  padding: 24px;
+}
+
+/* line 14, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+#sidebar {
+  margin-left: 24px;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+.with_sidebar {
+  display: flex;
+  width: 100%;
+}
+
+/* line 22, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+.with_sidebar #main_content_wrapper {
+  flex-grow: 1;
+}
+
+/* line 26, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/structure.scss */
+.with_sidebar #sidebar {
+  max-width: 320px;
+  width: 100%;
+}
+
+/**
+ * Tables
+ */
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.table_tools {
+  border-bottom: 1px solid #efefef;
+  display: flex;
+  padding: 16px;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table,
+.panel_contents table {
+  background: #fff;
+  width: 100%;
+  word-break: break-word;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table th,
+.panel_contents table th {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 13px;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid #efefef;
+  font-weight: 600;
+  height: 48px;
+  line-height: 16px;
+  padding: 8px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* line 16, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table th a,
+.panel_contents table th a {
+  position: relative;
+}
+
+/* line 35, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table th a:after,
+.panel_contents table th a:after {
+  border: 5px solid transparent;
+  margin-left: 4px;
+  content: "";
+  margin-top: -1.5px;
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  width: 0;
+  height: 0;
+}
+
+/* line 49, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table th.sorted-asc a:after,
+.panel_contents table th.sorted-asc a:after {
+  border-bottom-color: #117099;
+  margin-top: -7.5px;
+}
+
+/* line 56, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table th.sorted-desc a:after,
+.panel_contents table th.sorted-desc a:after {
+  border-top-color: #117099;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table tr,
+.panel_contents table tr {
+  height: 48px;
+  transition: 0.12s background;
+}
+
+/* line 34, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table tbody tr:hover,
+.panel_contents table tbody tr:hover {
+  background: #eee;
+}
+
+/* line 69, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table tbody tr:hover td,
+.index_table tbody tr:hover th,
+.panel_contents table tbody tr:hover td,
+.panel_contents table tbody tr:hover th {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e2e2e2;
+}
+
+/* line 38, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table tbody tr.selected,
+.panel_contents table tbody tr.selected {
+  background: #e0e0e0;
+}
+
+/* line 79, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table tbody tr.selected td,
+.index_table tbody tr.selected th,
+.panel_contents table tbody tr.selected td,
+.panel_contents table tbody tr.selected th {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #c9c9c9;
+}
+
+/* line 43, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table td,
+.panel_contents table td {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid #efefef;
+  font-weight: 400;
+  padding: 8px 16px;
+}
+
+/* line 93, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table td img,
+.panel_contents table td img {
+  display: block;
+  height: auto;
+  max-width: 320px;
+  width: 100%;
+}
+
+/* line 48, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table .col-selectable,
+.panel_contents table .col-selectable {
+  padding: 16px 24px 16px;
+  width: 66px;
+}
+
+/* line 105, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/table.scss */
+.index_table .col-selectable [type=checkbox],
+.panel_contents table .col-selectable [type=checkbox] {
+  display: inline-block;
+  height: 18px;
+  margin: 0;
+  vertical-align: middle;
+  width: 18px;
+}
+
+/* line 53, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table .col-selectable .resource_selection_cell,
+.panel_contents table .col-selectable .resource_selection_cell {
+  display: inline;
+}
+
+/* line 59, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.index_table td.col-actions a,
+.panel_contents table td.col-actions a {
+  padding: 0 4px;
+}
+
+/* line 65, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.am-js .index_table td.col-actions, .am-js .panel_contents table td.col-actions {
+  background: url(/assets/active_material/icons/more-e5bd6bc8f389d0303abf49de19209e399aa9d3a2736412aee2e3fa142fc60d6e.svg) 25% 50% no-repeat;
+  position: relative;
+  width: 48px;
+}
+
+/* line 68, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.am-js .index_table td.col-actions .table_actions, .am-js .panel_contents table td.col-actions .table_actions {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24), 0 0 1.5px rgba(0, 0, 0, 0.12);
+  filter: blur(1px);
+  left: 0;
+  list-style: none;
+  margin: 0;
+  min-width: 112px;
+  padding: 8px 0;
+  position: absolute;
+  text-align: left;
+  top: 32px;
+  transform-origin: 0 0;
+  transform: translate3d(0, -4px, 0) scaleY(0);
+  transition: 0.2s all;
+  width: auto;
+  will-change: transform;
+  z-index: 1000;
+  left: auto;
+  right: 0;
+  top: 50%;
+  margin-top: -16px;
+  margin-right: 16px;
+}
+
+/* line 75, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.am-js .index_table td.col-actions .table_actions a, .am-js .panel_contents table td.col-actions .table_actions a {
+  color: rgba(0, 0, 0, 0.54);
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  opacity: 0;
+  padding: 4px 16px;
+  transition: 0.28s opacity, 0.28s color;
+  white-space: nowrap;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.am-js .index_table td.col-actions .table_actions a:hover, .am-js .index_table td.col-actions .table_actions a:focus, .am-js .panel_contents table td.col-actions .table_actions a:hover, .am-js .panel_contents table td.col-actions .table_actions a:focus {
+  color: #cddc39;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/atoms/links.scss */
+.am-js .index_table td.col-actions .table_actions a:hover, .am-js .index_table td.col-actions .table_actions a:focus, .am-js .panel_contents table td.col-actions .table_actions a:hover, .am-js .panel_contents table td.col-actions .table_actions a:focus {
+  text-decoration: none;
+}
+
+/* line 95, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/menu.scss */
+.am-js .index_table td.col-actions .table_actions a:hover, .am-js .index_table td.col-actions .table_actions a:focus, .am-js .panel_contents table td.col-actions .table_actions a:hover, .am-js .panel_contents table td.col-actions .table_actions a:focus {
+  color: #117099;
+}
+
+@media screen and (min-width: 1300px) {
+  /* line 75, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+  .am-js .index_table td.col-actions .table_actions a, .am-js .panel_contents table td.col-actions .table_actions a {
+    font-size: 13px;
+  }
+}
+
+/* line 82, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.am-js .index_table td.col-actions:hover .table_actions, .am-js .index_table td.col-actions.active .table_actions, .am-js .panel_contents table td.col-actions:hover .table_actions, .am-js .panel_contents table td.col-actions.active .table_actions {
+  filter: none;
+  transition: 0.2s all;
+  transform: translateZ(0) scale(1);
+}
+
+/* line 85, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tables.scss */
+.am-js .index_table td.col-actions:hover .table_actions a, .am-js .index_table td.col-actions.active .table_actions a, .am-js .panel_contents table td.col-actions:hover .table_actions a, .am-js .panel_contents table td.col-actions.active .table_actions a {
+  opacity: 1;
+  transition: 0.2s opacity;
+}
+
+/**
+ * Tabs
+ * Theses show up on complicated forms, such as the Exhibit edit page.
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tabs.scss */
+.nav-tabs {
+  color: rgba(255, 255, 255, 0.6);
+  background: #117099;
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.15);
+  line-height: 0;
+  margin: 0;
+  padding: 0 24px;
+  list-style: none;
+}
+
+/* line 10, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tabs.scss */
+.nav-tabs > li.ui-tabs-tab {
+  display: inline-block;
+  border-color: inherit;
+}
+
+/* line 14, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tabs.scss */
+.nav-tabs > li.ui-tabs-tab > a {
+  background: inherit;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: block;
+  font: 400 14px/16px "RobotoDraft", sans-serif;
+  letter-spacing: 0.08em;
+  padding: 16px;
+  position: relative;
+  text-transform: uppercase;
+  transition: 0.2s color;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* line 60, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-tabs-tab > a:after {
+  background-color: rgba(255, 255, 255, 0.54);
+  bottom: 0;
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+  content: "";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  transform: translateY(3px);
+  transition: 0.2s background, 0.25s transform;
+  width: 100%;
+}
+
+/* line 73, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-tabs-tab > a:focus, .nav-tabs > li.ui-tabs-tab > a:hover {
+  background: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+/* line 79, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-tabs-tab > a:focus:after, .nav-tabs > li.ui-tabs-tab > a:hover:after {
+  transform: none;
+}
+
+/* line 84, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-tabs-tab > a:active {
+  border: 0;
+  box-shadow: none;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tabs.scss */
+.nav-tabs > li.ui-state-active > a {
+  background: inherit;
+  color: #fff;
+}
+
+/* line 94, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-state-active > a:after {
+  background-color: #cddc39;
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transform: none;
+}
+
+/* line 100, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.ui-state-active > a:focus, .nav-tabs > li.ui-state-active > a:hover {
+  background: inherit;
+}
+
+/* line 22, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tabs.scss */
+.nav-tabs > li.tab_with_errors > a {
+  padding-right: 40px;
+}
+
+/* line 109, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tabs.scss */
+.nav-tabs > li.tab_with_errors > a:before {
+  color: #FF695E;
+  -webkit-animation: 2s am-tabs-error-throb infinite alternate;
+          animation: 2s am-tabs-error-throb infinite alternate;
+  content: '\026a0';
+  font-size: 20px;
+  line-height: 16px;
+  margin-top: -6px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+}
+
+/**
+ * Tags
+ * Tags show up as states within tables and other components
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tag.scss */
+.status_tag {
+  background-color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.75rem;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  letter-spacing: 0.1em;
+  line-height: 16px;
+  padding: 4px 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* line 9, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tag.scss */
+a .status_tag {
+  transition: 0.2s all;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tag.scss */
+a .status_tag:hover, a .status_tag:focus {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.22);
+  text-shadow: none;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/tag.scss */
+a .status_tag:active {
+  box-shadow: none;
+}
+
+/* line 13, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tag.scss */
+.status_tag.yes {
+  background-color: #117099;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/tag.scss */
+.empty {
+  color: #ccc;
+  font-size: 0.9em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/**
+ * Titlebar
+ */
+/* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/title_bar.scss */
+.title_bar {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  align-items: center;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (min-width: 600px) {
+  /* line 5, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/title_bar.scss */
+  .title_bar {
+    width: auto;
+  }
+}
+
+/* line 15, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/title_bar.scss */
+#titlebar_left {
+  flex-grow: 1;
+}
+
+/* line 19, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/title_bar.scss */
+#titlebar_right .action_item a {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+#titlebar_right .action_item a:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+#titlebar_right .action_item a:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/**
+ * Utility Nav
+ * Displays current user and logout information
+ */
+/* line 6, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav {
+  background: url(/assets/active_material/icons/account_circle-12c48f92a6c2d34ab3c17792a0855812ac521755ad0f382d024b014f4078d21b.svg) no-repeat;
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 16px;
+}
+
+/* line 18, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav:before {
+  content: "";
+  cursor: pointer;
+  position: absolute;
+  width: 90px;
+  height: 50px;
+  top: 0;
+  right: -12px;
+}
+
+/* line 28, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav a {
+  color: #333;
+}
+
+/* line 32, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav > li {
+  border-top: 1px solid #d9d9d9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+  width: 200px;
+  float: right;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background: #efefef;
+  text-align: right;
+  clip: rect(0, 0, 0, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.28s all;
+  position: relative;
+}
+
+/* line 33, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav > li:first-child {
+  margin-top: 45px;
+}
+
+/* line 36, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav > li:first-child:before {
+  content: "";
+  border: 7px solid transparent;
+  border-bottom-color: #fff;
+  top: -14px;
+  right: 12px;
+  position: absolute;
+}
+
+/* line 60, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav > li a {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.7);
+  background: transparent;
+  border-radius: 2px;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 18px;
+  margin: 4px;
+  padding: 12px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.25s all;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+}
+
+/* line 25, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+#utility_nav > li a:focus {
+  outline: none;
+}
+
+/* line 29, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/prototypes/button.scss */
+#utility_nav > li a:hover {
+  color: #117099;
+  text-decoration: none;
+}
+
+/* line 65, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav #current_user {
+  background: #fff;
+  text-align: center;
+}
+
+/* line 71, ../../.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/bundler/gems/active_material-ea09eaccf07c/app/assets/stylesheets/active_material/components/utility_nav.scss */
+#utility_nav:hover > li {
+  clip: initial;
+  opacity: 1;
+  visibility: visible;
+}
+
+/*# sourceMappingURL=active_admin.css-2783d3b188ef7778eb5f1730e9c96d1b3dfd14c968ca3f7c5beb01aae9453e0a.map */

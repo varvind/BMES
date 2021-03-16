@@ -22,6 +22,9 @@ if Rails.env.test?
                 starttime: '2025-01-01 00:00:00', endtime: '2025-01-01 01:00:00', eventpass: '1')
   Participation.create!(uin: 123_456_789, first_name: 'Bob', last_name: 'Ross',
                         email: 'happylittletrees@example.com', event_id: 1)
+  User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password',
+               name: 'test user', total_points: 3, general_meeting_points: 1,
+               mentorship_meeting_points: 1, social_points: 1)
 end
 
 if Rails.env.production?
