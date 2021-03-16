@@ -5,7 +5,7 @@ window.onload= () =>{
   if(window.location.href.indexOf("edit") > -1 ) {
     document.getElementById('switchButton').classList.toggle("hidden")
     document.getElementById("instructions").innerHTML = "Fill in Inputs with User information"
-
+    document.getElementById("columns").innerHTML = ""
     // Make name input viewable
     user_name_input= document.getElementById("user_name_input")
     user_name= document.getElementById("user_name")
@@ -68,10 +68,12 @@ function changeForm() {
   if(i % 2 == 0) {
     document.getElementById("switchButton").innerHTML = "Add Multiple Users"
     document.getElementById("instructions").innerHTML = "Fill in Inputs with User information"
+    document.getElementById("columns").innerHTML = ""
     i++
   } else {
     document.getElementById("switchButton").innerHTML = "Add Individual User"
     document.getElementById("instructions").innerHTML = "Use a Spreadsheet with User Information"
+    document.getElementById("columns").innerHTML = "Required Columns: Name, Email, Total Points, General Meeting Points, Mentorship Meeting Points, and Social Points"
     i--
   }
 
