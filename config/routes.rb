@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   post '/user/login' => 'user#login_action'
   get '/user_profile' => 'user#profile'
   post '/user/logout' => 'user#logout'
-
+  get '/user/settings' => 'user#settings'
+  post '/update_password' => 'user#change_password'
   require 'sidekiq/web'
 
   mount Sidekiq::Web => '/sidekiq'
