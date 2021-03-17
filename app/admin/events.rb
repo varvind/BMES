@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Event do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -55,3 +56,4 @@ ActiveAdmin.register Event do
     f.actions
   end
 end
+# rubocop:enable Metrics/BlockLength
