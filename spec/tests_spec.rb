@@ -392,7 +392,7 @@ RSpec.describe 'Home Page Date', type: :system do
   describe 'Input Date' do
     it 'Is older than 2 days' do
       event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', Event Password: 'pass3')
+                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).not_to have_content('Event in the Past')
@@ -401,7 +401,7 @@ RSpec.describe 'Home Page Date', type: :system do
     end
     it 'Is in future more than 2 days' do
       event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00', Event Password: 'pass3')
+                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00', eventpass: 'pass3')
       event.save
       visit events_path
       expect(page).to have_content('Event in the Future')
