@@ -4,9 +4,8 @@ ActiveAdmin.register Event do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
-  permit_params :title, :place, :description, :starttime, :endtime, :eventpass,
-                        :repeating, :repeatmonday, :repeattuesday, :repeatwednesday,
-						:repeatthursday, :repeatfriday, :repeatsaturday, :repeatsunday
+  permit_params :title, :place, :description, :starttime, :endtime, :eventpass, :repeating, :repeatmonday,
+                :repeattuesday, :repeatwednesday, :repeatthursday, :repeatfriday, :repeatsaturday, :repeatsunday
 
   index do
     selectable_column
@@ -25,19 +24,9 @@ ActiveAdmin.register Event do
   filter :place
   filter :starttime
 
-  # show do
-    # #selectable_column
-	# panel "Info" do
-    # column :title
-    # column :place
-    # column :description
-    # column :starttime, label: 'Start Time'
-    # column :endtime, label: 'End Time'
-    # column :eventpass, label: 'Event Password'
-    # column :created_at
-	# column :updated_at
-    # end
-  # end
+  show do
+    attributes_table :title, :place, :description, :starttime, :endtime, :eventpass, :created_at, :updated_at
+  end
 
   form do |f|
     input :title
