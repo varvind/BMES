@@ -211,7 +211,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
 
@@ -234,7 +234,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
       click_on 'Create Event'
 
       click_on 'Edit Event'
@@ -254,7 +254,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '11128'
+      fill_in 'Event Password', with: '11128'
 
       click_on 'Update Event'
 
@@ -278,7 +278,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
       click_on 'Delete Event'
@@ -303,7 +303,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
       sleep(5)
@@ -392,7 +392,7 @@ RSpec.describe 'Home Page Date', type: :system do
   describe 'Input Date' do
     it 'Is older than 2 days' do
       event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', Event Password: 'pass3')
       event.save
       visit events_path
       expect(page).not_to have_content('Event in the Past')
@@ -401,7 +401,7 @@ RSpec.describe 'Home Page Date', type: :system do
     end
     it 'Is in future more than 2 days' do
       event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00', eventpass: 'pass3')
+                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00', Event Password: 'pass3')
       event.save
       visit events_path
       expect(page).to have_content('Event in the Future')
