@@ -30,7 +30,6 @@ class EventsController < ApplicationController
     @count = Participation.where(event_id: params[:id])
   end
 
-
   # def destroy
   #   @event = Event.find(params[:id])
   #   @event.destroy

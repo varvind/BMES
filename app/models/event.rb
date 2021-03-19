@@ -10,9 +10,9 @@ class Event < ApplicationRecord
   end
 
   def start_time
-    self.starttime
+    starttime
   end
-  
+
   #   before_destroy :remove_participation_from_event
 
   # private
