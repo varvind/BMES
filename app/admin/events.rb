@@ -30,27 +30,27 @@ ActiveAdmin.register Event do
   end
 
   form do |f|
-    input :title
-    input :place
-    input :description
-    input :starttime
-    input :endtime
-    input :eventpass, label: 'Event Password'
     text_node javascript_include_tag('events_form.js')
     f.inputs do
+      input :title
+      input :place
+      input :description
+      input :starttime
+      input :endtime
+      input :eventpass, label: 'Event Password'
       f.li "<button type = 'button' class='label' id = 'switchButton'
              style = 'margin-left:1%;font-weight:bold; margin-top:1%' onclick='changeForm()'>
              Non-Repeating Event</label>".html_safe
       f.li "<label class='label' id ='instructions'
              style = 'margin-left:1%;font-weight:bold; margin-top:10%; position:relative'>
              What days should the event repeat for?</label>".html_safe
-      input :repeatmonday, label: 'Mondays'
-      input :repeattuesday, label: 'Tuesdays'
-      input :repeatwednesday, label: 'Wednesdays'
-      input :repeatthursday, label: 'Thursdays'
-      input :repeatfriday, label: 'Fridays'
-      input :repeatsaturday, label: 'Saturdays'
-      input :repeatsunday, label: 'Sundays'
+      input :repeatmonday, as: :boolean, label: 'Mondays'
+      input :repeattuesday, as: :boolean, label: 'Tuesdays'
+      input :repeatwednesday, as: :boolean, label: 'Wednesdays'
+      input :repeatthursday, as: :boolean, label: 'Thursdays'
+      input :repeatfriday, as: :boolean, label: 'Fridays'
+      input :repeatsaturday, as: :boolean, label: 'Saturdays'
+      input :repeatsunday, as: :boolean, label: 'Sundays'
       input :repeatweeks, label: 'How many weeks should the event repeat for?'
     end
     f.actions

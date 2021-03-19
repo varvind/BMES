@@ -10,7 +10,14 @@ class Event < ApplicationRecord
   end
 
   #   before_destroy :remove_participation_from_event
-
+  attr_accessor :repeatmonday
+  attr_accessor :repeattuesday
+  attr_accessor :repeatwednesday
+  attr_accessor :repeatthursday
+  attr_accessor :repeatfriday
+  attr_accessor :repeatsaturday
+  attr_accessor :repeatsunday
+  attr_accessor :repeatweeks
   # private
 
   # def remove_participation_from_event
