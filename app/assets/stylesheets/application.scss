@@ -10,11 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
  */
 
 // Custom Boostrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "simple_calendar";
 
 table, th, td {
     border: 2px solid black;
@@ -97,4 +97,13 @@ html, body {
 
 .event-place{
     overflow-wrap: break-word;
+}
+
+.a-primary
+{
+    color: white;
+    border:1px solid black;
+    font-size: 16px;
+    padding-top: 0%;
+    border-radius: 2px;
 }
