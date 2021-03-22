@@ -196,7 +196,7 @@ RSpec.describe 'New Event Page', type: :system do
       check('event_repeatfriday')
       check('event_repeatsaturday')
       check('event_repeatsunday')
-      fill_in('event[repeatweeks]', with: '-1')
+      fill_in('event[repeatweeks]', with: '0')
       click_on('commit')
       expect(page).to have_content('Error: Weeks cannot be zero/negative for repeat events.')
     end
