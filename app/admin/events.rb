@@ -81,8 +81,12 @@ ActiveAdmin.register Event do
                                 newevent['endtime(5i)'].to_i)
       # gets the weeks parameter from new event
       weeks = newevent[:repeatweeks].to_i
+      # checks to see if starttime is not in the past
+      if newstarttime < DateTime.current()
+        # gives error if it does
+        redirect_to '/admin/events/new', flash: { error: 'Error: Start Time cannot be in the past.' }
       # checks to see if end time is before start time
-      if newendtime < newstarttime
+      elsif newendtime < newstarttime
         # gives error if it does
         redirect_to '/admin/events/new', flash: { error: 'Error: End Time is earlier than Start Time.' }
       # checks to see if any of the repeating booleans are true
@@ -146,13 +150,12 @@ ActiveAdmin.register Event do
                                    endtime: newendtime + change, eventpass: newevent[:eventpass])
             end
             next unless newevent[:repeatsaturday] == '1' # checks if event needs to repeat on saturday
-
-            nextdate = newstarttime.next_occurring(:saturday) # finds the next saturday
-            change = (nextdate - newstarttime).to_i # gets the difference between the dates
-            # creates the event with the change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description:
-                                 newevent[:description], starttime: newstarttime + change,
-                                 endtime: newendtime + change, eventpass: newevent[:eventpass])
+              nextdate = newstarttime.next_occurring(:saturday) # finds the next saturday
+              change = (nextdate - newstarttime).to_i # gets the difference between the dates
+              # creates the event with the change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                  newevent[:description], starttime: newstarttime + change,
+                                  endtime: newendtime + change, eventpass: newevent[:eventpass])
             newstarttime += 7
             newendtime += 7
           end
