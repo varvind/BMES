@@ -41,7 +41,9 @@ RSpec.describe 'Create New Event', type: :system do
       expect(page).to have_content('title1', count: 2)
       sleep(10)
 
-      click_on 'Details'
+      within(".simple-calendar") do
+        click_on("Details")
+      end
 
       expect(page).to have_content('title1')
 
@@ -86,7 +88,9 @@ RSpec.describe 'Create New Event', type: :system do
       sleep(5)
       expect(page).to have_content('title2', count: 2)
 
-      click_on 'Details'
+      within(".simple-calendar") do
+        click_on("Details")
+      end
 
       expect(page).to have_content('title2')
 
