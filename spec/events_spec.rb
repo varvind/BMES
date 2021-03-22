@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'sidekiq/testing'
 
 RSpec.describe 'New Event Page', type: :system do
   describe 'Create Event' do
@@ -125,18 +124,31 @@ RSpec.describe 'New Event Page', type: :system do
       expect(page).to have_content('Error.')
     end
 
-    it 'View Event - Success' do
+    it 'Download JSON - Success' do
       visit '/admin/events'
-      page.execute_script("$('#col col-actions').trigger('mouseenter')")
-      sleep(5)
-      click_on('View')
+      click_on('JSON')
       sleep(5)
       expect(page).to have_content('Title')
     end
 
-    it 'Download JSON - Success' do
+    it 'View Event (Details) - Success' do
       visit '/admin/events'
-      click_on('JSON')
+      event = Event.create!(title: 'Title', place: 'Test_Place', description: 'Test_Description',
+                            starttime: DateTime.new(2021, 1, 1, 10, 0), endtime: DateTime.new(2021, 1, 1, 11, 0),
+                            eventpass: 'password')
+      visit events_path(id: event.id)
+      sleep(5)
+      click_on('Details')
+      sleep(5)
+      expect(page).to have_content('Title')
+    end
+
+    it 'View Event (View) - Success' do
+      visit '/admin/events'
+      event = Event.create!(title: 'Title', place: 'Test_Place', description: 'Test_Description',
+                            starttime: DateTime.new(2021, 1, 1, 10, 0), endtime: DateTime.new(2021, 1, 1, 11, 0),
+                            eventpass: 'password')
+      visit '/admin/events/' + event.id.to_s
       sleep(5)
       expect(page).to have_content('Title')
     end
