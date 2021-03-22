@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'date'
+require 'active_support'
+require 'active_support/all'
 
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Event do
@@ -8,7 +10,8 @@ ActiveAdmin.register Event do
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
   permit_params :title, :place, :description, :starttime, :endtime, :eventpass, :repeating, :repeatmonday,
-                :repeattuesday, :repeatwednesday, :repeatthursday, :repeatfriday, :repeatsaturday, :repeatsunday, :repeatweeks
+                :repeattuesday, :repeatwednesday, :repeatthursday, :repeatfriday, :repeatsaturday, :repeatsunday,
+                :repeatweeks
 
   # Intialize columns
   index do
@@ -62,67 +65,86 @@ ActiveAdmin.register Event do
 
   # form controller
   controller do
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
+    # rubocop:disable Style/IdenticalConditionalBranches
     def create
       newevent = permitted_params[:event]
-      newstarttime = newevent[:starttime]
-      newendtime = newevent[:endtime]
-      if :repeatsunday == true || :repeatmonday == true || :repeattuesday == true || :repeatwednesday == true || :repeatthursday == true || :repeatfriday == true || :repeatsaturday == true # repeating event creation
-        for i in 1..:repeatweeks
-          if :repeatsunday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:sunday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+      newstarttime = DateTime.new(newevent['starttime(1i)'].to_i, newevent['starttime(2i)'].to_i,
+                                  newevent['starttime(3i)'].to_i, newevent['starttime(4i)'].to_i,
+                                  newevent['starttime(5i)'].to_i)
+      newendtime = DateTime.new(newevent['endtime(1i)'].to_i, newevent['endtime(2i)'].to_i,
+                                newevent['endtime(3i)'].to_i, newevent['endtime(4i)'].to_i,
+                                newevent['endtime(5i)'].to_i)
+      weeks = newevent[:repeatweeks].to_i
+      if newevent[:repeatsunday] == '1' || newevent[:repeatmonday] == '1' || newevent[:repeattuesday] == '1' ||
+         newevent[:repeatwednesday] == '1' || newevent[:repeatthursday] == '1' || newevent[:repeatfriday] == '1' ||
+         newevent[:repeatsaturday] == '1' # repeating event creation
+        # for the first day of the repeating events creation
+        event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                             starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
+        (1..weeks).each do |_i|
+          if newevent[:repeatsunday] == '1'
+            nextdate = newstarttime.next_occurring(:sunday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeatmonday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:monday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+          if newevent[:repeatmonday] == '1'
+            nextdate = newstarttime.next_occurring(:monday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeattuesday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:tuesday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+          if newevent[:repeattuesday] == '1'
+            nextdate = newstarttime.next_occurring(:tuesday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeatwednesday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:wednesday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+          if newevent[:repeatwednesday] == '1'
+            nextdate = newstarttime.next_occurring(:wednesday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeatthursday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:thursday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+          if newevent[:repeatthursday] == '1'
+            nextdate = newstarttime.next_occurring(:thursday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeatfriday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:friday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
+          if newevent[:repeatfriday] == '1'
+            nextdate = newstarttime.next_occurring(:friday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
           end
-          if :repeatsaturday == true
-            nextdate = Time.zone.at(Date.next_occuring.to_time).to_datetime(:saturday)
-            change = newstarttime - nextdate
-            newstarttime = newstarttime + change
-            newendtime = newendtime + change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
-          end
-          # Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: :newstarttime, endtime: :newendtime, eventpass: newevent[:eventpass])
-          # newstarttime = newstartime + 7  # adds one week
-          # newendtime = newendtime + 7 # adds one week
+          next unless newevent[:repeatsaturday] == '1'
+
+          nextdate = newstarttime.next_occurring(:saturday)
+          change = (nextdate - newstarttime).to_i
+          newstarttime += change
+          newendtime += change
+          event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                               starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
         end
-      else  # singular event creation
-        event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description], starttime: newevent[:starttime], endtime: newevent[:endtime], eventpass: newevent[:eventpass])
+      else # singular event creation
+        event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
+                             starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
       end
       if !event.valid?
         redirect_to '/admin/events/new', flash: { error: 'Error.' }
@@ -133,3 +155,7 @@ ActiveAdmin.register Event do
   end
 end
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Style/IdenticalConditionalBranches

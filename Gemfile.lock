@@ -364,6 +364,7 @@ PLATFORMS
 DEPENDENCIES
   active_material!
   activeadmin
+  activesupport
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.0.0)
   byebug
