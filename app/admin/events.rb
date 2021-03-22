@@ -68,7 +68,6 @@ ActiveAdmin.register Event do
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/CyclomaticComplexity
     # rubocop:disable Metrics/PerceivedComplexity
-    # rubocop:disable Style/IdenticalConditionalBranches
     def create
       newevent = permitted_params[:event]
       newstarttime = DateTime.new(newevent['starttime(1i)'].to_i, newevent['starttime(2i)'].to_i,
@@ -78,78 +77,113 @@ ActiveAdmin.register Event do
                                 newevent['endtime(3i)'].to_i, newevent['endtime(4i)'].to_i,
                                 newevent['endtime(5i)'].to_i)
       weeks = newevent[:repeatweeks].to_i
-      if newevent[:repeatsunday] == '1' || newevent[:repeatmonday] == '1' || newevent[:repeattuesday] == '1' ||
-         newevent[:repeatwednesday] == '1' || newevent[:repeatthursday] == '1' || newevent[:repeatfriday] == '1' ||
-         newevent[:repeatsaturday] == '1' # repeating event creation
-        # for the first day of the repeating events creation
-        event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                             starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-        (1..weeks).each do |_i|
-          if newevent[:repeatsunday] == '1'
-            nextdate = newstarttime.next_occurring(:sunday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          if newevent[:repeatmonday] == '1'
-            nextdate = newstarttime.next_occurring(:monday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          if newevent[:repeattuesday] == '1'
-            nextdate = newstarttime.next_occurring(:tuesday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          if newevent[:repeatwednesday] == '1'
-            nextdate = newstarttime.next_occurring(:wednesday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          if newevent[:repeatthursday] == '1'
-            nextdate = newstarttime.next_occurring(:thursday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          if newevent[:repeatfriday] == '1'
-            nextdate = newstarttime.next_occurring(:friday)
-            change = (nextdate - newstarttime).to_i
-            newstarttime += change
-            newendtime += change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                                 starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-          end
-          next unless newevent[:repeatsaturday] == '1'
+      if newendtime < newstarttime
+        redirect_to '/admin/events/new', flash: { error: 'Error: End Time is earlier than Start Time.' }
+      elsif newevent[:repeatsunday] == '1' || newevent[:repeatmonday] == '1' || newevent[:repeattuesday] == '1' ||
+            newevent[:repeatwednesday] == '1' || newevent[:repeatthursday] == '1' || newevent[:repeatfriday] == '1' ||
+            newevent[:repeatsaturday] == '1' # repeating event creation
+        if weeks.positive?
+          # for the first day of the repeating events creation
+          event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                newevent[:description], starttime: newstarttime, endtime: newendtime,
+                               eventpass: newevent[:eventpass])
+          (0..weeks).each do |_i|
+            if newevent[:repeatsunday] == '1'
+              nextdate = newstarttime.next_occurring(:sunday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            if newevent[:repeatmonday] == '1'
+              nextdate = newstarttime.next_occurring(:monday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            if newevent[:repeattuesday] == '1'
+              nextdate = newstarttime.next_occurring(:tuesday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            if newevent[:repeatwednesday] == '1'
+              nextdate = newstarttime.next_occurring(:wednesday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            if newevent[:repeatthursday] == '1'
+              nextdate = newstarttime.next_occurring(:thursday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            if newevent[:repeatfriday] == '1'
+              nextdate = newstarttime.next_occurring(:friday)
+              change = (nextdate - newstarttime).to_i
+              newstarttime += change
+              newendtime += change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                   newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                   eventpass: newevent[:eventpass])
+              newstarttime -= change
+              newendtime -= change
+            end
+            next unless newevent[:repeatsaturday] == '1'
 
-          nextdate = newstarttime.next_occurring(:saturday)
-          change = (nextdate - newstarttime).to_i
-          newstarttime += change
-          newendtime += change
-          event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                               starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
+            nextdate = newstarttime.next_occurring(:saturday)
+            change = (nextdate - newstarttime).to_i
+            newstarttime += change
+            newendtime += change
+            event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                 newevent[:description], starttime: newstarttime, endtime: newendtime,
+                                 eventpass: newevent[:eventpass])
+            newstarttime -= change
+            newendtime -= change
+            newstarttime += 7
+            newendtime += 7
+          end
+          if !event.valid?
+            redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
+          else
+            redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
+          end
+        else
+          redirect_to '/admin/events/new', flash: { error: 'Error: Weeks cannot be zero/negative for repeat events.' }
         end
       else # singular event creation
         event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
                              starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-      end
-      if !event.valid?
-        redirect_to '/admin/events/new', flash: { error: 'Error.' }
-      else
-        redirect_to '/admin/events', flash: { error: 'Successfully Created Event.' }
+        if !event.valid?
+          redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
+        else
+          redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
+        end
       end
     end
   end
@@ -158,4 +192,3 @@ end
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Style/IdenticalConditionalBranches
