@@ -38,12 +38,12 @@ RSpec.describe 'Create New Event', type: :system do
       visit '/'
       expect(page).to have_css '.simple-calendar'
       sleep(5)
-      expect(page).to have_content('title1', count: 1)
+      expect(page).to have_content('title1', count: 2)
       sleep(10)
 
       click_on 'Details'
 
-      expect(page).to have_content('title1', count: 1)
+      expect(page).to have_content('title1')
 
       click_on 'Back to List'
 
@@ -84,11 +84,11 @@ RSpec.describe 'Create New Event', type: :system do
       visit '/'
       expect(page).to have_css '.simple-calendar'
       sleep(5)
-      expect(page).to have_content('title2', count: 1)
+      expect(page).to have_content('title2', count: 2)
 
       click_on 'Details'
 
-      expect(page).to have_content('title2', count: 1)
+      expect(page).to have_content('title2')
 
       click_on 'Back to List'
 
