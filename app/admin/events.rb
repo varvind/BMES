@@ -149,7 +149,7 @@ ActiveAdmin.register Event do
       if !event.valid?
         redirect_to '/admin/events/new', flash: { error: 'Error.' }
       else
-        redirect_to '/admin/events', flash: { error: 'Successfully Created Event.' }
+        redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
       end
     end
   end
