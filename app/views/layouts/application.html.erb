@@ -52,6 +52,7 @@
    
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="/user_profile">View Profile</a>
+        <a class="dropdown-item" href="/user/settings">Settings</a>
         <form class="form-inline user-button" action ='/user/logout' method = 'POST'>
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
           <%= link_to("Logout", "#", :onclick => "this.parentNode.submit()", class:"dropdown-item") %>

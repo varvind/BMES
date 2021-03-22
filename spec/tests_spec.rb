@@ -211,7 +211,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
 
@@ -234,7 +234,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '2', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
       click_on 'Create Event'
 
       click_on 'Edit Event'
@@ -254,7 +254,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '11128'
+      fill_in 'Event Password', with: '11128'
 
       click_on 'Update Event'
 
@@ -278,7 +278,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
       click_on 'Delete Event'
@@ -303,7 +303,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
-      fill_in 'Eventpass', with: '1128'
+      fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
       sleep(5)
