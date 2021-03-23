@@ -91,7 +91,7 @@ ActiveAdmin.register Event do
       current_time = DateTime.now
       current_time = current_time.change(offset: '+0000')
       # checks to see if starttime is not in the past
-      if newstarttime < current_time
+      if newstarttime.change(offset: '-0500') < current_time.change(offset: '-0500')
         # gives error if it does
         redirect_to '/admin/events/new', flash: { error: 'Error: Start Time cannot be in the past.' }
       # checks to see if end time is before start time
