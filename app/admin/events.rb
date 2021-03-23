@@ -158,14 +158,14 @@ ActiveAdmin.register Event do
                                    newevent[:description], starttime: newstarttime + change,
                                    endtime: newendtime + change, eventpass: newevent[:eventpass])
             end
-            next unless newevent[:repeatsaturday] == '1' # checks if event needs to repeat on saturday
-
-            nextdate = newstarttime.next_occurring(:saturday) # finds the next saturday
-            change = (nextdate - newstarttime).to_i # gets the difference between the dates
-            # creates the event with the change
-            event = Event.create(title: newevent[:title], place: newevent[:place], description:
-                                newevent[:description], starttime: newstarttime + change,
-                                 endtime: newendtime + change, eventpass: newevent[:eventpass])
+            if newevent[:repeatsaturday] == '1' # checks if event needs to repeat on saturday
+              nextdate = newstarttime.next_occurring(:saturday) # finds the next saturday
+              change = (nextdate - newstarttime).to_i # gets the difference between the dates
+              # creates the event with the change
+              event = Event.create(title: newevent[:title], place: newevent[:place], description:
+                                  newevent[:description], starttime: newstarttime + change,
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+            end
             newstarttime += 7
             newendtime += 7
           end
