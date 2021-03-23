@@ -2,7 +2,6 @@
 
 class Event < ApplicationRecord
   scope :sorted, -> { order('starttime ASC') }
-  has_many :participation, dependent: :destroy
   validates_presence_of :title, :starttime, :eventpass, :eventtype
   has_and_belongs_to_many :users
 

@@ -79,7 +79,7 @@
       <h3 style = "text-decoration:underline;"> <%=@user.name%>'s Recent Events </h3>
       <div class = "row">
         <div class = "col">
-          <% if (@user.events.length == 0) %>
+          <% if (@events.length == 0) %>
             <h5 > None! </h5>
           <% else %>
             <% @events.each do |event| %>

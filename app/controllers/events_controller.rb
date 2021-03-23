@@ -10,8 +10,12 @@ class EventsController < ApplicationController
   end
 
   def new
-    event = Event.find(params['event_id'])
-    @id = event.id
+    event = Event.find_by(id: params['event_id'])
+    if event
+      @id = event.id
+    else
+      redirect_to '/', flash: { danger: 'Event Does Not Exist!' }
+    end
   end
 
   def show
@@ -20,7 +24,6 @@ class EventsController < ApplicationController
 
   def sign_in
     @event_id = params['signin']['event_id']
-    puts @event_id
     @event = begin
                Event.find(@event_id)
              rescue StandardError
@@ -65,7 +68,7 @@ class EventsController < ApplicationController
           @event.guests.push(guest_name)
           @event.save
         end
-        redirect_to event_path(id: @event_id), flash: { success: 'You have successfully signed into the event.' }
+        redirect_to '/', flash: { success: 'You have successfully signed into the event.' }
       end
     else
       redirect_to new_event_path(event_id: @event_id), flash: { danger: 'Incorrect password, please try '\

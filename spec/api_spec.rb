@@ -20,7 +20,7 @@ RSpec.describe 'API v1', type: :system do
     end
     it 'get after new event' do
       n_event = Event.create!(title: 'Event Numba 2', place: 'Place Number 2', description: 'Some Description',
-                              starttime: '2020-01-01 00:00:00', endtime: '2020-01-01 01:00:00', eventpass: '2')
+                              starttime: '2020-01-01 00:00:00', endtime: '2020-01-01 01:00:00', eventpass: '2', eventtype: 'General')
 
       get api_v1_events_path
       expect(response).to have_http_status(:ok)
@@ -49,14 +49,8 @@ RSpec.describe 'API v1', type: :system do
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(JSON.parse(response.body)).to eq({
-                                                'attendees' => [
-                                                  {
-                                                    'email' => 'happylittletrees@example.com',
-                                                    'first_name' => 'Bob',
-                                                    'last_name' => 'Ross',
-                                                    'uin' => 123_456_789
-                                                  }
-                                                ],
+                                                'attendees' => [],
+                                                'guests' => [],
                                                 'id' => 1,
                                                 'name' => 'Event Title',
                                                 'start_time' => '2025-01-01T00:00:00.000Z'
@@ -67,35 +61,6 @@ RSpec.describe 'API v1', type: :system do
       expect(response).to have_http_status(:bad_request)
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(JSON.parse(response.body)).to eq({})
-    end
-    it 'Valid after new participant' do
-      n_participant = Participation.create!(uin: 987_654_321, first_name: 'John', last_name: 'Smith',
-                                            email: 'test@example.com', event_id: 1)
-
-      get api_v1_event_path(id: 1)
-      expect(response).to have_http_status(:ok)
-      expect(response.content_type).to eq('application/json; charset=utf-8')
-      expect(JSON.parse(response.body)).to eq({
-                                                'attendees' => [
-                                                  {
-                                                    'email' => 'happylittletrees@example.com',
-                                                    'first_name' => 'Bob',
-                                                    'last_name' => 'Ross',
-                                                    'uin' => 123_456_789
-                                                  },
-                                                  {
-                                                    'email' => 'test@example.com',
-                                                    'first_name' => 'John',
-                                                    'last_name' => 'Smith',
-                                                    'uin' => 987_654_321
-                                                  }
-                                                ],
-                                                'id' => 1,
-                                                'name' => 'Event Title',
-                                                'start_time' => '2025-01-01T00:00:00.000Z'
-                                              })
-
-      n_participant.destroy
     end
   end
 end
