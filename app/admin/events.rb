@@ -74,6 +74,16 @@ ActiveAdmin.register Event do
     def create
       # gets parameters from new event
       newevent = permitted_params[:event]
+
+      if(newevent['starttime(1i)'] == "" || newevent['starttime(1i)'] == "" ||
+        newevent['starttime(2i)'] == "" || newevent['starttime(3i)'] == "" ||
+        newevent['starttime(4i)'] == "" || newevent['starttime(5i)'] == "" ||
+        newevent['endtime(1i)'] == "" || newevent['endtime(1i)'] == "" ||
+        newevent['endtime(2i)'] == "" || newevent['endtime(3i)'] == "" ||
+        newevent['endtime(4i)'] == "" || newevent['endtime(5i)'] == ""  )
+        redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Date Entry' }
+        return
+      end
       # gets the start time parameter from new event
       newstarttime = DateTime.new(newevent['starttime(1i)'].to_i, newevent['starttime(2i)'].to_i,
                                   newevent['starttime(3i)'].to_i, newevent['starttime(4i)'].to_i,
@@ -88,8 +98,6 @@ ActiveAdmin.register Event do
       # changes time zone to central time
       newstarttime = newstarttime.change(offset: '+0000')
       newendtime = newendtime.change(offset: '+0000')
-      current_time = DateTime.now
-      current_time = current_time.change(offset: '+0000')
       # checks to see if starttime is not in the past
       if newstarttime.change(offset: '-0500') < DateTime.now
         # gives error if it does
@@ -168,14 +176,13 @@ ActiveAdmin.register Event do
             end
             newstarttime += 7
             newendtime += 7
+            if !event.valid? # checks to see if event is successfully created and valid
+              # gives error if it does not
+              redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
+              return
+            end
           end
-          if !event.valid? # checks to see if event is successfully created and valid
-            # gives error if it does not
-            redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
-          else
-            # prints off that it works
-            redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
-          end
+          redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
         else
           # gives error if weeks is negative or zero
           redirect_to '/admin/events/new', flash: { error: 'Error: Weeks cannot be zero/negative for repeat events.' }

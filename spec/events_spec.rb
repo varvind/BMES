@@ -246,5 +246,33 @@ RSpec.describe 'New Event Page', type: :system do
       # Details of the event should be on page
       expect(page).to have_content('Event Title')
     end
+
+    it 'Empty Starttime' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      click_on('commit')
+      expect(page).to have_content('Error: Invalid Date Entry')
+    end
+    it 'Empty Endtime' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      click_on('commit')
+      expect(page).to have_content('Error: Invalid Date Entry')
+    end
+
+    it 'Empty Starttime' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      click_on('commit')
+      expect(page).to have_content('Error: Invalid Date Entry')
+    end
   end
 end
