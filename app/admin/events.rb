@@ -69,6 +69,8 @@ ActiveAdmin.register Event do
   # form controller
   controller do
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     # rubocop:disable Style/Next
     # rubocop:disable Style/NegatedIf
     # rubocop:disable Lint/NonLocalExitFromIterator
@@ -203,7 +205,10 @@ ActiveAdmin.register Event do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
 # rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/Next
 # rubocop:enable Style/NegatedIf
 # rubocop:enable Lint/NonLocalExitFromIterator
