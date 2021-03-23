@@ -9,6 +9,7 @@ class ParticipationsController < ApplicationController
 
   # rubocop:disable Metrics/MethodLength
   def create
+    user = User.find_by(id: session[:user_id])
     @event_id = params['participation']['event_id']
     @event = begin
                Event.find(@event_id)
