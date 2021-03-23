@@ -22,7 +22,7 @@
                 <%= text_field_tag(:event_pass, nil, required: true, class: "form-control") %>
               </div>
             </div>
-            <% if(!session[:user_id]) %><!-- Should only allow to input name and UIN if the user does not have an account -->
+            <% if(!session[:user_id]) %> <!-- Should only allow to input name and UIN if the user does not have an account -->
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="inputCity">First Name</label>

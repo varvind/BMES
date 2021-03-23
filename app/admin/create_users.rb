@@ -24,6 +24,7 @@ ActiveAdmin.register User do
     column :social_points
     column :mentorship_meeting_points
     column :created_at
+    column :events
     actions
   end
 

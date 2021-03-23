@@ -9,7 +9,6 @@ class ParticipationsController < ApplicationController
 
   # rubocop:disable Metrics/MethodLength
   def create
-    user = User.find_by(id: session[:user_id])
     @event_id = params['participation']['event_id']
     @event = begin
                Event.find(@event_id)
@@ -26,6 +25,25 @@ class ParticipationsController < ApplicationController
         redirect_to events_path, flash: { danger: 'You have already signed into the event' }
         return
       end
+      user = User.find_by(email: params['participation']['email'])
+
+      if user && !session[:user_id] # indicates the user has an account, and should sign in
+        redirect_to new_participation_path(event_id: @event_id), flash: { danger: 'Please sign in to your account before checking in.'}
+        return
+      elsif user
+        user.events << @event
+        case @event.eventtype
+        when 'General Meeting'
+          user.general_meeting_points = user.general_meeting_points + 1
+        when 'Mentorship Meeting'
+          user.mentorship_meeting_points = user.mentorship_meeting_points + 1
+        else
+          user.social_points = user.social_points + 1
+        end
+        user.total_points = user.total_points + 1
+        user.save
+      end
+
       @participation = Participation.new(participation_params)
       @participation.save
       redirect_to events_path, flash: { success: 'You have successfully signed into the event.' }
