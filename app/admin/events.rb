@@ -69,18 +69,19 @@ ActiveAdmin.register Event do
   # form controller
   controller do
     # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/PerceivedComplexity
+    # rubocop:disable Style/Next
+    # rubocop:disable Style/NegatedIf
+    # rubocop:disable Lint/NonLocalExitFromIterator
     def create
       # gets parameters from new event
       newevent = permitted_params[:event]
 
-      if(newevent['starttime(1i)'] == "" || newevent['starttime(1i)'] == "" ||
-        newevent['starttime(2i)'] == "" || newevent['starttime(3i)'] == "" ||
-        newevent['starttime(4i)'] == "" || newevent['starttime(5i)'] == "" ||
-        newevent['endtime(1i)'] == "" || newevent['endtime(1i)'] == "" ||
-        newevent['endtime(2i)'] == "" || newevent['endtime(3i)'] == "" ||
-        newevent['endtime(4i)'] == "" || newevent['endtime(5i)'] == ""  )
+      if newevent['starttime(1i)'] == '' || newevent['starttime(1i)'] == '' ||
+         newevent['starttime(2i)'] == '' || newevent['starttime(3i)'] == '' ||
+         newevent['starttime(4i)'] == '' || newevent['starttime(5i)'] == '' ||
+         newevent['endtime(1i)'] == '' || newevent['endtime(1i)'] == '' ||
+         newevent['endtime(2i)'] == '' || newevent['endtime(3i)'] == '' ||
+         newevent['endtime(4i)'] == '' || newevent['endtime(5i)'] == ''
         redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Date Entry' }
         return
       end
@@ -202,7 +203,7 @@ ActiveAdmin.register Event do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
 # rubocop:enable Metrics/MethodLength
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Style/Next
+# rubocop:enable Style/NegatedIf
+# rubocop:enable Lint/NonLocalExitFromIterator
