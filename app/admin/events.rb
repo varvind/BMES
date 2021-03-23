@@ -63,6 +63,9 @@ ActiveAdmin.register Event do
     f.actions
   end
 
+  # This code takes the front end portion above operates it to where it reads
+  # the input given by the user and creates the events (single and repeating)
+  # as well as handles several cases of errors that could possible happen
   # form controller
   controller do
     # rubocop:disable Metrics/MethodLength
