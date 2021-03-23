@@ -8,6 +8,7 @@ class UserEventJointTable < ActiveRecord::Migration[6.0]
       t.datetime :endtime
       t.string :eventpass
       t.string :eventtype
+      t.string :guests, array:true, default:[]
       t.timestamps
     end
 

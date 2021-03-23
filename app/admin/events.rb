@@ -17,9 +17,10 @@ ActiveAdmin.register Event do
     column :endtime, label: 'End Time'
     column :eventpass, label: 'Event Password'
     column :eventtype, label: 'Event Type'
+    column :users
+    column :guests
     column :created_at
     column :updated_at
-    column :users
     actions
   end
 

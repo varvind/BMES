@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_172419) do
     t.datetime "endtime"
     t.string "eventpass"
     t.string "eventtype"
+    t.string "guests", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
