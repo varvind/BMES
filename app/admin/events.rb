@@ -30,7 +30,7 @@ ActiveAdmin.register Event do
   filter :eventtype
 
   show do
-    attributes_table :title, :place, :description, :starttime, :endtime, :eventpass, :eventtype, :created_at, :updated_at
+    attributes_table :title, :place, :description, :starttime, :endtime, :eventpass, :eventtype, :users, :guests, :created_at, :updated_at
   end
 
   form do |f|

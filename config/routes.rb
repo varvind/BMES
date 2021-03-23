@@ -10,8 +10,6 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
-  resources :participations
 
   get 'events/delete'
   get 'events/edit'
@@ -19,6 +17,8 @@ Rails.application.routes.draw do
   get 'events/new'
   get 'events/show'
   get 'events/homepage'
+
+  post '/events/new' => 'events#sign_in'
 
   namespace :api, path: '/api' do
     get 'v1/events'
