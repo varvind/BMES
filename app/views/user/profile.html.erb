@@ -74,15 +74,28 @@
         </div>
       </div>
     </div>
+    
     <div class = "container" style = "margin-top:50px;">
-      <h3 style = "text-decoration:underline"> <%=@user.name%>'s Recent Events </h3>
+      <h3 style = "text-decoration:underline;"> <%=@user.name%>'s Recent Events </h3>
       <div class = "row">
         <div class = "col">
           <% if (@user.events.length == 0) %>
             <h5 > None! </h5>
+          <% else %>
+            <% @events.each do |event| %>
+              <div class="card" style = "width: 40%">
+                <div class="card-body" >
+                  <h2 style = "text-decoration:underline"><%= event.title %></h2> <br>
+                  <h6>Date: <%= event.starttime %> </h6> <br>
+                  <h6>Event Type: <%= event.eventtype %> </h6> <br>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
-  </center>
+    <br>
+    <br>
+    </center>
 </body>

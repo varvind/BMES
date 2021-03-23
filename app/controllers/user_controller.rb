@@ -21,6 +21,7 @@ class UserController < ApplicationController
 
     if user
       @user = user
+      @events = user.events
     else
       redirect_to '/'
     end
