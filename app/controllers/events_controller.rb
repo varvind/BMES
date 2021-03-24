@@ -49,21 +49,25 @@ class EventsController < ApplicationController
         return
       else
         user = User.find_by(email: params['signin']['email'])
-        if user && !session[:user_id] # indicates the user has an account, and should sign in
+        user1 = User.find_by(id: session[:user_id])
+        if user && !user1 # indicates the user has an account, and should sign in
           redirect_to new_event_path(event_id: @event_id), flash: { danger: 'Please sign in to your account before checking in.'}
           return
         elsif user
           user.events << @event
+          gen_points = user.general_meeting_points
+          men_points = user.mentorship_meeting_points
+          soc_points = user.social_points
           case @event.eventtype
           when 'General Meeting'
-            user.general_meeting_points = user.general_meeting_points + 1
+            gen_points += 1
           when 'Mentorship Meeting'
-            user.mentorship_meeting_points = user.mentorship_meeting_points + 1
+            men_points += 1
           else
-            user.social_points = user.social_points + 1
+            soc_points += 1
           end
-          user.total_points = user.total_points + 1
-          user.save
+          total_points = user.total_points + 1
+          user.update(:general_meeting_points => gen_points, :mentorship_meeting_points => men_points, :social_points => soc_points, :total_points => total_points)
         else # indicates no user so this means guest sign in
           @event.guests.push(guest_name)
           @event.save
