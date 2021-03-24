@@ -34,24 +34,22 @@ class EventsController < ApplicationController
         'again.' }
     elsif @event.eventpass == params[:event_pass]
       user = nil
-      for i in 0..@event.users.length-1
-        if(@event.users[i].id == session[:user_id])
-          user = @event.users[i]
-        end
+      (0..@event.users.length - 1).each do |i|
+        user = @event.users[i] if @event.users[i].id == session[:user_id]
       end
-      guest_name = ""
-      if(!params['signin']['first_name'].nil?)
-        guest_name = params['signin']['first_name'] + " " + params['signin']['last_name']
+      guest_name = ''
+      unless params['signin']['first_name'].nil?
+        guest_name = params['signin']['first_name'] + ' ' + params['signin']['last_name']
       end
       guest_user = @event.guests.include?(name: guest_name)
-      if user || guest_user #check if member or guest has signed in already
+      if user || guest_user # check if member or guest has signed in already
         redirect_to events_path, flash: { danger: 'You have already signed into the event' }
-        return
+        nil
       else
         user = User.find_by(email: params['signin']['email'])
         user1 = User.find_by(id: session[:user_id])
         if user && !user1 # indicates the user has an account, and should sign in
-          redirect_to new_event_path(event_id: @event_id), flash: { danger: 'Please sign in to your account before checking in.'}
+          redirect_to new_event_path(event_id: @event_id), flash: { danger: 'Please sign in to your account before checking in.' }
           return
         elsif user
           user.events << @event
@@ -67,7 +65,7 @@ class EventsController < ApplicationController
             soc_points += 1
           end
           total_points = user.total_points + 1
-          user.update(:general_meeting_points => gen_points, :mentorship_meeting_points => men_points, :social_points => soc_points, :total_points => total_points)
+          user.update(general_meeting_points: gen_points, mentorship_meeting_points: men_points, social_points: soc_points, total_points: total_points)
         else # indicates no user so this means guest sign in
           @event.guests.push(guest_name)
           @event.save

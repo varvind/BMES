@@ -406,7 +406,7 @@ RSpec.describe 'User Event Sign in', type: :system do
   describe 'Sign in and update points' do
     it 'Registered user attempts to sign in without logging in' do
       visit events_path
-      click_on ('Event Check-in')
+      click_on('Event Check-in')
       fill_in 'signin[email]', with: 'user@example.com'
       fill_in 'event_pass', with: '1'
       fill_in 'signin[first_name]', with: 'test'
@@ -428,7 +428,7 @@ RSpec.describe 'User Event Sign in', type: :system do
       expect(page).to have_content('3/5 Points')
 
       visit events_path
-      click_on ('Event Check-in')
+      click_on('Event Check-in')
       fill_in 'signin[email]', with: 'user@example.com'
       fill_in 'event_pass', with: '1'
       click_on 'commit'
@@ -451,7 +451,7 @@ RSpec.describe 'User Event Sign in', type: :system do
       expect(page).to have_content('3/5 Points')
 
       visit events_path
-      click_on ('Event Check-in')
+      click_on('Event Check-in')
       fill_in 'signin[email]', with: 'user@example.com'
       fill_in 'event_pass', with: '1'
       click_on 'commit'
@@ -459,17 +459,14 @@ RSpec.describe 'User Event Sign in', type: :system do
       expect(page).to have_content('You have successfully signed into the event.')
 
       visit events_path
-      click_on ('Event Check-in')
+      click_on('Event Check-in')
       fill_in 'signin[email]', with: 'user@example.com'
       fill_in 'event_pass', with: '1'
       click_on 'commit'
-      
-      expect(page).to have_content('You have already signed into the event' )
-    end
 
-    
+      expect(page).to have_content('You have already signed into the event')
+    end
   end
-  
 end
 
 RSpec.describe 'Sign In Unit Tests', type: :system do
@@ -478,16 +475,16 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
                                      mentorship_meeting_points: 1, social_points: 1)
-      
+
       allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
       allow(user).to receive(:update).with(any_args).and_return(user)
       allow(User).to receive(:find_by).with(any_args).and_return(user)
       event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
-      starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'Social Meeting')
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'Social Meeting')
       allow(Event).to receive(:find).with(any_args).and_return(event1)
       allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
       allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
-      post '/events/new', params: {"signin" => {"event_id" => "100"}, "event_pass" => "pass2"}
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
 
       expect(response).to have_http_status(302)
     end
@@ -496,26 +493,24 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
                                      mentorship_meeting_points: 1, social_points: 1)
-      
+
       allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
       allow(user).to receive(:update).with(any_args).and_return(user)
       allow(User).to receive(:find_by).with(any_args).and_return(user)
       event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
-      starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'Mentorship Meeting')
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'Mentorship Meeting')
       allow(Event).to receive(:find).with(any_args).and_return(event1)
       allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
       allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
-      post '/events/new', params: {"signin" => {"event_id" => "100"}, "event_pass" => "pass2"}
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
 
       expect(response).to have_http_status(302)
     end
 
     it 'invalid sign in post request' do
-
-      post '/events/new', params: {"signin" => {"event_id" => "100"}}
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' } }
 
       expect(response).to have_http_status(302)
     end
   end
 end
-

@@ -133,7 +133,7 @@ RSpec.describe 'Create Users Page', type: :system do
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
                                      mentorship_meeting_points: 1, social_points: 1)
       event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
-      starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'General Meeting')
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'General Meeting')
       events = Array.new(1)
       events[0] = event1
       allow(User).to receive(:find_by).with(any_args).and_return(user)

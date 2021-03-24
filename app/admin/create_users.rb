@@ -34,7 +34,8 @@ ActiveAdmin.register User do
   filter :created_at
 
   show do
-    attributes_table :name, :email, :total_points, :general_meeting_points, :mentorship_meeting_points, :social_points, :events
+    attributes_table :name, :email, :total_points, :general_meeting_points,
+    :mentorship_meeting_points, :social_points, :events
   end
   # initialize form
   form do |f|

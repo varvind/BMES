@@ -6,7 +6,8 @@ ActiveAdmin.register Event do
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
   permit_params :title, :place, :description, :starttime, :endtime, :eventpass, :repeating, :repeatmonday,
-                :repeattuesday, :repeatwednesday, :repeatthursday, :repeatfriday, :repeatsaturday, :repeatsunday, :eventtype
+                :repeattuesday, :repeatwednesday, :repeatthursday, :repeatfriday,
+                :repeatsaturday, :repeatsunday, :eventtype
 
   index do
     selectable_column
@@ -30,7 +31,8 @@ ActiveAdmin.register Event do
   filter :eventtype
 
   show do
-    attributes_table :title, :place, :description, :starttime, :endtime, :eventpass, :eventtype, :users, :guests, :created_at, :updated_at
+    attributes_table :title, :place, :description, :starttime, :endtime, :eventpass, :eventtype, 
+                     :users, :guests, :created_at, :updated_at
   end
 
   form do |f|
@@ -39,7 +41,8 @@ ActiveAdmin.register Event do
       input :title
       input :place
       input :description
-      input :eventtype, :as => :select, :collection => ['General Meeting', 'Mentorship Meeting', 'Social Meeting'], :label => 'Event Type', :include_blank => false
+      input :eventtype, as: :select, collection: ['General Meeting', 'Mentorship Meeting', 'Social Meeting'],
+                        label: 'Event Type', include_blank: false
       input :starttime
       input :endtime
       input :eventpass, label: 'Event Password'

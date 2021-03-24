@@ -79,7 +79,7 @@ RSpec.describe 'Participation Page', type: :system do
   describe 'Does not log in to Url' do
     it 'With other events password' do
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
-                             starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2' , eventtype: 'General Meeting')
+                             starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2', eventtype: 'General Meeting')
       event1.save
       visit events_path
       path1 = "//a[@href='/events/new?event_id=" + event1.id.to_s + "']"

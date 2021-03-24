@@ -110,6 +110,13 @@ RSpec.describe 'Create Users Page', type: :system do
       click_on('commit')
       expect(page).to have_content('Error: Duplicate Email.')
     end
+
+    it 'View User' do
+      visit '/admin/users/1'
+      expect(page).to have_content('user@example.com')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('3')
+    end
   end
 
   describe 'Test User Route' do
