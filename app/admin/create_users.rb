@@ -35,7 +35,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table :name, :email, :total_points, :general_meeting_points,
-    :mentorship_meeting_points, :social_points, :events
+                     :mentorship_meeting_points, :social_points, :events
   end
   # initialize form
   form do |f|

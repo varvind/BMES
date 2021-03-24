@@ -20,7 +20,8 @@ RSpec.describe 'API v1', type: :system do
     end
     it 'get after new event' do
       n_event = Event.create!(title: 'Event Numba 2', place: 'Place Number 2', description: 'Some Description',
-                              starttime: '2020-01-01 00:00:00', endtime: '2020-01-01 01:00:00', eventpass: '2', eventtype: 'General')
+                              starttime: '2020-01-01 00:00:00', endtime: '2020-01-01 01:00:00',
+                              eventpass: '2', eventtype: 'General')
 
       get api_v1_events_path
       expect(response).to have_http_status(:ok)
