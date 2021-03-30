@@ -71,10 +71,12 @@ RSpec.describe 'Create Users Page', type: :system do
       click_on('Add Individual User')
       fill_in('user[name]', with: 'test')
       fill_in('user[email]', with: 'test@user.com')
-      fill_in('user[total_points]', with: 1)
+      fill_in('user[total_points]', with: 4)
       fill_in('user[general_meeting_points]', with: 1)
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_years]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('test')
@@ -87,10 +89,12 @@ RSpec.describe 'Create Users Page', type: :system do
       click_on('Add Individual User')
       fill_in('user[name]', with: 'test')
       fill_in('user[email]', with: 'test@user.com')
-      fill_in('user[total_points]', with: 1)
+      fill_in('user[total_points]', with: 4)
       fill_in('user[general_meeting_points]', with: 1)
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_years]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('test')
@@ -102,10 +106,12 @@ RSpec.describe 'Create Users Page', type: :system do
       click_on('Add Individual User')
       fill_in('user[name]', with: 'test 2')
       fill_in('user[email]', with: 'test@user.com')
-      fill_in('user[total_points]', with: 1)
+      fill_in('user[total_points]', with: 4)
       fill_in('user[general_meeting_points]', with: 1)
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_years]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('Error: Duplicate Email.')
@@ -139,7 +145,8 @@ RSpec.describe 'Create Users Page', type: :system do
       allow(user).to receive(:valid?).with(any_args).and_return(true)
       post '/admin/users', params: { 'user' => { 'password' => '1', 'name' => 'test user', 'email' => 'test@user.com',
                                                  'total_points' => '1', 'general_meeting_points' => '1',
-                                                 'social_points' => '1', 'mentorship_meeting_points' => '1' } }
+                                                 'social_points' => '1', 'mentorship_meeting_points' => '1',
+                                                 'outreach_points' => '1', 'active_years' => '1' } }
       expect(response).to have_http_status(302)
     end
   end
