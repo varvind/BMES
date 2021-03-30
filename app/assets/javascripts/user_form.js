@@ -87,7 +87,7 @@ function changeForm() {
   } else {
     document.getElementById("switchButton").innerHTML = "Add Individual User"
     document.getElementById("instructions").innerHTML = "Use a Spreadsheet with User Information"
-    document.getElementById("columns").innerHTML = "Required Columns: Name, Email, Total Points, General Meeting Points, Mentorship Meeting Points, and Social Points"
+    document.getElementById("columns").innerHTML = "Required Columns: Name, Email, Total Points, General Meeting Points, Mentorship Meeting Points, Outreach Points, Active Semesters and Social Points"
     i--
   }
 

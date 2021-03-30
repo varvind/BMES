@@ -60,6 +60,7 @@
           <h5>General Meeting Points: <%=@user.general_meeting_points %> </h5>
           <h5>Mentorship Meeting Points: <%=@user.mentorship_meeting_points %> </h5>
           <h5>Social Meeting Points: <%=@user.social_points %> </h5>
+          <h5>Outreach Points: <%=@user.outreach_points %> </h5>
           <h5>Total Meeting Points: <%=@user.total_points %> </h5>
         </div>
         <div class = "col" style ="margin-left:10%">
@@ -71,6 +72,13 @@
             <%=@user.total_points%>/5 Points</div>
           </div>
           <p style = "margin-left:-10%">Active Member</p>
+
+          <h3 style = "text-decoration:underline"> Graduation Stole Status: <% if @user.active_semesters >= 4 %>Stole Earned!<%else%>In Progress<%end%></h3>
+
+          <div class="progress" style = "margin-left:14%">
+            <div class="progress-bar bg-success" role="progressbar" style="width: <%=@user.active_semesters*25%>%" aria-valuenow="<%=@user.active_semesters*25 %>" aria-valuemin="0" aria-valuemax="100">
+            <%=@user.active_semesters%>/4 semesters</div>
+          </div>
         </div>
       </div>
     </div>

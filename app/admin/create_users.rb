@@ -14,12 +14,12 @@ ActiveAdmin.register User do
   permit_params :user_CSV_File, :password, :name, :email, :total_points, :general_meeting_points,
                 :social_points, :mentorship_meeting_points, :active_semesters, :outreach_points
 
-  batch_action :add_year do |ids|
+  batch_action :add_active_semesters_for do |ids|
     batch_action_collection.find(ids).each do |user|
       years = user.active_semesters + 1
       user.update(active_semesters: years)
     end
-    redirect_to collection_path, alert: "Active Year Added for Selected Users"
+    redirect_to collection_path, alert: "Active Semester Added for Selected Users"
   end
 
   # Initialize Column
@@ -61,7 +61,7 @@ ActiveAdmin.register User do
       f.li "<label class='label' id ='columns'
               style = 'margin-left:1%; margin-top:10%; position:relative'>
               Required Columns: Name, Email, Total Points, General Meeting Points,
-               Mentorship Meeting Points, and Social Points</label>".html_safe
+               Mentorship Meeting Points, Outreach Points, Active Semesters and Social Points</label>".html_safe
       f.input :user_CSV_File, as: :file, accept: :csv, required: true
       f.li "<label class='label hidden' style = 'margin-left:1%;font-weight:bold'>
               or Add Individual Member</label>".html_safe

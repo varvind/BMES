@@ -18,7 +18,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[password]', with: 'password')
       click_button('Login')
       expect(page).to have_content('test user')
-      expect(page).to have_content('3/5 Points')
+      expect(page).to have_content('4/5 Points')
     end
     it 'invalid Login' do
       visit '/user/login'
