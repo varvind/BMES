@@ -16,19 +16,6 @@ RSpec.describe 'Create Users Page', type: :system do
       Sidekiq::Worker.clear_all
       visit '/admin/users'
       click_link('New User')
-      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
-      fill_in('user[password]', with: 'test')
-      click_on('commit')
-      sleep(5)
-      Sidekiq::Worker.drain_all
-      visit '/admin/users'
-      expect(page).to have_content('Aaryan Sharma')
-    end
-
-    it 'With CSV' do
-      Sidekiq::Worker.clear_all
-      visit '/admin/users'
-      click_link('New User')
       attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.xlsx'))
       fill_in('user[password]', with: 'test')
       click_on('commit')
@@ -36,6 +23,19 @@ RSpec.describe 'Create Users Page', type: :system do
       Sidekiq::Worker.drain_all
       visit '/admin/users'
       expect(page).to have_content('Zachary Mendoza')
+    end
+
+    it 'With CSV' do
+      Sidekiq::Worker.clear_all
+      visit '/admin/users'
+      click_link('New User')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
+      fill_in('user[password]', with: 'test')
+      click_on('commit')
+      sleep(5)
+      Sidekiq::Worker.drain_all
+      visit '/admin/users'
+      expect(page).to have_content('Abigail Leon')
     end
 
     it 'With invalid file type' do
@@ -76,7 +76,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
       fill_in('user[outreach_points]', with: 1)
-      fill_in('user[active_years]', with: 1)
+      fill_in('user[active_semesters]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('test')
@@ -94,7 +94,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
       fill_in('user[outreach_points]', with: 1)
-      fill_in('user[active_years]', with: 1)
+      fill_in('user[active_semesters]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('test')
@@ -111,7 +111,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[mentorship_meeting_points]', with: 1)
       fill_in('user[social_points]', with: 1)
       fill_in('user[outreach_points]', with: 1)
-      fill_in('user[active_years]', with: 1)
+      fill_in('user[active_semesters]', with: 1)
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('Error: Duplicate Email.')
@@ -121,7 +121,7 @@ RSpec.describe 'Create Users Page', type: :system do
       visit '/admin/users/1'
       expect(page).to have_content('user@example.com')
       expect(page).to have_content('test user')
-      expect(page).to have_content('3')
+      expect(page).to have_content('4')
     end
   end
 
@@ -146,7 +146,7 @@ RSpec.describe 'Create Users Page', type: :system do
       post '/admin/users', params: { 'user' => { 'password' => '1', 'name' => 'test user', 'email' => 'test@user.com',
                                                  'total_points' => '1', 'general_meeting_points' => '1',
                                                  'social_points' => '1', 'mentorship_meeting_points' => '1',
-                                                 'outreach_points' => '1', 'active_years' => '1' } }
+                                                 'outreach_points' => '1', 'active_semesters' => '1' } }
       expect(response).to have_http_status(302)
     end
   end

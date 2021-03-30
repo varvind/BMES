@@ -61,12 +61,12 @@ window.onload= () =>{
     user_outreach_points.type = ""
     user_outreach_points.placeholder = "Outreach Points"
 
-    user_active_years_input= document.getElementById("user_active_years_input")
-    user_active_years_points= document.getElementById("user_active_years")
-    user_active_years_points_input.classList.add("stringish")
-    user_active_years_points_input.classList.toggle("hidden")
-    user_active_years_points.type = ""
-    user_active_years_points.placeholder = "Active Semesters"
+    user_active_semesters_input= document.getElementById("user_active_semesters_input")
+    user_active_semesters_points= document.getElementById("user_active_semesters")
+    user_active_semesters_points_input.classList.add("stringish")
+    user_active_semesters_points_input.classList.toggle("hidden")
+    user_active_semesters_points.type = ""
+    user_active_semesters_points.placeholder = "Active Semesters"
   
     // make user CSV file input hidden
     user_CSV_file_input = document.getElementById("user_user_CSV_File_input")
@@ -147,13 +147,13 @@ function changeForm() {
   user_outreach_points.value = ""
   user_outreach_points.placeholder = "Outreach Points"
 
-  user_active_years_input= document.getElementById("user_active_years_input")
-  user_active_years= document.getElementById("user_active_years")
-  user_active_years_input.classList.add("stringish")
-  user_active_years_input.classList.toggle("hidden")
-  user_active_years.type = ""
-  user_active_years.value = ""
-  user_active_years.placeholder = "Active Semesters"
+  user_active_semesters_input= document.getElementById("user_active_semesters_input")
+  user_active_semesters= document.getElementById("user_active_semesters")
+  user_active_semesters_input.classList.add("stringish")
+  user_active_semesters_input.classList.toggle("hidden")
+  user_active_semesters.type = ""
+  user_active_semesters.value = ""
+  user_active_semesters.placeholder = "Active Semesters"
 
   user_CSV_file_input = document.getElementById("user_user_CSV_File_input")
   user_CSV_file = document.getElementById('user_user_CSV_File')

@@ -22,7 +22,7 @@ if Rails.env.test?
                 eventpass: '1', eventtype: 'General Meeting')
   User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password',
                name: 'test user', total_points: 4, general_meeting_points: 1,
-               mentorship_meeting_points: 1, social_points: 1, outreach_points: 1, active_years: 1)
+               mentorship_meeting_points: 1, social_points: 1, outreach_points: 1, active_semesters: 1)
 end
 
 if Rails.env.production?
