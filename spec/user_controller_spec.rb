@@ -131,7 +131,7 @@ RSpec.describe 'Create Users Page', type: :system do
     it 'test profile function' do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
-                                     mentorship_meeting_points: 1, social_points: 1)
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
       event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                                         starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
                                         eventpass: 'pass2', eventtype: 'General Meeting')

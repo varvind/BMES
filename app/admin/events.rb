@@ -41,7 +41,7 @@ ActiveAdmin.register Event do
       input :title
       input :place
       input :description
-      input :eventtype, as: :select, collection: ['General Meeting', 'Mentorship Meeting', 'Social Meeting'],
+      input :eventtype, as: :select, collection: ['General Meeting', 'Mentorship Meeting', 'Social Meeting', 'Outreach Event'],
                         label: 'Event Type', include_blank: false
       input :starttime
       input :endtime

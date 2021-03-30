@@ -82,17 +82,20 @@ class EventsController < ApplicationController
     gen_points = user.general_meeting_points
     men_points = user.mentorship_meeting_points
     soc_points = user.social_points
+    out_points = user.outreach_points
     case eventtype
     when 'General Meeting'
       gen_points += 1
     when 'Mentorship Meeting'
       men_points += 1
+    when 'Outreach Event'
+      out_points += 1
     else
       soc_points += 1
     end
     total_points = user.total_points + 1
     user.update(general_meeting_points: gen_points, mentorship_meeting_points: men_points,
-                social_points: soc_points, total_points: total_points)
+                social_points: soc_points, total_points: total_points, outreach_points: out_points)
   end
 
   def signed_in
