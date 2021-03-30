@@ -14,6 +14,14 @@ ActiveAdmin.register User do
   permit_params :user_CSV_File, :password, :name, :email, :total_points, :general_meeting_points,
                 :social_points, :mentorship_meeting_points
 
+  batch_action :add_year do |ids|
+    batch_action_collection.find(ids).each do |user|
+      years = user.active_years + 1
+      user.update(active_years: years)
+    end
+    redirect_to collection_path, alert: "Active Year Added for Selected Users"
+  end
+
   # Initialize Column
   index do
     selectable_column
@@ -23,6 +31,7 @@ ActiveAdmin.register User do
     column :general_meeting_points
     column :social_points
     column :mentorship_meeting_points
+    column :active_years
     column :created_at
     column :events
     actions
@@ -125,9 +134,10 @@ def create_user_with_csv(attrs)
   gen_points_index = find_table_index('general meeting points', table, 'csv')
   men_points_index = find_table_index('mentorship meeting points', table, 'csv')
   soc_points_index = find_table_index('social points', table, 'csv')
-
+  active_years_index = find_table_index('active years', table, 'csv')
   if name_index == -1 || email_index == -1 || t_points_index == -1 ||
-     gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+     gen_points_index == -1 || men_points_index == -1 || 
+     soc_points_index == -1 || active_years_index == -1
 
     error = 'Error Missing Columns: '
     error += 'Name, ' if name_index == -1
@@ -136,6 +146,7 @@ def create_user_with_csv(attrs)
     error += 'General Meeting Points, ' if gen_points_index == -1
     error += 'Mentorship Meeting Points, ' if men_points_index == -1
     error += 'Social Points, ' if soc_points_index == -1
+    error += 'Active Years, ' if active_years_index == -1
     error = error[0..-3]
 
     redirect_to '/admin/users/new', flash: { error: error }
@@ -150,10 +161,11 @@ def create_user_with_csv(attrs)
     gen_meet_points = table[i][gen_points_index]
     social_points = table[i][soc_points_index]
     mentor_points = table[i][men_points_index]
+    active_years = row.values[active_years_index]
     password = attrs[:password]
     UserCreateWorker.perform_async(name, email, password,
                                    total_points, gen_meet_points,
-                                   mentor_points, social_points)
+                                   mentor_points, social_points, active_years)
   end
   redirect_to '/admin/users', flash: { error: 'Successfully Created Users.' }
 end
@@ -166,8 +178,10 @@ def create_user_with_xlsx(attrs)
   gen_points_index = find_table_index('general meeting points', table, 'xlsx')
   men_points_index = find_table_index('mentorship meeting points', table, 'xlsx')
   soc_points_index = find_table_index('social points', table, 'xlsx')
+  active_years_index = find_table_index('active years', table, 'xlsx')
   if name_index == -1 || email_index == -1 || t_points_index == -1 ||
-     gen_points_index == -1 || men_points_index == -1 || soc_points_index == -1
+     gen_points_index == -1 || men_points_index == -1 || 
+     soc_points_index == -1 || active_years_index == -1
     error = 'Error Missing Columns: '
     error += 'Name, ' if name_index == -1
     error += 'Email, ' if email_index == -1
@@ -175,6 +189,7 @@ def create_user_with_xlsx(attrs)
     error += 'General Meeting Points, ' if gen_points_index == -1
     error += 'Mentorship Meeting Points, ' if men_points_index == -1
     error += 'Social Points, ' if soc_points_index == -1
+    error += 'Active Years, ' if active_years_index == -1
     error = error[0..-3]
     redirect_to '/admin/users/new', flash: { error: error }
     return
@@ -190,10 +205,11 @@ def create_user_with_xlsx(attrs)
     gen_meet_points = row.values[gen_points_index]
     social_points = row.values[soc_points_index]
     mentor_points = row.values[men_points_index]
+    active_years = row.values[active_years_index]
     password = attrs[:password]
     UserCreateWorker.perform_async(name, email, password,
                                    total_points, gen_meet_points,
-                                   mentor_points, social_points)
+                                   mentor_points, social_points, active_years)
   end
   # rubocop:enable Metrics/MethodLength
   redirect_to '/admin/users', flash: { error: 'Successfully Created Users.' }

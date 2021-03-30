@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_172419) do
     t.integer "general_meeting_points", default: 0
     t.integer "mentorship_meeting_points", default: 0
     t.integer "social_points", default: 0
+    t.integer "active_years", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
