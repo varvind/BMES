@@ -67,23 +67,15 @@ RSpec.describe 'New Event Page', type: :system do
       # event will repeat for one week
       fill_in('event[repeatweeks]', with: '1')
       click_on('commit')
-      sleep(5)
-      # page should have events from March 21 to April 4, 2025
-      # expect(page).to have_content('March 21, 2025 10:00')
-      # expect(page).to have_content('March 22, 2025 10:00')
-      # expect(page).to have_content('March 23, 2025 10:00')
-      # expect(page).to have_content('March 24, 2025 10:00')
-      # expect(page).to have_content('March 25, 2025 10:00')
-      # expect(page).to have_content('March 26, 2025 10:00')
-      # expect(page).to have_content('March 27, 2025 10:00')
-      # expect(page).to have_content('March 28, 2025 10:00')
-      # expect(page).to have_content('March 29, 2025 10:00')
-      # expect(page).to have_content('March 30, 2025 10:00')
-      # expect(page).to have_content('March 31, 2025 10:00')
-      expect(page).to have_content('April 01, 2025 10:00')
-      expect(page).to have_content('April 02, 2025 10:00')
-      expect(page).to have_content('April 03, 2025 10:00')
-      expect(page).to have_content('April 04, 2025 10:00')
+      # page should have events from March 21 to March 28, 2025
+      expect(page).to have_content('March 21, 2025 10:00')
+      expect(page).to have_content('March 22, 2025 10:00')
+      expect(page).to have_content('March 23, 2025 10:00')
+      expect(page).to have_content('March 24, 2025 10:00')
+      expect(page).to have_content('March 25, 2025 10:00')
+      expect(page).to have_content('March 26, 2025 10:00')
+      expect(page).to have_content('March 27, 2025 10:00')
+      expect(page).to have_content('March 28, 2025 10:00')
     end
 
     # tests whether or not app will detect an invalid single event
@@ -225,6 +217,33 @@ RSpec.describe 'New Event Page', type: :system do
       expect(page).to have_content('Error: Weeks cannot be zero/negative for repeat events.')
     end
 
+    # tests whether or not app will detect invalid date for repeating events
+    it 'Repeating Event (Weekday not part of Repeating Process) - Failure' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      # missing title
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      fill_in('event[eventpass]', with: 'Password')
+      check('event_repeattuesday') # event will repeat on tuesdays
+      check('event_repeatthursday') # event will repeat on thursdays
+      # event will repeat for one week
+      fill_in('event[repeatweeks]', with: '1')
+      click_on('commit')
+      # page should have this error because event starts on a weekday that is not a part of repeating process
+      expect(page).to have_content('Error: Weekday not a part of Repeating Process.')
+    end
+
     # tests to see if JSON downloads properly
     it 'Download JSON - Success' do
       visit '/admin/events' # go to the events page
@@ -254,6 +273,7 @@ RSpec.describe 'New Event Page', type: :system do
       click_on('commit')
       expect(page).to have_content('Error: Invalid Date Entry')
     end
+
     it 'Empty Endtime' do
       visit '/admin/events' # go to the events page
       click_link('New Event')
