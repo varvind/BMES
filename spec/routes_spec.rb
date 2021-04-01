@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Event page', type: :system do
   describe 'Check Urls' do
     it 'View event with different url ids' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
       event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved',
@@ -23,6 +24,7 @@ RSpec.describe 'Event page', type: :system do
       event2.destroy
     end
     it 'Visit event with different url ids' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
       event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved',
@@ -50,16 +52,18 @@ end
 RSpec.describe 'Participation Page', type: :system do
   describe 'Has Url' do
     it 'Checks the url parameters' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
       # expect(page).to have_current_path(new_participation_path(event_id: '1'))
       sleep(2)
     end
   end
   describe 'Keeps Url' do
     it 'With wrong password' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
       # expect(page).to have_current_path(new_participation_path(event_id: '1'))
       sleep(2)
       fill_in('event_pass', with: '2')
@@ -78,6 +82,7 @@ RSpec.describe 'Participation Page', type: :system do
   end
   describe 'Does not log in to Url' do
     it 'With other events password' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
       event1.save

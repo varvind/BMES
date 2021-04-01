@@ -37,9 +37,8 @@ RSpec.describe 'Create New Event', type: :system do
       travel_to Time.zone.local(2021, 3, 13, 0o1, 0o4, 44)
       visit '/'
       expect(page).to have_css '.simple-calendar'
-      sleep(5)
-      expect(page).to have_content('title1', count: 2)
-      sleep(10)
+
+      expect(page).to have_content('title1')
 
       within('.simple-calendar') do
         click_on('Details')
@@ -85,8 +84,7 @@ RSpec.describe 'Create New Event', type: :system do
       travel_to Time.zone.local(2021, 3, 13, 0o1, 0o4, 44)
       visit '/'
       expect(page).to have_css '.simple-calendar'
-      sleep(5)
-      expect(page).to have_content('title2', count: 2)
+      expect(page).to have_content('title2')
 
       within('.simple-calendar') do
         click_on('Details')

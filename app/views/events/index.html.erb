@@ -80,28 +80,7 @@
         <% end %>
       <% end %>
   <% end %>
-<% @events.in_groups_of(3,false) do |group| %>
-<div class="row">
-  <% group.each do |event| %>
-  <div class="col-sm-4 event-card">
-    <div class="card bg-light">
-      <div class="card-body">
-        <h5 class="card-title crd-title"><%= event.title %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= event.place %></h6>
-        <p class="card-text"><%= event.description %></p>
-        <p class="card-text">Start Time: <%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></p>
-        <% if event.endtime.nil? %>
-        <% else %>
-          <p class="card-text">End Time: <%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></p>
-        <% end %>
-        <%= link_to("Details", event_path(event), :class => 'action show', class: "btn btn-primary")%>
-        <%= link_to("Event Check-in", {:controller => "participations", :action => "new", :event_id => event.id}, class: "btn btn-primary") %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
-<% end %>
+
 
 </div>
 
