@@ -70,5 +70,6 @@ gem 'rubocop', '~> 0.93.0', require: false
 
 gem 'creek'
 
+gem 'activesupport'
 gem 'sidekiq'
 gem 'sinatra'
