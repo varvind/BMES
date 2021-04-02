@@ -84,7 +84,7 @@ ActiveAdmin.register Event do
          newevent['endtime(1i)'] == '' && newevent['endtime(2i)'] == '' &&
          newevent['endtime(3i)'] == '' && newevent['endtime(4i)'] == '' &&
          newevent['endtime(5i)'] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter Values in Required Fields.' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter Values in All Fields.' }
         return
       end
 
