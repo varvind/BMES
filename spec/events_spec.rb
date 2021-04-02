@@ -269,7 +269,7 @@ RSpec.describe 'New Event Page', type: :system do
       fill_in('event[repeatweeks]', with: '1')
       click_on('commit')
       # page should have this error because event needs a title
-      expect(page).to have_content('Error: Invalid Event')
+      expect(page).to have_content('Error: Please Enter an Event Title')
     end
 
     # tests to see if app detects invalid weeks value for repeating events
@@ -308,7 +308,7 @@ RSpec.describe 'New Event Page', type: :system do
     it 'Repeating Event (Weekday not part of Repeating Process) - Failure' do
       visit '/admin/events' # go to the events page
       click_link('New Event')
-      # missing title
+      fill_in('event[title]', with: 'Test_Title')
       fill_in('event[place]', with: 'Test_Place')
       fill_in('event[description]', with: 'Test_Description')
       select('2025', from: 'event[starttime(1i)]') # starttime year
@@ -360,6 +360,7 @@ RSpec.describe 'New Event Page', type: :system do
       fill_in('event[title]', with: 'Test_Title')
       fill_in('event[place]', with: 'Test_Place')
       fill_in('event[description]', with: 'Test_Description')
+      fill_in('event[eventpass]', with: 'Password')
       select('2025', from: 'event[endtime(1i)]') # endtime year
       select('March', from: 'event[endtime(2i)]') # endtime month
       select('21', from: 'event[endtime(3i)]') # endtime day
@@ -375,6 +376,7 @@ RSpec.describe 'New Event Page', type: :system do
       fill_in('event[title]', with: 'Test_Title')
       fill_in('event[place]', with: 'Test_Place')
       fill_in('event[description]', with: 'Test_Description')
+      fill_in('event[eventpass]', with: 'Password')
       select('2025', from: 'event[starttime(1i)]') # starttime year
       select('March', from: 'event[starttime(2i)]') # starttime month
       select('21', from: 'event[starttime(3i)]') # starttime day

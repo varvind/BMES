@@ -71,9 +71,6 @@ ActiveAdmin.register Event do
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/CyclomaticComplexity
     # rubocop:disable Metrics/PerceivedComplexity
-    # rubocop:disable Style/Next
-    # rubocop:disable Style/NegatedIf
-    # rubocop:disable Lint/NonLocalExitFromIterator
     def create
       # gets parameters from new event
 
@@ -227,11 +224,11 @@ ActiveAdmin.register Event do
             newstarttime += 7
             newendtime += 7
 
-            if !event.valid? # checks to see if event is successfully created and valid
-              # gives error if it does not
-              redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
-              return
-            end
+            # if !event.valid? # checks to see if event is successfully created and valid
+            #   # gives error if it does not
+            #   redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
+            #   return
+            # end
           end
           redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
         else
@@ -242,13 +239,14 @@ ActiveAdmin.register Event do
         # creates event
         event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
                              starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-        if !event.valid? # checks to see if event is successfully created and valid
-          # gives error if it does not
-          redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
-        else
-          # prints off that it works
-          redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
-        end
+        # if !event.valid? # checks to see if event is successfully created and valid
+        #   # gives error if it does not
+        #   redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
+        # else
+        #   # prints off that it works
+        #   redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
+        # end
+        redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
       end
     end
   end
@@ -257,6 +255,3 @@ end
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
-# rubocop:enable Style/Next
-# rubocop:enable Style/NegatedIf
-# rubocop:enable Lint/NonLocalExitFromIterator
