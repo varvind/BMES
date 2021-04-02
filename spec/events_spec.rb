@@ -110,7 +110,7 @@ RSpec.describe 'New Event Page', type: :system do
       click_button('Non-Repeating Event')
       click_on('commit')
       # page should have this error because the event is missing all fields
-      expect(page).to have_content('Error: Please Enter Values in Required Fields.')
+      expect(page).to have_content('Error: Please Enter Values in All Fields.')
     end
 
     # tests whether or not app will detect an invalid single event with missing title
