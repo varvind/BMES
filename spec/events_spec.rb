@@ -78,8 +78,20 @@ RSpec.describe 'New Event Page', type: :system do
       expect(page).to have_content('March 28, 2025 10:00')
     end
 
-    # tests whether or not app will detect an invalid single event
-    it 'Single Event - Failure' do
+    # tests whether or not app will detect an invalid single event with missing all fields
+    it 'Single Event (Missing Title) - Failure' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      # missing all fields
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+      # page should have this error because the event is missing all fields
+      expect(page).to have_content('Error: Please Enter Values in Required Fields')
+    end
+
+    # tests whether or not app will detect an invalid single event with missing title
+    it 'Single Event (Missing Title) - Failure' do
       visit '/admin/events' # go to the events page
       click_link('New Event')
       # missing title
@@ -100,7 +112,82 @@ RSpec.describe 'New Event Page', type: :system do
       click_button('Non-Repeating Event')
       click_on('commit')
       # page should have this error because the event is missing a title
-      expect(page).to have_content('Error: Invalid Event')
+      expect(page).to have_content('Error: Please Enter an Event Title')
+    end
+
+    # tests whether or not app will detect an invalid single event with missing place
+    it 'Single Event (Missing Place) - Failure' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      # missing place
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      fill_in('event[eventpass]', with: 'Password')
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+      # page should have this error because the event is missing a place
+      expect(page).to have_content('Error: Please Enter an Event Place')
+    end
+
+    # tests whether or not app will detect an invalid single event with missing description
+    it 'Single Event (Missing Description) - Failure' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      # missing description
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      fill_in('event[eventpass]', with: 'Password')
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+      # page should have this error because the event is missing a description
+      expect(page).to have_content('Error: Please Enter an Event Description')
+    end
+
+    # tests whether or not app will detect an invalid single event with missing password
+    it 'Single Event (Missing Password) - Failure' do
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      # missing password
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+      # page should have this error because the event is missing a password
+      expect(page).to have_content('Error: Please Enter an Event Password')
     end
 
     # tests to see if endtime is before starttime
@@ -270,6 +357,14 @@ RSpec.describe 'New Event Page', type: :system do
     it 'Empty Starttime' do
       visit '/admin/events' # go to the events page
       click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('10', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
       click_on('commit')
       expect(page).to have_content('Error: Invalid Date Entry')
     end
@@ -285,13 +380,6 @@ RSpec.describe 'New Event Page', type: :system do
       select('21', from: 'event[starttime(3i)]') # starttime day
       select('10', from: 'event[starttime(4i)]') # starttime hour
       select('00', from: 'event[starttime(5i)]') # starttime minute
-      click_on('commit')
-      expect(page).to have_content('Error: Invalid Date Entry')
-    end
-
-    it 'Empty Starttime' do
-      visit '/admin/events' # go to the events page
-      click_link('New Event')
       click_on('commit')
       expect(page).to have_content('Error: Invalid Date Entry')
     end

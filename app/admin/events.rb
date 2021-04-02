@@ -76,25 +76,37 @@ ActiveAdmin.register Event do
     # rubocop:disable Lint/NonLocalExitFromIterator
     def create
       # gets parameters from new event
-      
+
       newevent = permitted_params[:event]
 
-      if(newevent[:eventpass] == '') 
+      if newevent[:eventpass] == '' && newevent[:title] == '' && newevent[:place] == '' &&
+         newevent[:description] == '' && newevent['starttime(1i)'] == '' &&
+         newevent['starttime(1i)'] == '' && newevent['starttime(2i)'] == '' &&
+         newevent['starttime(3i)'] == '' && newevent['starttime(4i)'] == '' &&
+         newevent['starttime(5i)'] == '' && newevent['endtime(1i)'] == '' &&
+         newevent['endtime(1i)'] == '' && newevent['endtime(2i)'] == '' &&
+         newevent['endtime(3i)'] == '' && newevent['endtime(4i)'] == '' &&
+         newevent['endtime(5i)'] == ''
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter Values in Required Fields' }
+        return
+      end
+
+      if newevent[:eventpass] == ''
         redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Password' }
         return
       end
 
-      if(newevent[:title] == '') 
+      if newevent[:title] == ''
         redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Title' }
         return
       end
 
-      if(newevent[:place] == '') 
+      if newevent[:place] == ''
         redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Place' }
         return
       end
 
-      if(newevent[:description] == '') 
+      if newevent[:description] == ''
         redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Description' }
         return
       end
