@@ -84,27 +84,27 @@ ActiveAdmin.register Event do
          newevent['endtime(1i)'] == '' && newevent['endtime(2i)'] == '' &&
          newevent['endtime(3i)'] == '' && newevent['endtime(4i)'] == '' &&
          newevent['endtime(5i)'] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter Values in Required Fields' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter Values in Required Fields.' }
         return
       end
 
       if newevent[:eventpass] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Password' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Password.' }
         return
       end
 
       if newevent[:title] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Title' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Title.' }
         return
       end
 
       if newevent[:place] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Place' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Place.' }
         return
       end
 
       if newevent[:description] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Description' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Description.' }
         return
       end
 
@@ -114,7 +114,7 @@ ActiveAdmin.register Event do
          newevent['endtime(1i)'] == '' || newevent['endtime(1i)'] == '' ||
          newevent['endtime(2i)'] == '' || newevent['endtime(3i)'] == '' ||
          newevent['endtime(4i)'] == '' || newevent['endtime(5i)'] == ''
-        redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Date Entry' }
+        redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Date Entry.' }
         return
       end
       # gets the start time parameter from new event
@@ -223,12 +223,6 @@ ActiveAdmin.register Event do
             end
             newstarttime += 7
             newendtime += 7
-
-            # if !event.valid? # checks to see if event is successfully created and valid
-            #   # gives error if it does not
-            #   redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
-            #   return
-            # end
           end
           redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
         else
@@ -239,13 +233,6 @@ ActiveAdmin.register Event do
         # creates event
         event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
                              starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
-        # if !event.valid? # checks to see if event is successfully created and valid
-        #   # gives error if it does not
-        #   redirect_to '/admin/events/new', flash: { error: 'Error: Invalid Event' }
-        # else
-        #   # prints off that it works
-        #   redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
-        # end
         redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
       end
     end
