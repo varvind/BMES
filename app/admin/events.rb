@@ -76,7 +76,28 @@ ActiveAdmin.register Event do
     # rubocop:disable Lint/NonLocalExitFromIterator
     def create
       # gets parameters from new event
+      
       newevent = permitted_params[:event]
+
+      if(newevent[:eventpass] == '') 
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Password' }
+        return
+      end
+
+      if(newevent[:title] == '') 
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Title' }
+        return
+      end
+
+      if(newevent[:place] == '') 
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Place' }
+        return
+      end
+
+      if(newevent[:description] == '') 
+        redirect_to '/admin/events/new', flash: { error: 'Error: Please Enter an Event Description' }
+        return
+      end
 
       if newevent['starttime(1i)'] == '' || newevent['starttime(1i)'] == '' ||
          newevent['starttime(2i)'] == '' || newevent['starttime(3i)'] == '' ||
@@ -220,79 +241,6 @@ ActiveAdmin.register Event do
     end
   end
 end
-
-# Arvind's Code
-# elsif weeks.positive?
-#   # for the first day of the repeating events creation
-#   starttime = newstarttime - newstarttime.wday
-#   # for loop for repeating events
-#   (1..weeks).each do |_i|
-#     if newevent[:repeatsunday] == '1'# checks if event needs to repeat on sunday
-#       nextdate = starttime.next_occurring(:sunday) # finds the next sunday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeatmonday] == '1' && ((_i == 0 && (newstarttime.wday <= 1)) || _i > 0)
-# checks if event needs to repeat on monday
-#       nextdate = starttime.next_occurring(:monday) # finds the next monday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeattuesday] == '1' && ((_i == 0 && (newstarttime.wday <= 2)) || _i > 0)
-# checks if event needs to repeat on tuesday
-#       nextdate = starttime.next_occurring(:tuesday) # finds the next tuesday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeatwednesday] == '1' && ((_i == 0 && (newstarttime.wday <= 3)) || _i > 0)
-# checks if event needs to repeat on wednesday
-#       nextdate = starttime.next_occurring(:wednesday) # finds the next wednesday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeatthursday] == '1' && ((_i == 0 && (newstarttime.wday <= 4)) || _i > 0)
-# checks if event needs to repeat on thursday
-#       nextdate = starttime.next_occurring(:thursday) # finds the next thursday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeatfriday] == '1' && ((_i == 0 && (newstarttime.wday <= 5)) || _i > 0)
-# checks if event needs to repeat on friday
-#       nextdate = starttime.next_occurring(:friday) # finds the next friday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                            newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#     if newevent[:repeatsaturday] == '1' && ((_i == 0 && (newstarttime.wday <= 6)) || _i > 0)
-# checks if event needs to repeat on saturday
-#       nextdate = starttime.next_occurring(:saturday) # finds the next saturday
-#       change = (nextdate - newstarttime).to_i # gets the difference between the dates
-#       # creates the event with the change
-#       event = Event.create(title: newevent[:title], place: newevent[:place], description:
-#                           newevent[:description], starttime: newstarttime + change,
-#                            endtime: newendtime + change, eventpass: newevent[:eventpass])
-#     end
-#   newstarttime += 7
-#   newendtime += 7
-#   starttime += 7
-
 # rubocop:enable Metrics/BlockLength
 # rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/CyclomaticComplexity
