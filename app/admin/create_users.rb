@@ -18,7 +18,7 @@ ActiveAdmin.register User do
       years = user.active_semesters + 1
       user.update(active_semesters: years)
     end
-    redirect_to collection_path, alert: "Active Semester Added for Selected Users"
+    redirect_to collection_path, alert: 'Active Semester Added for Selected Users'
   end
 
   # Initialize Column
@@ -141,7 +141,7 @@ def create_user_with_csv(attrs)
   out_points_index = find_table_index('outreach points', table, 'csv')
   active_semesters_index = find_table_index('active semesters', table, 'csv')
   if name_index == -1 || email_index == -1 || t_points_index == -1 ||
-     gen_points_index == -1 || men_points_index == -1 || 
+     gen_points_index == -1 || men_points_index == -1 ||
      soc_points_index == -1 || active_semesters_index == -1 ||
      out_points_index == -1
 
@@ -189,7 +189,7 @@ def create_user_with_xlsx(attrs)
   out_points_index = find_table_index('outreach points', table, 'xlsx')
   active_semesters_index = find_table_index('active semesters', table, 'xlsx')
   if name_index == -1 || email_index == -1 || t_points_index == -1 ||
-     gen_points_index == -1 || men_points_index == -1 || 
+     gen_points_index == -1 || men_points_index == -1 ||
      soc_points_index == -1 || active_semesters_index == -1 ||
      out_points_index == -1
     error = 'Error Missing Columns: '
