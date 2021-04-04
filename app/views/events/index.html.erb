@@ -69,7 +69,7 @@
     <span class="date-str"><%= date.day %></span>
       <% events.each do |event| %>
         <% if event.starttime.to_date == date %>
-          <div style="background-color:#117099;color:white;border:2px solid black;text-align:center;font-size:14px;font-size:.875rem;">
+          <div style="background-color:#117099;color:white;text-align:center;font-size:14px;font-size:.875rem;">
             <%= event.title %>
             <%= event.starttime.strftime("%I:%M %p") %>
             <br ></br>

@@ -368,7 +368,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       select '00', from: 'event[endtime(5i)]'
       fill_in 'Event Password', with: '1128'
       click_on 'Create Event'
-
+      visit '/admin/events/1'
       click_on 'Edit Event'
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
@@ -414,6 +414,7 @@ RSpec.describe 'Admin Create Event', type: :system do
       fill_in 'Event Password', with: '1128'
 
       click_on 'Create Event'
+      visit '/admin/events/1'
       click_on 'Delete Event'
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_content('Event was successfully destroyed.')
