@@ -77,7 +77,7 @@ function changeForm() {
     event_repeatthursday= document.getElementById("event_repeatthursday")
     event_repeatthursday_input.classList.toggle("hidden")
     event_repeatthursday.checked = false
- 
+
     event_repeatfriday_input= document.getElementById("event_repeatfriday_input")
     event_repeatfriday= document.getElementById("event_repeatfriday")
     event_repeatfriday_input.classList.toggle("hidden")
