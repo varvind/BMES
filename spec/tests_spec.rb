@@ -478,7 +478,7 @@ RSpec.describe 'User Event Sign in', type: :system do
       select 'Social Meeting', from: 'event[eventtype]'
       click_on 'commit'
 
-      
+
       visit events_path
 
       click_on('Event Check-in')
@@ -526,7 +526,7 @@ RSpec.describe 'User Event Sign in', type: :system do
 
       visit '/user_profile'
 
-      expect(page).to have_content('outreach Points: 2')
+      expect(page).to have_content('Outreach Points: 2')
       expect(page).to have_content('5/5 Points')
     end
 
