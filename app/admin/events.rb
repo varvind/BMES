@@ -162,7 +162,7 @@ ActiveAdmin.register Event do
           # for the first day of the repeating events creation
           event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime,
-                               endtime: newendtime, eventpass: newevent[:eventpass])
+                               endtime: newendtime, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
           # for loop for repeating events
           (1..weeks).each do |i|
             # checks if event needs to repeat on sunday
@@ -172,7 +172,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on monday
             if newevent[:repeatmonday] == '1' && ((i.zero? && (newstarttime.wday <= 1)) || i.positive?)
@@ -181,7 +181,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on tuesday
             if newevent[:repeattuesday] == '1' && ((i.zero? && (newstarttime.wday <= 2)) || i.positive?)
@@ -190,7 +190,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on wednesday
             if newevent[:repeatwednesday] == '1' && ((i.zero? && (newstarttime.wday <= 3)) || i.positive?)
@@ -199,7 +199,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on thursday
             if newevent[:repeatthursday] == '1' && ((i.zero? && (newstarttime.wday <= 4)) || i.positive?)
@@ -208,7 +208,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on friday
             if newevent[:repeatfriday] == '1' && ((i.zero? && (newstarttime.wday <= 5)) || i.positive?)
@@ -217,7 +217,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                    newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             # checks if event needs to repeat on saturday
             if newevent[:repeatsaturday] == '1' && ((i.zero? && (newstarttime.wday <= 6)) || i.positive?)
@@ -226,7 +226,7 @@ ActiveAdmin.register Event do
               # creates the event with the change
               event = Event.create(title: newevent[:title], place: newevent[:place], description:
                                   newevent[:description], starttime: newstarttime + change,
-                                   endtime: newendtime + change, eventpass: newevent[:eventpass])
+                                   endtime: newendtime + change, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
             end
             newstarttime += 7
             newendtime += 7
@@ -239,7 +239,7 @@ ActiveAdmin.register Event do
       else # singular event creation
         # creates event
         event = Event.create(title: newevent[:title], place: newevent[:place], description: newevent[:description],
-                             starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass])
+                             starttime: newstarttime, endtime: newendtime, eventpass: newevent[:eventpass], eventtype: newevent[:eventtype])
         redirect_to '/admin/events', flash: { error: 'Event was successfully created.' }
       end
     end
