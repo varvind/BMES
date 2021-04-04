@@ -51,6 +51,7 @@ RSpec.describe 'Create New Event', type: :system do
       click_on 'Check-in'
     end
     it 'test pm event' do
+      # set local time to mar 13th, 2020
       travel_to Time.zone.local(2020, 3, 13, 0o1, 0o4, 44)
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
@@ -80,7 +81,7 @@ RSpec.describe 'Create New Event', type: :system do
       click_on 'Create Event'
 
       expect(page).to have_content('Event was successfully created.')
-
+      # set local time to mar 13th, 2021
       travel_to Time.zone.local(2021, 3, 13, 0o1, 0o4, 44)
       visit '/'
       expect(page).to have_css '.simple-calendar'

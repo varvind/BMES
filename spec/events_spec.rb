@@ -24,6 +24,7 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if an event's details page loads properly
     it 'View Event (Details) - Success' do
+      # set local time to mar 13, 2025
       travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
@@ -303,6 +304,7 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if starttime is in the past
     it 'Single Event (Starttime in the Past) - Failure' do
+      # set local time to feb 13, 2025
       travel_to Time.zone.local(2025, 2, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
@@ -329,6 +331,7 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests whether or not app will detect an invalid repeating event with missing all fields
     it 'Repeating Event (Missing All Fields) - Failure' do
+      # set local time back to mar 13, 2025
       travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
@@ -587,6 +590,7 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if starttime is in the past for repeating events
     it 'Repeating Event (Starttime in the Past) - Failure' do
+      # set local time to feb 13, 2025
       travel_to Time.zone.local(2025, 2, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
@@ -620,6 +624,7 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if app detects invalid weeks value (0) for repeating events
     it 'Repeating Event (Weeks = 0) - Failure' do
+      # set local time back to mar 13, 2025
       travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')

@@ -47,6 +47,7 @@ RSpec.describe 'API v1', type: :system do
   end
   describe 'Get Specific Event' do
     it 'Valid' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       get api_v1_event_path(id: 1)
       expect(response).to have_http_status(:ok)
@@ -66,6 +67,7 @@ RSpec.describe 'API v1', type: :system do
                                               })
     end
     it 'Invalid' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       get api_v1_event_path(id: 100)
       expect(response).to have_http_status(:bad_request)

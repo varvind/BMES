@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Event page', type: :system do
   describe 'Check Urls' do
     it 'View event with different url ids' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
@@ -24,6 +25,7 @@ RSpec.describe 'Event page', type: :system do
       event2.destroy
     end
     it 'Visit event with different url ids' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
@@ -52,6 +54,7 @@ end
 RSpec.describe 'Participation Page', type: :system do
   describe 'Has Url' do
     it 'Checks the url parameters' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       visit events_path
       click_link('Check-in')
@@ -61,6 +64,7 @@ RSpec.describe 'Participation Page', type: :system do
   end
   describe 'Keeps Url' do
     it 'With wrong password' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       visit events_path
       click_link('Check-in')
@@ -82,6 +86,7 @@ RSpec.describe 'Participation Page', type: :system do
   end
   describe 'Does not log in to Url' do
     it 'With other events password' do
+      # set local time to jan 1st, 2025
       travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00', eventpass: 'pass2')
