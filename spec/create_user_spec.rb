@@ -65,6 +65,14 @@ RSpec.describe 'Create Users Page', type: :system do
       expect(page).to have_content('Error Missing Columns: Name')
     end
 
+    it 'Test Add Year to Users' do
+      visit '/admin/users'
+      find('#collection_selection_toggle_all').click
+      click_on('Batch Actions')
+      click_on('Add Active Semesters For Selected')
+      expect(User.find_by(id: 1).active_semesters).to eq(2)
+    end
+
     it 'Add single user' do
       visit '/admin/users'
       click_link('New User')
