@@ -2,8 +2,6 @@
 
 require 'securerandom'
 
-# All commented out methods works in Admin Console, they are not needed for a user
-
 class EventsController < ApplicationController
   def index
     @events = Event.where('starttime > ?', Date.today - 2.day).all.sorted

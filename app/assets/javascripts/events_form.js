@@ -61,37 +61,37 @@ function changeForm() {
     event_repeatmonday_input= document.getElementById("event_repeatmonday_input")
     event_repeatmonday= document.getElementById("event_repeatmonday")
     event_repeatmonday_input.classList.toggle("hidden")
-    event_repeatmonday.value = ""
+    event_repeatmonday.checked = false
 
     event_repeattuesday_input= document.getElementById("event_repeattuesday_input")
     event_repeattuesday= document.getElementById("event_repeattuesday")
     event_repeattuesday_input.classList.toggle("hidden")
-    event_repeattuesday.value = ""
+    event_repeattuesday.checked = false
 
     event_repeatwednesday_input= document.getElementById("event_repeatwednesday_input")
     event_repeatwednesday= document.getElementById("event_repeatwednesday")
     event_repeatwednesday_input.classList.toggle("hidden")
-    event_repeatwednesday.value = ""
+    event_repeatwednesday.checked = false
 
     event_repeatthursday_input= document.getElementById("event_repeatthursday_input")
     event_repeatthursday= document.getElementById("event_repeatthursday")
     event_repeatthursday_input.classList.toggle("hidden")
-    event_repeatthursday.value = ""
-
+    event_repeatthursday.checked = false
+ 
     event_repeatfriday_input= document.getElementById("event_repeatfriday_input")
     event_repeatfriday= document.getElementById("event_repeatfriday")
     event_repeatfriday_input.classList.toggle("hidden")
-    event_repeatfriday.value = ""
+    event_repeatfriday.checked = false
 
     event_repeatsaturday_input= document.getElementById("event_repeatsaturday_input")
     event_repeatsaturday= document.getElementById("event_repeatsaturday")
     event_repeatsaturday_input.classList.toggle("hidden")
-    event_repeatsaturday.value = ""
+    event_repeatsaturday.checked = false
 
     event_repeatsunday_input= document.getElementById("event_repeatsunday_input")
     event_repeatsunday= document.getElementById("event_repeatsunday")
     event_repeatsunday_input.classList.toggle("hidden")
-    event_repeatsunday.value = ""
+    event_repeatsunday.checked = false
 
     event_repeatweeks_input= document.getElementById("event_repeatweeks_input")
     event_repeatweeks= document.getElementById("event_repeatweeks")

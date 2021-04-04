@@ -10,7 +10,6 @@ require 'creek'
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
   menu label: 'Create Users'
-  batch_action :destroy
   permit_params :user_CSV_File, :password, :name, :email, :total_points, :general_meeting_points,
                 :social_points, :mentorship_meeting_points, :active_semesters, :outreach_points
 
