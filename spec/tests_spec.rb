@@ -476,7 +476,7 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
     it 'Sign in to social event' do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
-                                     mentorship_meeting_points: 1, social_points: 1)
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
 
       allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
       allow(user).to receive(:update).with(any_args).and_return(user)
@@ -495,7 +495,7 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
     it 'Sign in to mentorship event' do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
-                                     mentorship_meeting_points: 1, social_points: 1)
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
 
       allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
       allow(user).to receive(:update).with(any_args).and_return(user)
@@ -514,7 +514,7 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
     it 'Sign in to General event' do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
-                                     mentorship_meeting_points: 1, social_points: 1)
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
 
       allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
       allow(user).to receive(:update).with(any_args).and_return(user)
@@ -522,6 +522,25 @@ RSpec.describe 'Sign In Unit Tests', type: :system do
       event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                                         starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
                                         eventpass: 'pass2', eventtype: 'General Meeting')
+      allow(Event).to receive(:find).with(any_args).and_return(event1)
+      allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
+      allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
+
+      expect(response).to have_http_status(302)
+    end
+
+    it 'Sign in to Outreach event' do
+      user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
+                                     name: 'test user', total_points: 3, general_meeting_points: 1,
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
+
+      allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
+      allow(user).to receive(:update).with(any_args).and_return(user)
+      allow(User).to receive(:find_by).with(any_args).and_return(user)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'Outreach Event')
       allow(Event).to receive(:find).with(any_args).and_return(event1)
       allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
       allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
