@@ -45,7 +45,6 @@ RSpec.describe 'New Event Page', type: :system do
       click_button('Non-Repeating Event')
       click_on('commit')
 
-
       visit events_path # go to the event's path
       click_on('Details')
       # Details of the event should be on page
