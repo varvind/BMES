@@ -82,9 +82,17 @@ ActiveAdmin.register User do
   # form controller
   controller do
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
+
     def create
       attrs = permitted_params[:user]
+
       if !attrs[:user_CSV_File].nil?
+        if attrs[:password] == ''
+          redirect_to '/admin/users/new', flash: { error: 'Error: Password Field is Blank' }
+          return
+        end
         filename = attrs[:user_CSV_File].original_filename
         if filename.include? '.csv'
           create_user_with_csv(attrs)
@@ -94,25 +102,27 @@ ActiveAdmin.register User do
           redirect_to '/admin/users/new', flash: { error: 'Error: Invalid File Type.' }
         end
       else
-        user = User.create(password: attrs[:password], password_confirmation: attrs[:password], name: attrs[:name],
-                           email: attrs[:email], total_points: attrs[:total_points],
-                           general_meeting_points: attrs[:general_meeting_points],
-                           social_points: attrs[:social_points],
-                           mentorship_meeting_points: attrs[:mentorship_meeting_points],
-                           outreach_points: attrs[:outreach_points],
-                           active_semesters: attrs[:active_semesters])
-        if !user.valid?
-          redirect_to '/admin/users/new', flash: { error: 'Error: Duplicate Email.' }
-        else
-          redirect_to '/admin/users', flash: { error: 'Successfully Created User.' }
+
+        unless check_for_errors(attrs)
+          user = User.create(password: attrs[:password], password_confirmation: attrs[:password], name: attrs[:name],
+                             email: attrs[:email], total_points: attrs[:total_points],
+                             general_meeting_points: attrs[:general_meeting_points],
+                             social_points: attrs[:social_points],
+                             mentorship_meeting_points: attrs[:mentorship_meeting_points],
+                             outreach_points: attrs[:outreach_points],
+                             active_semesters: attrs[:active_semesters])
+
+          if !user.valid?
+            redirect_to '/admin/users/new', flash: { error: 'Error: Duplicate Email.' }
+          else
+            redirect_to '/admin/users', flash: { error: 'Successfully Created User.' }
+          end
         end
       end
     end
   end
 end
 
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity
 def find_table_index(header_name, table, filetype)
   if filetype == 'csv'
     (0..table[0].length - 1).each do |i|
@@ -223,10 +233,56 @@ def create_user_with_xlsx(attrs)
                                    total_points, gen_meet_points,
                                    mentor_points, social_points, outreach_points, active_semesters)
   end
-  # rubocop:enable Metrics/MethodLength
+
   redirect_to '/admin/users', flash: { error: 'Successfully Created Users.' }
 end
 
+def check_for_errors(attrs)
+  error = 'Error: '
+
+  error += 'Password Field is Blank, ' if attrs[:password] == ''
+
+  error += 'Name Field Blank, ' if attrs[:name] == ''
+
+  error += 'Email Field Blank, ' if attrs[:email] == ''
+
+  if attrs[:total_points].to_i < attrs[:general_meeting_points].to_i +
+                                 attrs[:social_points].to_i +
+                                 attrs[:mentorship_meeting_points].to_i +
+                                 attrs[:outreach_points].to_i
+    error += 'Total Points less than Sum of all other Points, '
+  end
+
+  if attrs[:active_semesters].to_i.to_s != attrs[:active_semesters]
+    error += 'Entered Non-number or Blank in Active Semesters Field, '
+  end
+
+  error += 'Entered Negative Number for Active Semesters Field, ' if attrs[:active_semesters].to_i.negative?
+
+  if attrs[:total_points].to_i.to_s != attrs[:total_points] ||
+     attrs[:general_meeting_points].to_i.to_s != attrs[:general_meeting_points] ||
+     attrs[:mentorship_meeting_points].to_i.to_s != attrs[:mentorship_meeting_points] ||
+     attrs[:social_points].to_i.to_s != attrs[:social_points] ||
+     attrs[:outreach_points].to_i.to_s != attrs[:outreach_points]
+    error += 'Entered Non-number or Blank in Points Field, '
+  end
+
+  if attrs[:total_points].to_i.negative? ||
+     attrs[:general_meeting_points].to_i.negative? ||
+     attrs[:mentorship_meeting_points].to_i.negative? ||
+     attrs[:social_points].to_i.negative? ||
+     attrs[:outreach_points].to_i.negative?
+    error += 'Entered Negative Number for Points Field, '
+  end
+  if error == 'Error: '
+    false
+  else
+    error = error[0..-3]
+    redirect_to '/admin/users/new', flash: { error: error }
+    true
+  end
+end
+# rubocop:enable Metrics/MethodLength
 # rubocop:enable Metrics/BlockLength
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity

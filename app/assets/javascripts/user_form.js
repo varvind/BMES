@@ -97,6 +97,7 @@ function changeForm() {
   user_name_input.classList.add("stringish")
   user_name_input.classList.toggle("hidden")
   user_name.type = ""
+  user_name.value = ""
   user_name.placeholder = "Name"
 
   user_email_input= document.getElementById("user_email_input")
@@ -104,6 +105,7 @@ function changeForm() {
   user_email_input.classList.add("stringish")
   user_email_input.classList.toggle("hidden")
   user_email.type = ""
+  user_email.value = ""
   user_email.placeholder = "Email"
 
   user_total_points_input= document.getElementById("user_total_points_input")

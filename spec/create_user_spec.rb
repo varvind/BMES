@@ -25,6 +25,15 @@ RSpec.describe 'Create Users Page', type: :system do
       expect(page).to have_content('Zachary Mendoza')
     end
 
+    it 'With XLSX - No Password' do
+      Sidekiq::Worker.clear_all
+      visit '/admin/users'
+      click_link('New User')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.xlsx'))
+      click_on('commit')
+      expect(page).to have_content('Error: Password Field is Blank')
+    end
+
     it 'With CSV' do
       Sidekiq::Worker.clear_all
       visit '/admin/users'
@@ -36,6 +45,15 @@ RSpec.describe 'Create Users Page', type: :system do
       Sidekiq::Worker.drain_all
       visit '/admin/users'
       expect(page).to have_content('Abigail Leon')
+    end
+
+    it 'With CSV - No Password' do
+      Sidekiq::Worker.clear_all
+      visit '/admin/users'
+      click_link('New User')
+      attach_file('user[user_CSV_File]', Rails.root.join('test', 'MemberInformation.csv'))
+      click_on('commit')
+      expect(page).to have_content('Error: Password Field is Blank')
     end
 
     it 'With invalid file type' do
@@ -91,6 +109,7 @@ RSpec.describe 'Create Users Page', type: :system do
       expect(page).to have_content('test@user.com')
       expect(page).to have_content('1')
     end
+
     it 'Add single user twice with same email' do
       visit '/admin/users'
       click_link('New User')
@@ -123,6 +142,100 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[password]', with: '1')
       click_on('commit')
       expect(page).to have_content('Error: Duplicate Email.')
+    end
+
+    it 'Add single user - No Fields Entered' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[password]', with: '1')
+      click_on('commit')
+      expect(page).to have_content('Error: Name Field Blank, Email Field Blank, '\
+      'Entered Non-number or Blank in Active Semesters Field, Entered Non-number or Blank in Points Field')
+    end
+
+    it 'Add single user - Password Field Not Entered' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[name]', with: 'test')
+      fill_in('user[email]', with: 'test@user.com')
+      fill_in('user[total_points]', with: 4)
+      fill_in('user[general_meeting_points]', with: 1)
+      fill_in('user[mentorship_meeting_points]', with: 1)
+      fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_semesters]', with: 1)
+      click_on('commit')
+      expect(page).to have_content('Error: Password Field is Blank')
+    end
+
+    it 'Add single user - Total Points Less than Sum of Points' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[name]', with: 'test')
+      fill_in('user[email]', with: 'test@user.com')
+      fill_in('user[total_points]', with: 2)
+      fill_in('user[general_meeting_points]', with: 1)
+      fill_in('user[mentorship_meeting_points]', with: 1)
+      fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_semesters]', with: 1)
+      fill_in('user[password]', with: '1')
+      click_on('commit')
+      expect(page).to have_content('Error: Total Points less than Sum of all other Points')
+    end
+
+    it 'Add single user - Active Semester Less than 0' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[name]', with: 'test')
+      fill_in('user[email]', with: 'test@user.com')
+      fill_in('user[total_points]', with: 4)
+      fill_in('user[general_meeting_points]', with: 1)
+      fill_in('user[mentorship_meeting_points]', with: 1)
+      fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_semesters]', with: -1)
+      fill_in('user[password]', with: '1')
+      click_on('commit')
+      expect(page).to have_content('Error: Entered Negative Number for Active Semesters Field')
+    end
+
+    it 'Add single user - General Meeting Points less than 0' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[name]', with: 'test')
+      fill_in('user[email]', with: 'test@user.com')
+      fill_in('user[total_points]', with: 4)
+      fill_in('user[general_meeting_points]', with: -1)
+      fill_in('user[mentorship_meeting_points]', with: 1)
+      fill_in('user[social_points]', with: 1)
+      fill_in('user[outreach_points]', with: 1)
+      fill_in('user[active_semesters]', with: -1)
+      fill_in('user[password]', with: '1')
+      click_on('commit')
+      expect(page).to have_content('Error: Entered Negative Number for Active Semesters Field')
+    end
+
+    it 'Add single user - All Points less than 0' do
+      visit '/admin/users'
+      click_link('New User')
+      click_on('Add Individual User')
+      fill_in('user[name]', with: 'test')
+      fill_in('user[email]', with: 'test@user.com')
+      fill_in('user[total_points]', with: 4)
+      fill_in('user[general_meeting_points]', with: -1)
+      fill_in('user[mentorship_meeting_points]', with: -1)
+      fill_in('user[social_points]', with: -1)
+      fill_in('user[outreach_points]', with: -1)
+      fill_in('user[active_semesters]', with: -1)
+      fill_in('user[password]', with: '1')
+      click_on('commit')
+      expect(page).to have_content('Error: Entered Negative Number for Active Semesters Field')
     end
 
     it 'View User' do
