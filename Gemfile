@@ -73,3 +73,7 @@ gem 'creek'
 gem 'activesupport'
 gem 'sidekiq'
 gem 'sinatra'
+
+gem 'simple_calendar', '~> 2.4'
+
+gem 'sassc', '~> 2.1.0'

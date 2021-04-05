@@ -1,3 +1,54 @@
+
+<head>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .backsplash {
+      height: 400px;
+      background-image: linear-gradient(to top right, #00a8f3, rgb(10, 74, 117));
+      margin-top: 0%;
+  }
+  .progress{
+    float:left; width:60%; margin-right:-1%; height:18%
+  }
+  @media only screen and (max-width: 600px) {
+    html {
+      font-size:9px
+    }
+    .progress{
+      float:left; width:37%; margin-right:-1%; height:15%
+    }
+  }   
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+      html {
+        font-size:12px
+      }
+      .progress{
+        float:left; width:30%; margin-right:-1%; height:18%
+      }
+  }
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    html {
+        font-size:16px
+    }
+    .progress{
+      float:left; width:50%; margin-right:-1%; height:18%
+    }
+  }
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    html {
+        font-size:16px
+    }
+    .progress{
+      float:left; width:60%; margin-right:-1%; height:18%
+    }
+  }
+</style>
+</head>
 <body>
 
 <% flash.each do |key, value| %>
@@ -13,29 +64,23 @@
   
 
 <br>
-
-<% @events.in_groups_of(3,false) do |group| %>
-<div class="row">
-  <% group.each do |event| %>
-  <div class="col-sm-4 event-card">
-    <div class="card bg-light">
-      <div class="card-body">
-        <h5 class="card-title crd-title"><%= event.title %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= event.place %></h6>
-        <p class="card-text"><%= event.description %></p>
-        <p class="card-text">Start Time: <%= event.starttime.strftime("%I %M %p %h-%d-%Y") %></p>
-        <% if event.endtime.nil? %>
-        <% else %>
-          <p class="card-text">End Time: <%= event.endtime.strftime("%I %M %p %h-%d-%Y") %></p>
+  <% Date.beginning_of_week = :sunday %>
+  <%= month_calendar(events: @events) do |date, events| %>
+    <span class="date-str"><%= date.day %></span>
+      <% events.each do |event| %>
+        <% if event.starttime.to_date == date %>
+          <div style="background-color:#117099;color:white;text-align:center;font-size:14px;font-size:.875rem;">
+            <%= event.title %>
+            <%= event.starttime.strftime("%I:%M %p") %>
+            <br ></br>
+            <%= link_to("Details", event_path(event), :class => 'action show', class: "a-primary")%>
+            <%= link_to("Check-in", {:controller => "participations", :action => "new", :event_id => event.id}, class: "a-primary") %>
+          </div>
+          <br>
         <% end %>
-        <%= link_to("Details", event_path(event), :class => 'action show', class: "btn btn-primary")%>
-        <%= link_to("Event Check-in", {:controller => "participations", :action => "new", :event_id => event.id}, class: "btn btn-primary") %>
-      </div>
-    </div>
-  </div>
+      <% end %>
   <% end %>
-</div>
-<% end %>
+
 
 </div>
 
