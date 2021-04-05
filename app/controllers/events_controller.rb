@@ -5,6 +5,7 @@ require 'securerandom'
 class EventsController < ApplicationController
   def index
     @events = Event.where('starttime > ?', Date.today - 2.day).all.sorted
+    @meetings = Event.where('starttime > ?', Date.today - 2.day).all.sorted
   end
 
   def new

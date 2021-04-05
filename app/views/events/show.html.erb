@@ -9,10 +9,10 @@
     <h3 class="event-place"><%= @event.place %></h3>
     <p><%= @event.description %></p>
     <p>
-      <%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %>
+      <%= @event.starttime.strftime("%I:%M %p %m-%d-%Y") %>
       <% if @event.endtime.nil? %>
       <% else %>
-        - <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %>
+        - <%= @event.endtime.strftime("%I:%M %p %m-%d-%Y") %>
       <% end %>
     </p>
   </div>

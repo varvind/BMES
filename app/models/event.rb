@@ -9,6 +9,10 @@ class Event < ApplicationRecord
     { id: id, name: title, start_time: starttime }
   end
 
+  def start_time
+    starttime
+  end
+
   #   before_destroy :remove_participation_from_event
   attr_accessor :repeatmonday
   attr_accessor :repeattuesday

@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Login page', type: :system do
   describe 'Login' do
     it 'Success' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
       fill_in('admin_user[password]', with: 'password')
@@ -13,6 +15,8 @@ RSpec.describe 'Login page', type: :system do
       expect(page).to have_content('Signed in successfully.')
     end
     it 'Fail' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
       fill_in('admin_user[password]', with: 'p')
@@ -25,30 +29,60 @@ end
 
 RSpec.describe 'Event page', type: :system do
   describe 'Visit Events' do
+    before do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+      click_button('Login')
+      click_on 'Events'
+      click_on 'New Event'
+
+      fill_in 'Title', with: 'title1'
+      fill_in 'Place', with: 'place1'
+      fill_in 'Description', with: 'des1'
+
+      select '2025', from: 'event[starttime(1i)]'
+      select 'November', from: 'event[starttime(2i)]'
+      select '2', from: 'event[starttime(3i)]'
+      select '10', from: 'event[starttime(4i)]'
+      select '00', from: 'event[starttime(5i)]'
+
+      select '2025', from: 'event[endtime(1i)]'
+      select 'November', from: 'event[endtime(2i)]'
+      select '2', from: 'event[endtime(3i)]'
+      select '12', from: 'event[endtime(4i)]'
+      select '00', from: 'event[endtime(5i)]'
+
+      fill_in 'Event Password', with: '1128'
+
+      click_on 'Create Event'
+    end
     it 'Homepage' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
 
       expect(page).to have_selector(:link_or_button, 'Details')
-      expect(page).to have_selector(:link_or_button, 'Event Check-in')
-
-      expect(page).to have_content('Event Title')
-      expect(page).to have_content('Event Place')
-      expect(page).to have_content('Event Description')
-      expect(page).to have_content('Start Time:')
-      expect(page).to have_content('End Time:')
+      expect(page).to have_selector(:link_or_button, 'Check-in')
     end
     it 'Specific event' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
 
       click_link('Details')
       expect(page).to have_selector(:link_or_button, 'Back to List')
 
-      expect(page).to have_content('Event Title')
-      expect(page).to have_content('Event Place')
-      expect(page).to have_content('Event Description')
+      expect(page).to have_content('title1')
+      expect(page).to have_content('place1')
+      expect(page).to have_content('des1')
       expect(page).to have_content('Attendees:')
     end
     it 'Go back to home' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
 
       click_link('Details')
@@ -57,9 +91,41 @@ RSpec.describe 'Event page', type: :system do
     end
   end
   describe 'View attendances' do
+    before do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+      click_button('Login')
+      click_on 'Events'
+      click_on 'New Event'
+
+      fill_in 'Title', with: 'title1'
+      fill_in 'Place', with: 'place1'
+      fill_in 'Description', with: 'des1'
+
+      select '2025', from: 'event[starttime(1i)]'
+      select 'November', from: 'event[starttime(2i)]'
+      select '2', from: 'event[starttime(3i)]'
+      select '10', from: 'event[starttime(4i)]'
+      select '00', from: 'event[starttime(5i)]'
+
+      select '2025', from: 'event[endtime(1i)]'
+      select 'November', from: 'event[endtime(2i)]'
+      select '2', from: 'event[endtime(3i)]'
+      select '12', from: 'event[endtime(4i)]'
+      select '00', from: 'event[endtime(5i)]'
+
+      fill_in 'Event Password', with: '1'
+
+      click_on 'Create Event'
+    end
     it 'Submit from Participation page' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('signin[uin]', with: '666666666')
@@ -70,7 +136,6 @@ RSpec.describe 'Event page', type: :system do
       click_button('commit')
       visit events_path
       click_link('Details')
-
       expect(page).to have_content('John')
       expect(page).to have_content('Doe')
     end
@@ -79,9 +144,41 @@ end
 
 RSpec.describe 'Participation Page', type: :system do
   describe 'Submit attendance' do
+    before do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+      click_button('Login')
+      click_on 'Events'
+      click_on 'New Event'
+
+      fill_in 'Title', with: 'title1'
+      fill_in 'Place', with: 'place1'
+      fill_in 'Description', with: 'des1'
+
+      select '2025', from: 'event[starttime(1i)]'
+      select 'November', from: 'event[starttime(2i)]'
+      select '2', from: 'event[starttime(3i)]'
+      select '10', from: 'event[starttime(4i)]'
+      select '00', from: 'event[starttime(5i)]'
+
+      select '2025', from: 'event[endtime(1i)]'
+      select 'November', from: 'event[endtime(2i)]'
+      select '2', from: 'event[endtime(3i)]'
+      select '12', from: 'event[endtime(4i)]'
+      select '00', from: 'event[endtime(5i)]'
+
+      fill_in 'Event Password', with: '1'
+
+      click_on 'Create Event'
+    end
     it 'Visit page' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       expect(page).to have_content('Password')
       expect(page).to have_content('UIN')
@@ -91,8 +188,10 @@ RSpec.describe 'Participation Page', type: :system do
       expect(page).to have_selector(:link_or_button, 'Sign In')
     end
     it 'Successful Submit' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('signin[uin]', with: '666666666')
@@ -105,8 +204,10 @@ RSpec.describe 'Participation Page', type: :system do
       expect(page).to have_content('You have successfully signed into the event.')
     end
     it 'Failed Submit via Password' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '2')
       fill_in('signin[uin]', with: '666666666')
@@ -119,15 +220,49 @@ RSpec.describe 'Participation Page', type: :system do
       expect(page).to have_content('Incorrect password, please try again.')
     end
     it 'No such event error' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit new_event_path(event_id: '300')
 
       expect(page).to have_content('Event Does Not Exist!')
     end
   end
   describe 'Input Validation Fail' do
+    before do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+      click_button('Login')
+      click_on 'Events'
+      click_on 'New Event'
+
+      fill_in 'Title', with: 'title1'
+      fill_in 'Place', with: 'place1'
+      fill_in 'Description', with: 'des1'
+
+      select '2025', from: 'event[starttime(1i)]'
+      select 'November', from: 'event[starttime(2i)]'
+      select '2', from: 'event[starttime(3i)]'
+      select '10', from: 'event[starttime(4i)]'
+      select '00', from: 'event[starttime(5i)]'
+
+      select '2025', from: 'event[endtime(1i)]'
+      select 'November', from: 'event[endtime(2i)]'
+      select '2', from: 'event[endtime(3i)]'
+      select '12', from: 'event[endtime(4i)]'
+      select '00', from: 'event[endtime(5i)]'
+
+      fill_in 'Event Password', with: '1'
+
+      click_on 'Create Event'
+    end
     it 'Password' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       click_button('commit')
 
@@ -135,8 +270,10 @@ RSpec.describe 'Participation Page', type: :system do
       expect(message).to eq 'Please fill out this field.'
     end
     it 'First Name' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('signin[uin]', with: '999999999')
@@ -146,8 +283,10 @@ RSpec.describe 'Participation Page', type: :system do
       expect(message).to eq 'Please fill out this field.'
     end
     it 'Last Name' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('signin[uin]', with: '999999999')
@@ -158,8 +297,10 @@ RSpec.describe 'Participation Page', type: :system do
       expect(message).to eq 'Please fill out this field.'
     end
     it 'Email' do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit events_path
-      click_link('Event Check-in')
+      click_link('Check-in')
 
       fill_in('event_pass', with: '1')
       fill_in('signin[uin]', with: '999999999')
@@ -176,6 +317,8 @@ end
 RSpec.describe 'Admin Create Event', type: :system do
   describe 'Create Event' do
     before do
+      # set local time to nov 1st, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
       fill_in('admin_user[password]', with: 'password')
@@ -186,6 +329,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Success Create Event' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
@@ -210,6 +355,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Success Edit Event' do
+      # set local time to nov 1, 2020
+      travel_to Time.zone.local(2020, 11, 1, 0o1, 0o4, 44)
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
@@ -253,6 +400,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Success Delete Event' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       fill_in 'Title', with: 'title1'
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
@@ -279,6 +428,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Success Delete Event with participants' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       fill_in 'Title', with: 'title2'
       fill_in 'Place', with: 'place2'
       fill_in 'Description', with: 'des2'
@@ -318,6 +469,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Success Create Admin User' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'New Admin User'
       fill_in 'Email', with: 'admin2@example.com'
@@ -327,6 +480,8 @@ RSpec.describe 'Admin Create Event', type: :system do
       expect(page).to have_content('admin2@example.com')
     end
     it 'Create Admin User Blank fileds' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'New Admin User'
       click_on 'Create Admin user'
@@ -343,6 +498,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Create Admin User invalid email' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'New Admin User'
       fill_in 'Email', with: 'admin2'
@@ -353,6 +510,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Create Admin User invalid password length' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'New Admin User'
       fill_in 'Email', with: 'admin2@example.com'
@@ -363,6 +522,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Create Admin User invalid password confirmation' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'New Admin User'
       fill_in 'Email', with: 'admin2@example.com'
@@ -373,6 +534,8 @@ RSpec.describe 'Admin Create Event', type: :system do
     end
 
     it 'Admin User Page "Created At" Column ' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       click_on 'Admin Users'
       click_on 'Created At'
       expect(page).to have_content('Admin Users')
@@ -383,6 +546,8 @@ end
 RSpec.describe 'Home Page Date', type: :system do
   describe 'Input Date' do
     it 'Is older than 2 days' do
+      # set local time to nov 1, 2025
+      travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
                             starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00',
                             eventpass: 'pass3', eventtype: 'General')
@@ -393,6 +558,8 @@ RSpec.describe 'Home Page Date', type: :system do
       event.destroy
     end
     it 'Is in future more than 2 days' do
+      # set local time to jan 1, 2022
+      travel_to Time.zone.local(2022, 1, 1, 0o1, 0o4, 44)
       event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
                             starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00',
                             eventpass: 'pass3', eventtype: 'General')

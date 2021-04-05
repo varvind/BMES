@@ -24,10 +24,32 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if an event's details page loads properly
     it 'View Event (Details) - Success' do
-      visit events_path(id: 1) # go to the event's path
+      # set local time to mar 13, 2025
+      travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      fill_in('event[eventpass]', with: 'Password')
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+
+      visit events_path # go to the event's path
       click_on('Details')
       # Details of the event should be on page
-      expect(page).to have_content('Event Title')
+      expect(page).to have_content('Test_Title')
     end
 
     # tests to see if an event's view page loads properly
@@ -282,12 +304,14 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if starttime is in the past
     it 'Single Event (Starttime in the Past) - Failure' do
+      # set local time to feb 13, 2025
+      travel_to Time.zone.local(2025, 2, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
       fill_in('event[title]', with: 'Test_Title')
       fill_in('event[place]', with: 'Test_Place')
       fill_in('event[description]', with: 'Test_Description')
-      select('2016', from: 'event[starttime(1i)]') # starttime year
+      select('2023', from: 'event[starttime(1i)]') # starttime year
       select('March', from: 'event[starttime(2i)]') # starttime month
       select('21', from: 'event[starttime(3i)]') # starttime day
       select('10', from: 'event[starttime(4i)]') # starttime hour
@@ -307,6 +331,8 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests whether or not app will detect an invalid repeating event with missing all fields
     it 'Repeating Event (Missing All Fields) - Failure' do
+      # set local time back to mar 13, 2025
+      travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
       # missing all fields
@@ -564,12 +590,14 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if starttime is in the past for repeating events
     it 'Repeating Event (Starttime in the Past) - Failure' do
+      # set local time to feb 13, 2025
+      travel_to Time.zone.local(2025, 2, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
       fill_in('event[title]', with: 'Test_Title')
       fill_in('event[place]', with: 'Test_Place')
       fill_in('event[description]', with: 'Test_Description')
-      select('2016', from: 'event[starttime(1i)]') # starttime year
+      select('2023', from: 'event[starttime(1i)]') # starttime year
       select('March', from: 'event[starttime(2i)]') # starttime month
       select('21', from: 'event[starttime(3i)]') # starttime day
       select('10', from: 'event[starttime(4i)]') # starttime hour
@@ -596,6 +624,8 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if app detects invalid weeks value (0) for repeating events
     it 'Repeating Event (Weeks = 0) - Failure' do
+      # set local time back to mar 13, 2025
+      travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
       visit '/admin/events' # go to the events page
       click_link('New Event')
       fill_in('event[title]', with: 'Test_Title')
