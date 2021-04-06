@@ -1,4 +1,6 @@
 <% @id = params[:event_id] %>
+<% @starttime = params[:starttime] - 10.minutes %>
+<% @endtime =  params[:endtime]%>
 
 <div class="container-fluid d-flex flex-column bmes-background">
 
@@ -10,6 +12,7 @@
   <div class="container  h-100">
     <div class="col my-auto ">
         <div class="card card-body mx-auto">
+        <% if(DateTime.now.between?(@starttime, @endtime)) %> <!-- Only allow users to sign in 10 minutes before event all the way up till the end time -->
           <%= form_for('signin') do |f| %>
             <div class="form-row">
               <%= f.hidden_field(:event_id, value: @id,:readonly => true) %>
@@ -41,7 +44,9 @@
             <%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary float-right") %>
             <%= f.submit("Sign In", class: "btn btn-inverted float-left") %>
           <% end %>
-        </div>
+        <% else %>
+          
+        <% end %>
       </div>
     </div>
   </div>
