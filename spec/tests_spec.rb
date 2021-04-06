@@ -128,17 +128,16 @@ RSpec.describe 'Event page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '666666666')
-      fill_in('participation[first_name]', with: 'John')
-      fill_in('participation[last_name]', with: 'Doe')
-      fill_in('participation[email]', with: 'jdoe@example.com')
+      fill_in('signin[uin]', with: '666666666')
+      fill_in('signin[first_name]', with: 'John')
+      fill_in('signin[last_name]', with: 'Doe')
+      fill_in('signin[email]', with: 'jdoe@example.com')
 
       click_button('commit')
       visit events_path
       click_link('Details')
       expect(page).to have_content('John')
       expect(page).to have_content('Doe')
-      expect(page).to have_content('jdoe@example.com')
     end
   end
 end
@@ -195,10 +194,10 @@ RSpec.describe 'Participation Page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '666666666')
-      fill_in('participation[first_name]', with: 'John')
-      fill_in('participation[last_name]', with: 'Doe')
-      fill_in('participation[email]', with: 'jdoe@example.com')
+      fill_in('signin[uin]', with: '666666666')
+      fill_in('signin[first_name]', with: 'John')
+      fill_in('signin[last_name]', with: 'Doe')
+      fill_in('signin[email]', with: 'jdoe@example.com')
 
       click_button('commit')
 
@@ -211,10 +210,10 @@ RSpec.describe 'Participation Page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '2')
-      fill_in('participation[uin]', with: '666666666')
-      fill_in('participation[first_name]', with: 'John')
-      fill_in('participation[last_name]', with: 'Doe')
-      fill_in('participation[email]', with: 'jdoe@example.com')
+      fill_in('signin[uin]', with: '666666666')
+      fill_in('signin[first_name]', with: 'John')
+      fill_in('signin[last_name]', with: 'Doe')
+      fill_in('signin[email]', with: 'jdoe@example.com')
 
       click_button('commit')
 
@@ -223,17 +222,9 @@ RSpec.describe 'Participation Page', type: :system do
     it 'No such event error' do
       # set local time to nov 1st, 2025
       travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
-      visit new_participation_path(event_id: '300')
+      visit new_event_path(event_id: '300')
 
-      fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '666666666')
-      fill_in('participation[first_name]', with: 'John')
-      fill_in('participation[last_name]', with: 'Doe')
-      fill_in('participation[email]', with: 'jdoe@example.com')
-
-      click_button('commit')
-
-      expect(page).to have_content('No matching event found, please try again.')
+      expect(page).to have_content('Event Does Not Exist!')
     end
   end
   describe 'Input Validation Fail' do
@@ -285,10 +276,10 @@ RSpec.describe 'Participation Page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '999999999')
+      fill_in('signin[uin]', with: '999999999')
       click_button('commit')
 
-      message = page.find('#participation_first_name').native.attribute('validationMessage')
+      message = page.find('#signin_first_name').native.attribute('validationMessage')
       expect(message).to eq 'Please fill out this field.'
     end
     it 'Last Name' do
@@ -298,11 +289,11 @@ RSpec.describe 'Participation Page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '999999999')
-      fill_in('participation[first_name]', with: 'Bob')
+      fill_in('signin[uin]', with: '999999999')
+      fill_in('signin[first_name]', with: 'Bob')
       click_button('commit')
 
-      message = page.find('#participation_last_name').native.attribute('validationMessage')
+      message = page.find('#signin_last_name').native.attribute('validationMessage')
       expect(message).to eq 'Please fill out this field.'
     end
     it 'Email' do
@@ -312,12 +303,12 @@ RSpec.describe 'Participation Page', type: :system do
       click_link('Check-in')
 
       fill_in('event_pass', with: '1')
-      fill_in('participation[uin]', with: '999999999')
-      fill_in('participation[first_name]', with: 'Bob')
-      fill_in('participation[last_name]', with: 'Ross')
+      fill_in('signin[uin]', with: '999999999')
+      fill_in('signin[first_name]', with: 'Bob')
+      fill_in('signin[last_name]', with: 'Ross')
       click_button('commit')
 
-      message = page.find('#participation_email').native.attribute('validationMessage')
+      message = page.find('#signin_email').native.attribute('validationMessage')
       expect(message).to eq 'Please fill out this field.'
     end
   end
@@ -460,14 +451,14 @@ RSpec.describe 'Admin Create Event', type: :system do
       click_on 'Create Event'
       sleep(5)
       eid = Event.maximum(:id)
-      visit new_participation_path(event_id: eid)
+      visit new_event_path(event_id: eid)
       sleep(5)
 
-      fill_in 'participation[email]', with: 'test@gmail.com'
+      fill_in 'signin[email]', with: 'test@gmail.com'
       fill_in 'event_pass', with: '1128'
-      fill_in 'participation[first_name]', with: 'test'
-      fill_in 'participation[last_name]', with: 'guy'
-      fill_in 'participation[uin]', with: '111111111'
+      fill_in 'signin[first_name]', with: 'test'
+      fill_in 'signin[last_name]', with: 'guy'
+      fill_in 'signin[uin]', with: '111111111'
       click_on 'commit'
 
       visit admin_event_path(id: eid)
@@ -558,7 +549,8 @@ RSpec.describe 'Home Page Date', type: :system do
       # set local time to nov 1, 2025
       travel_to Time.zone.local(2025, 11, 1, 0o1, 0o4, 44)
       event = Event.create!(title: 'Event in the Past', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00', eventpass: 'pass3')
+                            starttime: '2010-01-03 00:00:00', endtime: '2010-01-03 00:00:00',
+                            eventpass: 'pass3', eventtype: 'General')
       event.save
       visit events_path
       expect(page).not_to have_content('Event in the Past')
@@ -569,12 +561,287 @@ RSpec.describe 'Home Page Date', type: :system do
       # set local time to jan 1, 2022
       travel_to Time.zone.local(2022, 1, 1, 0o1, 0o4, 44)
       event = Event.create!(title: 'Event in the Future', place: 'Zach 222', description: 'Not Saved',
-                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00', eventpass: 'pass3')
+                            starttime: '2022-01-03 00:00:00', endtime: '2022-01-03 00:00:00',
+                            eventpass: 'pass3', eventtype: 'General')
       event.save
       visit events_path
       expect(page).to have_content('Event in the Future')
       sleep(2)
       event.destroy
+    end
+  end
+end
+
+RSpec.describe 'User Event Sign in', type: :system do
+  describe 'Sign in and update points' do
+    it 'Registered user attempts to sign in without logging in' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      fill_in 'signin[first_name]', with: 'test'
+      fill_in 'signin[last_name]', with: 'guy'
+      fill_in 'signin[uin]', with: '111111111'
+      click_on 'commit'
+
+      expect(page).to have_content('Please sign in to your account before checking in.')
+    end
+
+    it 'Registered user attempts to sign in after loggin in - Mentorship Meeting' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+
+      visit '/user/login'
+      expect(page).to have_content('Email*')
+      expect(page).to have_content('Password*')
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'password')
+      click_button('Login')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('4/5 Points')
+
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+
+      click_button('Login')
+      expect(page).to have_content('Signed in successfully.')
+
+      visit '/admin/events/1'
+      click_on 'Edit Event'
+      select 'Mentorship Meeting', from: 'event[eventtype]'
+      click_on 'commit'
+
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have successfully signed into the event.')
+
+      visit '/user_profile'
+
+      expect(page).to have_content('Mentorship Meeting Points: 2')
+      expect(page).to have_content('5/5 Points')
+    end
+
+    it 'Registered user attempts to sign in after loggin in - Social Meeting' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+
+      visit '/user/login'
+      expect(page).to have_content('Email*')
+      expect(page).to have_content('Password*')
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'password')
+      click_button('Login')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('4/5 Points')
+
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+
+      click_button('Login')
+      expect(page).to have_content('Signed in successfully.')
+
+      visit '/admin/events/1'
+      click_on 'Edit Event'
+      select 'Social Meeting', from: 'event[eventtype]'
+      click_on 'commit'
+
+      visit events_path
+
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have successfully signed into the event.')
+
+      visit '/user_profile'
+
+      expect(page).to have_content('Social Meeting Points: 2')
+      expect(page).to have_content('5/5 Points')
+    end
+
+    it 'Registered user attempts to sign in after loggin in - Outreach Event' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+
+      visit '/user/login'
+      expect(page).to have_content('Email*')
+      expect(page).to have_content('Password*')
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'password')
+      click_button('Login')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('4/5 Points')
+
+      visit new_admin_user_session_path
+      fill_in('admin_user[email]', with: 'admin@example.com')
+      fill_in('admin_user[password]', with: 'password')
+
+      click_button('Login')
+      expect(page).to have_content('Signed in successfully.')
+
+      visit '/admin/events/1'
+      click_on 'Edit Event'
+      select 'Outreach Event', from: 'event[eventtype]'
+      click_on 'commit'
+
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have successfully signed into the event.')
+
+      visit '/user_profile'
+
+      expect(page).to have_content('Outreach Points: 2')
+      expect(page).to have_content('5/5 Points')
+    end
+
+    it 'Registered user attempts to sign in after loggin in - General Meeting' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+
+      visit '/user/login'
+      expect(page).to have_content('Email*')
+      expect(page).to have_content('Password*')
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'password')
+      click_button('Login')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('4/5 Points')
+
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have successfully signed into the event.')
+
+      visit '/user_profile'
+
+      expect(page).to have_content('General Meeting Points: 2')
+      expect(page).to have_content('5/5 Points')
+    end
+
+    it 'Registered user attempts to sign in after loggin in twice' do
+      travel_to Time.zone.local(2025, 1, 1, 0o1, 0o4, 44)
+
+      visit '/user/login'
+      expect(page).to have_content('Email*')
+      expect(page).to have_content('Password*')
+      fill_in('user[email]', with: 'user@example.com')
+      fill_in('user[password]', with: 'password')
+      click_button('Login')
+      expect(page).to have_content('test user')
+      expect(page).to have_content('4/5 Points')
+
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have successfully signed into the event.')
+
+      visit events_path
+      click_on('Event Check-in')
+      fill_in 'signin[email]', with: 'user@example.com'
+      fill_in 'event_pass', with: '1'
+      click_on 'commit'
+
+      expect(page).to have_content('You have already signed into the event')
+    end
+  end
+end
+
+RSpec.describe 'Sign In Unit Tests', type: :system do
+  describe 'Sign in Unit Tests' do
+    it 'Sign in to social event' do
+      user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
+                                     name: 'test user', total_points: 4, general_meeting_points: 1,
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
+
+      allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
+      allow(user).to receive(:update).with(any_args).and_return(user)
+      allow(User).to receive(:find_by).with(any_args).and_return(user)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'Social Meeting')
+      allow(Event).to receive(:find).with(any_args).and_return(event1)
+      allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
+      allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
+
+      expect(response).to have_http_status(302)
+    end
+
+    it 'Sign in to mentorship event' do
+      user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
+                                     name: 'test user', total_points: 4, general_meeting_points: 1,
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
+
+      allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
+      allow(user).to receive(:update).with(any_args).and_return(user)
+      allow(User).to receive(:find_by).with(any_args).and_return(user)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'Mentorship Meeting')
+      allow(Event).to receive(:find).with(any_args).and_return(event1)
+      allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
+      allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
+
+      expect(response).to have_http_status(302)
+    end
+
+    it 'Sign in to General event' do
+      user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
+                                     name: 'test user', total_points: 4, general_meeting_points: 1,
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
+
+      allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
+      allow(user).to receive(:update).with(any_args).and_return(user)
+      allow(User).to receive(:find_by).with(any_args).and_return(user)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'General Meeting')
+      allow(Event).to receive(:find).with(any_args).and_return(event1)
+      allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
+      allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
+
+      expect(response).to have_http_status(302)
+    end
+
+    it 'Sign in to Outreach event' do
+      user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
+                                     name: 'test user', total_points: 4, general_meeting_points: 1,
+                                     mentorship_meeting_points: 1, social_points: 1, outreach_points: 1)
+
+      allow(user).to receive(:events).with(any_args).and_return(Array.new(0))
+      allow(user).to receive(:update).with(any_args).and_return(user)
+      allow(User).to receive(:find_by).with(any_args).and_return(user)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'Outreach Event')
+      allow(Event).to receive(:find).with(any_args).and_return(event1)
+      allow(event1).to receive(:users).with(any_args).and_return(Array.new(0))
+      allow(event1).to receive(:guests).with(any_args).and_return(Array.new(0))
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' }, 'event_pass' => 'pass2' }
+
+      expect(response).to have_http_status(302)
+    end
+
+    it 'invalid sign in post request' do
+      post '/events/new', params: { 'signin' => { 'event_id' => '100' } }
+
+      expect(response).to have_http_status(302)
     end
   end
 end

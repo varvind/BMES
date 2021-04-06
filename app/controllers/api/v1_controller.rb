@@ -23,7 +23,8 @@ module Api
           id: @event.id,
           name: @event.title,
           start_time: @event.starttime,
-          attendees: Participation.where(event_id: @event.id)
+          attendees: @event.users,
+          guests: @event.guests
         }, status: :ok
       end
     end
