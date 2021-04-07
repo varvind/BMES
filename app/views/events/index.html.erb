@@ -73,8 +73,14 @@
             <%= event.title %>
             <%= event.starttime.strftime("%I:%M %p") %>
             <br ></br>
-            <%= link_to("Details", event_path(event), :class => 'action show', class: "a-primary")%>
-            <%= link_to("Event Check-in", {:controller => "events", :action => "new", :event_id => event.id}, class: "a-primary") %>
+            <%= link_to("Details", event_path(event), :class => 'action show', class: "a-primary")%> 
+            <%# <%= ((event.starttime - 10.minutes) < DateTime.now < event.endtime).inspect %>
+            <%# <%= DateTime.now.inspect %>
+            <%# <%= Time.now.inspect %>
+            <%# Time.now.between?((event.starttime.to_time - 10.minutes), event.endtime.to_time) %>
+            <% if DateTime.now.between?((event.starttime.to_time - 10.minutes), event.endtime.to_time) %>
+              <%= link_to("Event Check-in", {:controller => "events", :action => "new", :event_id => event.id}, class: "a-primary") %>
+            <% end %>
           </div>
           <br>
         <% end %>
