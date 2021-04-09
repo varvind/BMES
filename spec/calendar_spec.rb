@@ -8,7 +8,7 @@ RSpec.describe 'Create New Event', type: :system do
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')
       fill_in('admin_user[password]', with: 'password')
-      click_button('commit')
+      click_button('Login')
       click_on 'Events'
       click_on 'New Event'
 
@@ -16,15 +16,15 @@ RSpec.describe 'Create New Event', type: :system do
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
 
-      select '2021', from: 'event[starttime(1i)]'
-      select 'March', from: 'event[starttime(2i)]'
-      select '22', from: 'event[starttime(3i)]'
+      select '2025', from: 'event[starttime(1i)]'
+      select 'April', from: 'event[starttime(2i)]'
+      select '1', from: 'event[starttime(3i)]'
       select '10', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2021', from: 'event[endtime(1i)]'
-      select 'March', from: 'event[endtime(2i)]'
-      select '22', from: 'event[endtime(3i)]'
+      select '2025', from: 'event[endtime(1i)]'
+      select 'April', from: 'event[endtime(2i)]'
+      select '1', from: 'event[endtime(3i)]'
       select '12', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
@@ -34,7 +34,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
 
-      travel_to Time.zone.local(2021, 3, 13, 0o1, 0o4, 44)
+      travel_to Time.zone.local(2025, 4, 1, 0o11, 0o62, 00)
       visit '/'
       expect(page).to have_css '.simple-calendar'
 
@@ -48,7 +48,9 @@ RSpec.describe 'Create New Event', type: :system do
 
       click_on 'Back to List'
 
+      sleep(10)
       click_on 'Check-in'
+      sleep(10)
     end
     it 'test pm event' do
       # set local time to mar 13th, 2020
@@ -64,15 +66,15 @@ RSpec.describe 'Create New Event', type: :system do
       fill_in 'Place', with: 'place1'
       fill_in 'Description', with: 'des1'
 
-      select '2021', from: 'event[starttime(1i)]'
-      select 'March', from: 'event[starttime(2i)]'
-      select '22', from: 'event[starttime(3i)]'
+      select '2025', from: 'event[starttime(1i)]'
+      select 'April', from: 'event[starttime(2i)]'
+      select '1', from: 'event[starttime(3i)]'
       select '18', from: 'event[starttime(4i)]'
       select '00', from: 'event[starttime(5i)]'
 
-      select '2021', from: 'event[endtime(1i)]'
-      select 'March', from: 'event[endtime(2i)]'
-      select '22', from: 'event[endtime(3i)]'
+      select '2025', from: 'event[endtime(1i)]'
+      select 'April', from: 'event[endtime(2i)]'
+      select '1', from: 'event[endtime(3i)]'
       select '19', from: 'event[endtime(4i)]'
       select '00', from: 'event[endtime(5i)]'
 
@@ -82,7 +84,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
       # set local time to mar 13th, 2021
-      travel_to Time.zone.local(2021, 3, 13, 0o1, 0o4, 44)
+      travel_to Time.zone.local(2025, 4, 1, 0o21, 0o62, 00)
       visit '/'
       expect(page).to have_css '.simple-calendar'
       expect(page).to have_content('title2')
@@ -95,7 +97,9 @@ RSpec.describe 'Create New Event', type: :system do
 
       click_on 'Back to List'
 
+      sleep(10)
       click_on 'Check-in'
+      sleep(10)
     end
   end
 end
