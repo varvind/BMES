@@ -18,7 +18,7 @@ RSpec.describe 'Create Users Page', type: :system do
       fill_in('user[password]', with: 'password')
       click_button('Login')
       expect(page).to have_content('test user')
-      expect(page).to have_content('3/5 Points')
+      expect(page).to have_content('4/5 Points')
     end
     it 'invalid Login' do
       visit '/user/login'
@@ -131,10 +131,15 @@ RSpec.describe 'Create Users Page', type: :system do
     it 'test profile function' do
       user = instance_double('User', email: 'user@example.com', password: 'password', password_confirmation: 'password',
                                      name: 'test user', total_points: 3, general_meeting_points: 1,
-                                     mentorship_meeting_points: 1, social_points: 1)
-
+                                     mentorship_meeting_points: 1, social_points: 1,
+                                     outreach_points: 1, active_semesters: 1)
+      event1 = instance_double('Event', title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
+                                        starttime: '2025-01-02 00:00:00', endtime: '2025-01-02 00:00:00',
+                                        eventpass: 'pass2', eventtype: 'General Meeting')
+      events = Array.new(1)
+      events[0] = event1
       allow(User).to receive(:find_by).with(any_args).and_return(user)
-      allow(user).to receive(:events) { Array.new(1) }
+      allow(user).to receive(:events) { events }
       get '/user_profile'
       expect(response).to have_http_status(:ok)
     end

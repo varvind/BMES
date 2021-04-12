@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_164815) do
+ActiveRecord::Schema.define(version: 2021_03_23_172419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,18 +48,17 @@ ActiveRecord::Schema.define(version: 2021_02_10_164815) do
     t.datetime "starttime"
     t.datetime "endtime"
     t.string "eventpass"
+    t.string "eventtype"
+    t.string "guests", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "participations", force: :cascade do |t|
-    t.integer "uin"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "event_id"
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_events_users_on_event_id"
+    t.index ["user_id"], name: "index_events_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,10 +69,10 @@ ActiveRecord::Schema.define(version: 2021_02_10_164815) do
     t.integer "general_meeting_points", default: 0
     t.integer "mentorship_meeting_points", default: 0
     t.integer "social_points", default: 0
-    t.string "events", default: [], array: true
+    t.integer "outreach_points", default: 0
+    t.integer "active_semesters", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "participations", "events"
 end

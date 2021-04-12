@@ -9,10 +9,10 @@
     <h3 class="event-place"><%= @event.place %></h3>
     <p><%= @event.description %></p>
     <p>
-      <%= @event.starttime.strftime("%h %M %p %m-%d-%Y") %>
+      <%= @event.starttime.strftime("%I:%M %p %m-%d-%Y") %>
       <% if @event.endtime.nil? %>
       <% else %>
-        - <%= @event.endtime.strftime("%h %M %p %m-%d-%Y") %>
+        - <%= @event.endtime.strftime("%I:%M %p %m-%d-%Y") %>
       <% end %>
     </p>
   </div>
@@ -25,9 +25,12 @@
 
   <ul class="list-group list-group-flush">
   <h3>Attendees: </h3>
-  <% @count.each do |c| %>
-    <li class="list-group-item"><%= c.first_name %> <%= c.last_name %> <%= c.email %></li>
-    <% end %>
+  <% @event.users.each do |c| %>
+    <li class="list-group-item"><%= c.name %></li>
+  <% end %>
+  <% @event.guests.each do |c| %>
+    <li class="list-group-item"><%= c %></li>
+  <% end %>
   </ul>
   <br>
   <%= link_to("Back to List", events_path, :class => 'back-link', class: "btn btn-primary") %>

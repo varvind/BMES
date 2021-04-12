@@ -53,6 +53,20 @@ window.onload= () =>{
     user_social_points_input.classList.toggle("hidden")
     user_social_points.type = ""
     user_social_points.placeholder = "Social Points"
+
+    user_outreach_points_input= document.getElementById("user_outreach_points_input")
+    user_outreach_points= document.getElementById("user_outreach_points")
+    user_outreach_points_input.classList.add("stringish")
+    user_outreach_points_input.classList.toggle("hidden")
+    user_outreach_points.type = ""
+    user_outreach_points.placeholder = "Outreach Points"
+
+    user_active_semesters_input= document.getElementById("user_active_semesters_input")
+    user_active_semesters_points= document.getElementById("user_active_semesters")
+    user_active_semesters_input.classList.add("stringish")
+    user_active_semesters_input.classList.toggle("hidden")
+    user_active_semesters_points.type = ""
+    user_active_semesters_points.placeholder = "Active Semesters"
   
     // make user CSV file input hidden
     user_CSV_file_input = document.getElementById("user_user_CSV_File_input")
@@ -73,7 +87,7 @@ function changeForm() {
   } else {
     document.getElementById("switchButton").innerHTML = "Add Individual User"
     document.getElementById("instructions").innerHTML = "Use a Spreadsheet with User Information"
-    document.getElementById("columns").innerHTML = "Required Columns: Name, Email, Total Points, General Meeting Points, Mentorship Meeting Points, and Social Points"
+    document.getElementById("columns").innerHTML = "Required Columns: Name, Email, Total Points, General Meeting Points, Mentorship Meeting Points, Outreach Points, Active Semesters and Social Points"
     i--
   }
 
@@ -83,6 +97,7 @@ function changeForm() {
   user_name_input.classList.add("stringish")
   user_name_input.classList.toggle("hidden")
   user_name.type = ""
+  user_name.value = ""
   user_name.placeholder = "Name"
 
   user_email_input= document.getElementById("user_email_input")
@@ -90,6 +105,7 @@ function changeForm() {
   user_email_input.classList.add("stringish")
   user_email_input.classList.toggle("hidden")
   user_email.type = ""
+  user_email.value = ""
   user_email.placeholder = "Email"
 
   user_total_points_input= document.getElementById("user_total_points_input")
@@ -124,6 +140,22 @@ function changeForm() {
   user_social_points.type = ""
   user_social_points.value = ""
   user_social_points.placeholder = "Social Points"
+
+  user_outreach_points_input= document.getElementById("user_outreach_points_input")
+  user_outreach_points= document.getElementById("user_outreach_points")
+  user_outreach_points_input.classList.add("stringish")
+  user_outreach_points_input.classList.toggle("hidden")
+  user_outreach_points.type = ""
+  user_outreach_points.value = ""
+  user_outreach_points.placeholder = "Outreach Points"
+
+  user_active_semesters_input= document.getElementById("user_active_semesters_input")
+  user_active_semesters= document.getElementById("user_active_semesters")
+  user_active_semesters_input.classList.add("stringish")
+  user_active_semesters_input.classList.toggle("hidden")
+  user_active_semesters.type = ""
+  user_active_semesters.value = ""
+  user_active_semesters.placeholder = "Active Semesters"
 
   user_CSV_file_input = document.getElementById("user_user_CSV_File_input")
   user_CSV_file = document.getElementById('user_user_CSV_File')
