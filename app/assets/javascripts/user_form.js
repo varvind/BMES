@@ -63,8 +63,8 @@ window.onload= () =>{
 
     user_active_semesters_input= document.getElementById("user_active_semesters_input")
     user_active_semesters_points= document.getElementById("user_active_semesters")
-    user_active_semesters_points_input.classList.add("stringish")
-    user_active_semesters_points_input.classList.toggle("hidden")
+    user_active_semesters_input.classList.add("stringish")
+    user_active_semesters_input.classList.toggle("hidden")
     user_active_semesters_points.type = ""
     user_active_semesters_points.placeholder = "Active Semesters"
   
