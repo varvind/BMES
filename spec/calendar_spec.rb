@@ -34,7 +34,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
 
-      travel_to Time.zone.local(2025, 4, 1, 9, 50, 00)
+      travel_to Time.zone.local(2025, 4, 1, 9, 50, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
 
@@ -82,7 +82,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
 
-      travel_to Time.zone.local(2025, 4, 1, 9, 49, 00)
+      travel_to Time.zone.local(2025, 4, 1, 9, 49, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
 
@@ -130,7 +130,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
 
-      travel_to Time.zone.local(2025, 4, 1, 12, 01, 00)
+      travel_to Time.zone.local(2025, 4, 1, 12, 0o1, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
 
@@ -179,7 +179,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
       # set local time to mar 13th, 2021
-      travel_to Time.zone.local(2025, 4, 1, 17, 50, 00)
+      travel_to Time.zone.local(2025, 4, 1, 17, 50, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
       expect(page).to have_content('title2')
@@ -227,7 +227,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
       # set local time to mar 13th, 2021
-      travel_to Time.zone.local(2025, 4, 1, 17, 49, 00)
+      travel_to Time.zone.local(2025, 4, 1, 17, 49, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
       expect(page).to have_content('title2')
@@ -275,7 +275,7 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to have_content('Event was successfully created.')
       # set local time to mar 13th, 2021
-      travel_to Time.zone.local(2025, 4, 1, 19, 01, 00)
+      travel_to Time.zone.local(2025, 4, 1, 19, 0o1, 0o0)
       visit '/'
       expect(page).to have_css '.simple-calendar'
       expect(page).to have_content('title2')
@@ -290,6 +290,5 @@ RSpec.describe 'Create New Event', type: :system do
 
       expect(page).to_not have_link('Check-in')
     end
-
   end
 end
