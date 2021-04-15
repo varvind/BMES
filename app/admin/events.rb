@@ -19,10 +19,10 @@ ActiveAdmin.register Event do
     column :title
     column :place
     column :description
-    column :starttime, label: 'Start Time'
-    column :endtime, label: 'End Time'
-    column :eventpass, label: 'Event Password'
-    column :eventtype, label: 'Event Type'
+    column 'Start Time', :starttime
+    column 'End Time', :endtime
+    column 'Event Password', :eventpass
+    column 'Event Type', :eventtype
     column :users
     column :guests
     column :created_at
@@ -50,8 +50,8 @@ ActiveAdmin.register Event do
       input :eventtype, as: :select,
                         collection: ['General Meeting', 'Mentorship Meeting', 'Social Meeting', 'Outreach Event'],
                         label: 'Event Type', include_blank: false
-      input :starttime
-      input :endtime
+      input :starttime, label: 'Start Time (YYYY - Month - DD - HH:MM)'
+      input :endtime, label: 'End Time (YYYY - Month - DD - HH:MM)'
       input :eventpass, label: 'Event Password'
       f.li "<button type = 'button' class='label' id = 'switchButton'
              style = 'margin-left:1%;font-weight:bold; margin-top:1%' onclick='changeForm()'>
