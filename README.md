@@ -53,7 +53,8 @@ This project was done entirely in Ruby on Rails, with some elements of HTML, CSS
 # Active Admin
 - Useful information about Active Admin Gem : https://activeadmin.info/
 
-# Video Demonstration
+# Video Demonstration for the above
 - A link to the video that goes over all of these things is available here: https://drive.google.com/file/d/1njXSXP6Pd2qdS88XFGH2-Mp-oN98VcBo/view?usp=sharing
 
-
+# Running sidekiq and redis server
+- Here is a usefule link that goes over sidekiq and redis, what we use for multithreaded programs: https://www.youtube.com/watch?v=GBEDvF1_8B8&t=768s
