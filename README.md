@@ -9,7 +9,7 @@ This project was done entirely in Ruby on Rails, with some elements of HTML, CSS
 # Execution Instructions
 
 - Ruby on Rails, Postgres, Yarn, Rake, and Node are all depedancies of this project and should be installed ahead of time.
-- The necessary ruby version is 2.7.1 (Since, the latest version is 2.7.2, update that in the gem file). 
+- The necessary ruby version is 2.7.2 (Run `rbenv install 2.7.2`)
 - From the command line run `git clone https://github.com/varvind/BMES.git` in order to create a copy of the repository on your local machine.
 - Ensure that node.js is installed using `sudo apt install nodejs`
 - From the project directory execute `bundle install` to install all of the gem dependancies of the project.
