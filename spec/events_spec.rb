@@ -54,9 +54,31 @@ RSpec.describe 'New Event Page', type: :system do
 
     # tests to see if an event's view page loads properly
     it 'View Event (View) - Success' do
-      visit '/admin/events/1' # go to the event's page
+      # set local time to mar 13, 2025
+      travel_to Time.zone.local(2025, 3, 13, 0o1, 0o4, 44)
+      visit '/admin/events' # go to the events page
+      click_link('New Event')
+      fill_in('event[title]', with: 'Test_Title')
+      fill_in('event[place]', with: 'Test_Place')
+      fill_in('event[description]', with: 'Test_Description')
+      select('2025', from: 'event[starttime(1i)]') # starttime year
+      select('March', from: 'event[starttime(2i)]') # starttime month
+      select('21', from: 'event[starttime(3i)]') # starttime day
+      select('10', from: 'event[starttime(4i)]') # starttime hour
+      select('00', from: 'event[starttime(5i)]') # starttime minute
+      select('2025', from: 'event[endtime(1i)]') # endtime year
+      select('March', from: 'event[endtime(2i)]') # endtime month
+      select('21', from: 'event[endtime(3i)]') # endtime day
+      select('11', from: 'event[endtime(4i)]') # endtime hour
+      select('00', from: 'event[endtime(5i)]') # endtime minute
+      fill_in('event[eventpass]', with: 'Password')
+      # make sure the event is not repeating
+      click_button('Non-Repeating Event')
+      click_on('commit')
+      eid = Event.maximum(:id)
+      visit "/admin/events/#{eid}"  # go to the event's page
       # Details of the event should be on page
-      expect(page).to have_content('Event Title')
+      expect(page).to have_content('Test_Title')
     end
 
     # tests whether creating a single event will succeed
