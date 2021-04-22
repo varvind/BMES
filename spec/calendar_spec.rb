@@ -99,7 +99,7 @@ RSpec.describe 'Create New Event', type: :system do
       expect(page).to_not have_link('Check-in')
     end
 
-    it 'test am event (early) - failure' do
+    it 'test am event (late) - failure' do
       travel_to Time.zone.local(2020, 3, 13, 1, 4, 44)
       visit new_admin_user_session_path
       fill_in('admin_user[email]', with: 'admin@example.com')

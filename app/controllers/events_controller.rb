@@ -10,8 +10,11 @@ class EventsController < ApplicationController
 
   def new
     event = Event.find_by(id: params['event_id'])
-    if event
-      @id = event.id
+    @now = DateTime.now.change(:offset => '+0000')
+    if !@now.between?((event.starttime.to_time - 20.minutes), event.endtime.to_time)
+      redirect_to '/', flash: { danger: 'Can not check into Event earlier than 20 minutes or after Event endtime' }
+    elsif event
+      @id = event.id 
     else
       redirect_to '/', flash: { danger: 'Event Does Not Exist!' }
     end
