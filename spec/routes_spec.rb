@@ -7,6 +7,7 @@ RSpec.describe 'Event page', type: :system do
     it 'View event with different url ids' do
       # set local time to jan 2nd, 2025
       travel_to Time.zone.local(2025, 1, 2, 9, 40, 00)
+      puts Time.zone.local(2025, 1, 2, 9, 40, 00)
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 10:00:00', endtime: '2025-01-02 11:00:00',
                              eventpass: 'pass2', eventtype: 'General Meeting')

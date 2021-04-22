@@ -81,6 +81,7 @@ ActiveAdmin.register Event do
     # rubocop:disable Metrics/PerceivedComplexity
     def create
       # gets parameters from new event
+      Time.zone = 'Central Time (US & Canada)'
 
       newevent = permitted_params[:event]
 
@@ -134,13 +135,13 @@ ActiveAdmin.register Event do
                                 newevent['endtime(3i)'].to_i, newevent['endtime(4i)'].to_i,
                                 newevent['endtime(5i)'].to_i)
       # gets the weeks parameter from new event
+      newstarttime += 6.hours
+      newendtime += 6.hours
       weeks = newevent[:repeatweeks].to_i
 
       # changes time zone to central time
-      newstarttime = newstarttime.change(offset: '+0000')
-      newendtime = newendtime.change(offset: '+0000')
       # checks to see if starttime is not in the past
-      if newstarttime.change(offset: '-0500') < DateTime.now
+      if newstarttime < DateTime.now
         # gives error if it does
         redirect_to '/admin/events/new', flash: { error: 'Error: Start Time cannot be in the past.' }
       # checks to see if end time is before start time
