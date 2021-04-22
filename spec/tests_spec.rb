@@ -323,7 +323,9 @@ RSpec.describe 'Admin Create Event', type: :system do
 
       click_button('Login')
 # frozen_string_literal: true
-
+    end
+  end
+end
 require 'rails_helper'
 
 RSpec.describe 'Login page', type: :system do
