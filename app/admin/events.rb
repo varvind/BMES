@@ -135,8 +135,8 @@ ActiveAdmin.register Event do
                                 newevent['endtime(3i)'].to_i, newevent['endtime(4i)'].to_i,
                                 newevent['endtime(5i)'].to_i)
       # gets the weeks parameter from new event
-      newstarttime += 6.hours
-      newendtime += 6.hours
+      newstarttime += 5.hours
+      newendtime += 5.hours
       weeks = newevent[:repeatweeks].to_i
 
       # changes time zone to central time

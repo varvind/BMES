@@ -103,7 +103,7 @@ RSpec.describe 'New Event Page', type: :system do
       click_button('Non-Repeating Event')
       click_on('commit')
       # page should have this date
-      expect(page).to have_content('March 21, 2025')
+      expect(page).to have_content('March 21, 2025 10:00')
     end
 
     # tests whether creating multiple events will succeed
