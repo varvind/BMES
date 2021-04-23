@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+
 RSpec.describe 'Create New Event', type: :system do
   describe 'Create event' do
     it 'test am event' do
