@@ -15,6 +15,7 @@ class EventsController < ApplicationController
       @id = event.id
     else
       redirect_to '/', flash: { danger: 'Event Does Not Exist!' }
+      return
     end
     # rubocop:disable Style/GuardClause
     # rubocop:disable Style/NegatedIf
