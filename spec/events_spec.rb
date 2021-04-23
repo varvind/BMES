@@ -76,7 +76,7 @@ RSpec.describe 'New Event Page', type: :system do
       click_button('Non-Repeating Event')
       click_on('commit')
       eid = Event.maximum(:id)
-      visit "/admin/events/#{eid}"  # go to the event's page
+      visit "/admin/events/#{eid}" # go to the event's page
       # Details of the event should be on page
       expect(page).to have_content('Test_Title')
     end

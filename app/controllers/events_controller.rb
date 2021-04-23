@@ -12,11 +12,12 @@ class EventsController < ApplicationController
     event = Event.find_by(id: params['event_id'])
     @now = DateTime.now
     if event
-      @id = event.id 
+      @id = event.id
     else
       redirect_to '/', flash: { danger: 'Event Does Not Exist!' }
-      return
     end
+    # rubocop:disable Style/GuardClause
+    # rubocop:disable Style/NegatedIf
     if !@now.between?((event.starttime.to_time - 20.minutes), event.endtime.to_time)
       redirect_to '/', flash: { danger: 'Can not check into Event earlier than 20 minutes or after Event endtime' }
     end
@@ -108,3 +109,5 @@ class EventsController < ApplicationController
     (return true if user)
   end
 end
+# rubocop:enable Style/GuardClause
+# rubocop:enable Style/NegatedIf

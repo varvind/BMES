@@ -37,7 +37,6 @@ RSpec.describe 'Create New Event', type: :system do
 
       travel_to Time.zone.local(2025, 4, 1, 9, 50, 0)
       visit '/'
-      sleep(10)
       expect(page).to have_css '.simple-calendar'
 
       expect(page).to have_content('title1')
@@ -372,7 +371,7 @@ RSpec.describe 'Create New Event', type: :system do
       expect(page).to have_css '.simple-calendar'
       expect(page).to have_content('title2')
 
-      eid = Event.maximum(:id) 
+      eid = Event.maximum(:id)
       visit new_event_path(event_id: eid)
       expect(page).to have_content('Can not check into Event earlier than 20 minutes or after Event endtime.')
     end
