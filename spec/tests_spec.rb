@@ -669,7 +669,6 @@ RSpec.describe 'User Event Sign in', type: :system do
 
       visit '/user_profile'
 
-      sleep(10)
       expect(page).to have_content('Social Meeting Points: 2')
       expect(page).to have_content('5/5 Points')
     end
@@ -701,7 +700,6 @@ RSpec.describe 'User Event Sign in', type: :system do
 
       visit '/user_profile'
 
-      sleep(10)
       expect(page).to have_content('Outreach Points: 2')
       expect(page).to have_content('5/5 Points')
     end
@@ -727,7 +725,6 @@ RSpec.describe 'User Event Sign in', type: :system do
 
       visit '/user_profile'
 
-      sleep(10)
       expect(page).to have_content('General Meeting Points: 2')
       expect(page).to have_content('5/5 Points')
     end
@@ -757,7 +754,6 @@ RSpec.describe 'User Event Sign in', type: :system do
       fill_in 'event_pass', with: '1128'
       click_on 'commit'
 
-      sleep(10)
       expect(page).to have_content('You have already signed into the event')
     end
   end
