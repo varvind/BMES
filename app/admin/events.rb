@@ -134,9 +134,11 @@ ActiveAdmin.register Event do
       newendtime = DateTime.new(newevent['endtime(1i)'].to_i, newevent['endtime(2i)'].to_i,
                                 newevent['endtime(3i)'].to_i, newevent['endtime(4i)'].to_i,
                                 newevent['endtime(5i)'].to_i)
-      # gets the weeks parameter from new event
+      # Form subtracts 5 hours from event starttime and endtime when submitted.
+      # This corrects it by adding it back to the starttime and endtime variables for the event.
       newstarttime += 5.hours
       newendtime += 5.hours
+      # gets the weeks parameter from new event
       weeks = newevent[:repeatweeks].to_i
 
       # changes time zone to central time
