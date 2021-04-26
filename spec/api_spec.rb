@@ -14,7 +14,7 @@ RSpec.describe 'API v1', type: :system do
                                                   {
                                                     'id' => 1,
                                                     'name' => 'Event Title',
-                                                    'start_time' => '2025-01-01T00:00:00.000Z'
+                                                    'start_time' => '2025-01-01T00:00:00.000-06:00'
                                                   }
                                                 ]
                                               })
@@ -33,12 +33,12 @@ RSpec.describe 'API v1', type: :system do
                                                   {
                                                     'id' => 1,
                                                     'name' => 'Event Title',
-                                                    'start_time' => '2025-01-01T00:00:00.000Z'
+                                                    'start_time' => '2025-01-01T00:00:00.000-06:00'
                                                   },
                                                   {
                                                     'id' => 2,
                                                     'name' => 'Event Numba 2',
-                                                    'start_time' => '2020-01-01T00:00:00.000Z'
+                                                    'start_time' => '2020-01-01T00:00:00.000-06:00'
                                                   }
                                                 ]
                                               })
@@ -58,7 +58,7 @@ RSpec.describe 'API v1', type: :system do
                                                 'guests' => [],
                                                 'id' => 1,
                                                 'name' => 'Event Title',
-                                                'start_time' => '2025-01-01T00:00:00.000Z'
+                                                'start_time' => '2025-01-01T00:00:00.000-06:00'
                                               })
     end
     it 'Invalid' do
