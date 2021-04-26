@@ -12,7 +12,6 @@ RSpec.describe 'Event page', type: :system do
                              starttime: '2025-01-02 10:00:00', endtime: '2025-01-02 11:00:00',
                              eventpass: 'pass2', eventtype: 'General Meeting')
       event1.save
-      # event2.save
       visit events_path
 
       path1 = "//a[@href='/events/new?event_id=" + event1.id.to_s + "']"
@@ -27,25 +26,16 @@ RSpec.describe 'Event page', type: :system do
       event1 = Event.create!(title: 'Event Test 1', place: 'Zach 111', description: 'Not Saved',
                              starttime: '2025-01-02 10:00:00', endtime: '2025-01-02 12:00:00',
                              eventpass: 'pass2', eventtype: 'General Meeting')
-      # event2 = Event.create!(title: 'Event Test 2', place: 'Zach 222', description: 'Not Saved',
-      #                        starttime: '2025-01-03 00:00:00', endtime: '2025-01-03 00:00:00',
-      #                        eventpass: 'pass3', eventtype: 'General Meeting')
       event1.save
-      # event2.save
       visit events_path
 
       path1 = "//a[@href='/events/new?event_id=" + event1.id.to_s + "']"
-      # path2 = "//a[@href='/events/new?event_id=" + event2.id.to_s + "']"
       find(:xpath, path1).click
       sleep(2)
       click_link('Back to List')
-      sleep(2)
-      # find(:xpath, path2).click
-      # click_link('Back to List')
 
       sleep(2)
       event1.destroy
-      # event2.destroy
     end
   end
 end
